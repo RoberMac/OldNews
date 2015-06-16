@@ -1,0 +1,63 @@
+// CSS3
+@mixin user-select($value) {
+  -webkit-user-select: $value;
+  -moz-user-select: $value;
+  -ms-user-select: $value;
+  user-select: $value;
+}
+@mixin font-smoothing {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$font-family-base: "Helvetica Neue","Palatino","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+$line-height-base: 1.4;
+
+$font-size-small: 12px;
+$font-size-base: 14px;
+$font-size-regular: 16px;
+
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-bold: 600;
+
+// Media Query
+// All Mobile Devices
+$all-mobile-Devices: '(max-device-width: 1024px), (max-width: 1024px)';
+// Mobile Phone in portrait and landscape
+$phone: '(max-device-width: 767px), (max-width: 767px)';
+// Mobile Phone in landscape
+$phone-landscape: '(max-device-width : 767px) and (orientation : landscape)';
+// iPad in portrait and landscape
+$tablet: '(min-device-width : 768px) and (max-device-width : 1024px),(min-width: 768px) and (max-width: 1024px)';
+// iPad in landscape
+$tablet-landscape: '(min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape),(min-width: 768px) and (max-width: 1024px) and (orientation : landscape)';
+
+.vertically_center {
+    display: table-cell;
+    vertical-align: middle;
+}
+.animate {
+    &--slower {
+        @include transition(all 1.7s ease-in-out)
+    }
+    &--general {
+        @include transition(all .7s ease-in-out)
+    }
+    &--faster {
+        @include transition(all .3s ease-in-out)
+    }
+}
+.overflow {
+    &--x {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+    &--y {
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+

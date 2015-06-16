@@ -1,0 +1,55 @@
+/* sy-news-reset */
+html {
+    height: 100%;
+    overflow: hidden;
+
+    &.oldNews {
+        background-color: #000;
+    }
+}
+body {
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    @include user-select(none);
+    @include font-smoothing;
+}
+* {
+    @include box-sizing(border-box);
+    @include input-placeholder {
+        text-align: center;
+    }
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: $font-weight-bold;
+    margin: 1em 0;
+    text-align: center;
+}
+h1 {
+    font-size: 2em;
+}
+h2 {
+    font-size: 1.5em;
+}
+h3 {
+    font-size: 1.17em;
+}
+h4 {
+    font-size: 1.12em;
+}
+h5 {
+    font-size: .83em;
+}
+h6 {
+    font-size: .75em;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}

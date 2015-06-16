@@ -1,0 +1,157 @@
+/* 開場動畫 */
+#opening_animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+/* 加載動畫 */
+.load_animate {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    border: 1px solid #CECECF;
+    border-radius: 20px;
+    cursor: w-resize;
+    @include animation(load_animate 1.7s infinite linear);
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 10px;
+        height: 10px;
+        background-color: #000;
+        border-radius: 5px;
+        @include transition(all 7.7s ease-in-out);
+    }
+}
+@include keyframes(load_animate) {
+    0% {
+        border-color: #000;
+        @include transform(rotate(0deg));
+    }
+    50% {
+        border-color: #CECECF;
+    }
+    100% {
+        border-color: #000;
+        @include transform(rotate(360deg));
+    }
+}
+
+.head {
+    @include opacity(0);
+    &--show {
+        @include opacity(1);
+    }
+    &__logo {
+        position: absolute;
+        display: block;
+        top: 10px;
+        right: 10px;
+        width: 5%;
+        border: 1px solid #000;
+        @include border-radius(10px);
+        cursor: pointer;
+        z-index: 1;
+        @media #{$phone} {
+            display: none;
+            width: 17%;
+        }
+        @media #{$phone-landscape} {
+            width: 7%;
+        }
+        @media #{$tablet} {
+            width: 10%;
+        }
+        @media #{$tablet-landscape} {
+            width: 7%;
+        }
+        &--oldNews {
+            border-color: #FFF;
+            background-color: #000;
+        }
+    }
+}
+
+
+.newsBox {
+    position: absolute;
+    top: 5%;
+    left: 30%;
+    width: 40%;
+    height: 90%;
+    border: 1px solid #000;
+    @include border-radius(10px);
+    @include opacity(0);
+    @include box-shadow(0 3px 15px 0 rgba(0,0,0,.5));
+    @media #{$phone} {
+        top: 3.5%;
+        left: 3%;
+        width: 94%;
+        height: 95.5%;
+    }
+    @media #{$phone-landscape} {
+        top: 1.5%;
+        left: 1.5%;
+        width: 97%;
+        height: 97%;
+    }
+    @media #{$tablet} {
+        top: 12%;
+        left: 12%;
+        width: 76%;
+        height: 76%;
+    }
+    // 舊聞。
+    &--oldNews {
+        color: #FFF;
+        border: 1px solid #FFF;
+        @include box-shadow(0 3px 15px 0 rgba(255,255,255,.5));
+    }
+    // 顯示
+    &--show {
+        @include opacity(1);
+    }
+    // 新聞
+    &__news {
+        @extend .overflow--y;
+        position: absolute;
+        top: 7%;
+        top: calc(3.5em);
+        left: 5%;
+        width: 90%;
+        height: 86%;
+        height: calc(100% - 3.5em);
+        &__item {
+            overflow: hidden;
+            white-space: nowrap;
+            text-align: left;
+            text-overflow: ellipsis;
+            margin: 5% auto;
+            &__timestamp {
+                margin-right: 1em;
+                font-size: $font-size-small;
+                color: #CECECF;
+                @media #{$phone} {
+                    margin-right: 0;
+                }
+            }
+            &__title {
+                font-size: $font-size-regular;
+                text-decoration: underline;
+                @media #{$phone} {
+                    font-size: $font-size-base;
+                }
+            }
+        }
+    }
+    // 當前日期
+    &__date {
+        position: absolute;
+        top: 0%;
+        width: 100%;
+        text-align: center;
+    }
+}
