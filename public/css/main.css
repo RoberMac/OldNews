@@ -84,7 +84,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   -webkit-transition: all 0.7s ease-in-out;
   transition: all 0.7s ease-in-out;
 }
-/* line 47, sass/partials/_base.scss */
+/* line 46, sass/partials/_base.scss */
+.animate--general.ng-enter, .animate--general.ng-leave.ng-leave-active, .animate--general.ng-hide {
+  opacity: 0;
+}
+/* line 51, sass/partials/_base.scss */
+.animate--general.ng-leave, .animate--general.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+/* line 56, sass/partials/_base.scss */
 .animate--faster {
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -92,17 +100,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   transition: all 0.3s ease-in-out;
 }
 
-/* line 52, sass/partials/_base.scss */
+/* line 61, sass/partials/_base.scss */
 .overflow--x {
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 }
-/* line 57, sass/partials/_base.scss */
-.overflow--y, .newsBox__news {
+/* line 66, sass/partials/_base.scss */
+.overflow--y, .newsBox__inner__news {
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+}
+
+/* line 73, sass/partials/_base.scss */
+.display--table, .loadBox, .newsBox__inner__news__error {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: table;
 }
 
 /* sy-news-reset */
@@ -122,6 +138,7 @@ body {
   font-size: 14px;
   line-height: 1.4;
   text-rendering: optimizeLegibility;
+  cursor: default;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -132,7 +149,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* line 20, sass/partials/_reset.scss */
+/* line 21, sass/partials/_reset.scss */
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -155,50 +172,50 @@ body {
   text-align: center;
 }
 
-/* line 26, sass/partials/_reset.scss */
+/* line 27, sass/partials/_reset.scss */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   margin: 1em 0;
   text-align: center;
 }
 
-/* line 31, sass/partials/_reset.scss */
+/* line 32, sass/partials/_reset.scss */
 h1 {
   font-size: 2em;
 }
 
-/* line 34, sass/partials/_reset.scss */
+/* line 35, sass/partials/_reset.scss */
 h2 {
   font-size: 1.5em;
 }
 
-/* line 37, sass/partials/_reset.scss */
+/* line 38, sass/partials/_reset.scss */
 h3 {
   font-size: 1.17em;
 }
 
-/* line 40, sass/partials/_reset.scss */
+/* line 41, sass/partials/_reset.scss */
 h4 {
   font-size: 1.12em;
 }
 
-/* line 43, sass/partials/_reset.scss */
+/* line 44, sass/partials/_reset.scss */
 h5 {
   font-size: .83em;
 }
 
-/* line 46, sass/partials/_reset.scss */
+/* line 47, sass/partials/_reset.scss */
 h6 {
   font-size: .75em;
 }
 
-/* line 49, sass/partials/_reset.scss */
+/* line 50, sass/partials/_reset.scss */
 a {
   color: inherit;
   text-decoration: none;
 }
 
-/* line 53, sass/partials/_reset.scss */
+/* line 54, sass/partials/_reset.scss */
 ::-webkit-scrollbar {
   display: none;
 }
@@ -216,30 +233,26 @@ ng\:form {
   display: block;
 }
 
-/* 開場動畫 */
-/* line 2, sass/modules/_index.scss */
-#opening_animation {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: table;
-}
-
 /* 加載動畫 */
-/* line 9, sass/modules/_index.scss */
-.load_animate {
+/* line 2, sass/modules/_index.scss */
+.loadBox {
+  background-color: #FFF;
+  z-index: 999;
+}
+/* line 6, sass/modules/_index.scss */
+.loadBox__loadAnimate {
   width: 40px;
   height: 40px;
   margin: 0 auto;
   border: 1px solid #CECECF;
   border-radius: 20px;
   cursor: w-resize;
-  -moz-animation: load_animate 1.7s infinite linear;
-  -webkit-animation: load_animate 1.7s infinite linear;
-  animation: load_animate 1.7s infinite linear;
+  -moz-animation: loadAnimate--news 1.7s infinite linear;
+  -webkit-animation: loadAnimate--news 1.7s infinite linear;
+  animation: loadAnimate--news 1.7s infinite linear;
 }
-/* line 17, sass/modules/_index.scss */
-.load_animate:before {
+/* line 14, sass/modules/_index.scss */
+.loadBox__loadAnimate:before {
   content: '';
   position: absolute;
   top: 0px;
@@ -254,7 +267,7 @@ ng\:form {
   transition: all 7.7s ease-in-out;
 }
 
-@-moz-keyframes load_animate {
+@-moz-keyframes loadAnimate--news {
   0% {
     border-color: #000;
     -moz-transform: rotate(0deg);
@@ -269,7 +282,7 @@ ng\:form {
     transform: rotate(360deg);
   }
 }
-@-webkit-keyframes load_animate {
+@-webkit-keyframes loadAnimate--news {
   0% {
     border-color: #000;
     -webkit-transform: rotate(0deg);
@@ -284,7 +297,7 @@ ng\:form {
     transform: rotate(360deg);
   }
 }
-@keyframes load_animate {
+@keyframes loadAnimate--news {
   0% {
     border-color: #000;
     -moz-transform: rotate(0deg);
@@ -303,17 +316,56 @@ ng\:form {
     transform: rotate(360deg);
   }
 }
-/* line 43, sass/modules/_index.scss */
-.head {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
+@-moz-keyframes loadAnimate--oldNews {
+  0% {
+    border-color: #FFF;
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50% {
+    border-color: #CECECF;
+  }
+  100% {
+    border-color: #FFF;
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
-/* line 45, sass/modules/_index.scss */
-.head--show {
-  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-  opacity: 1;
+@-webkit-keyframes loadAnimate--oldNews {
+  0% {
+    border-color: #FFF;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50% {
+    border-color: #CECECF;
+  }
+  100% {
+    border-color: #FFF;
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
-/* line 48, sass/modules/_index.scss */
+@keyframes loadAnimate--oldNews {
+  0% {
+    border-color: #FFF;
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50% {
+    border-color: #CECECF;
+  }
+  100% {
+    border-color: #FFF;
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* line 55, sass/modules/_index.scss */
 .head__logo {
   position: absolute;
   display: block;
@@ -328,37 +380,32 @@ ng\:form {
   z-index: 1;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 48, sass/modules/_index.scss */
+  /* line 55, sass/modules/_index.scss */
   .head__logo {
     display: none;
     width: 17%;
   }
 }
 @media (max-device-width: 767px) and (orientation: landscape) {
-  /* line 48, sass/modules/_index.scss */
+  /* line 55, sass/modules/_index.scss */
   .head__logo {
     width: 7%;
   }
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
-  /* line 48, sass/modules/_index.scss */
+  /* line 55, sass/modules/_index.scss */
   .head__logo {
     width: 10%;
   }
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape), (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  /* line 48, sass/modules/_index.scss */
+  /* line 55, sass/modules/_index.scss */
   .head__logo {
     width: 7%;
   }
 }
-/* line 71, sass/modules/_index.scss */
-.head__logo--oldNews {
-  border-color: #FFF;
-  background-color: #000;
-}
 
-/* line 79, sass/modules/_index.scss */
+/* line 82, sass/modules/_index.scss */
 .newsBox {
   position: absolute;
   top: 5%;
@@ -369,14 +416,12 @@ ng\:form {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
   -moz-box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.5);
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 79, sass/modules/_index.scss */
+  /* line 82, sass/modules/_index.scss */
   .newsBox {
     top: 3.5%;
     left: 3%;
@@ -385,7 +430,7 @@ ng\:form {
   }
 }
 @media (max-device-width: 767px) and (orientation: landscape) {
-  /* line 79, sass/modules/_index.scss */
+  /* line 82, sass/modules/_index.scss */
   .newsBox {
     top: 1.5%;
     left: 1.5%;
@@ -394,7 +439,7 @@ ng\:form {
   }
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
-  /* line 79, sass/modules/_index.scss */
+  /* line 82, sass/modules/_index.scss */
   .newsBox {
     top: 12%;
     left: 12%;
@@ -402,21 +447,26 @@ ng\:form {
     height: 76%;
   }
 }
-/* line 108, sass/modules/_index.scss */
-.newsBox--oldNews {
-  color: #FFF;
-  border: 1px solid #FFF;
-  -moz-box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
-  -webkit-box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
-  box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
+/* line 111, sass/modules/_index.scss */
+.newsBox__inner.ng-enter {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  left: 100%;
 }
-/* line 114, sass/modules/_index.scss */
-.newsBox--show {
+/* line 115, sass/modules/_index.scss */
+.newsBox__inner.ng-enter.ng-enter-active, .newsBox__inner.ng-leave {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
+  left: 0%;
 }
-/* line 118, sass/modules/_index.scss */
-.newsBox__news {
+/* line 119, sass/modules/_index.scss */
+.newsBox__inner.ng-leave.ng-leave-active {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  left: -100%;
+}
+/* line 124, sass/modules/_index.scss */
+.newsBox__inner__news {
   position: absolute;
   top: 7%;
   top: calc(3.5em);
@@ -425,41 +475,160 @@ ng\:form {
   height: 86%;
   height: calc(100% - 3.5em);
 }
-/* line 127, sass/modules/_index.scss */
-.newsBox__news__item {
+/* line 133, sass/modules/_index.scss */
+.newsBox__inner__news__item {
   overflow: hidden;
   white-space: nowrap;
   text-align: left;
   text-overflow: ellipsis;
   margin: 5% auto;
 }
-/* line 133, sass/modules/_index.scss */
-.newsBox__news__item__timestamp {
+/* line 139, sass/modules/_index.scss */
+.newsBox__inner__news__item__timestamp {
   margin-right: 1em;
   font-size: 12px;
   color: #CECECF;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 133, sass/modules/_index.scss */
-  .newsBox__news__item__timestamp {
+  /* line 139, sass/modules/_index.scss */
+  .newsBox__inner__news__item__timestamp {
     margin-right: 0;
   }
 }
-/* line 141, sass/modules/_index.scss */
-.newsBox__news__item__title {
-  font-size: 16px;
+/* line 147, sass/modules/_index.scss */
+.newsBox__inner__news__item__title {
+  font-size: 14px;
   text-decoration: underline;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 141, sass/modules/_index.scss */
-  .newsBox__news__item__title {
+  /* line 147, sass/modules/_index.scss */
+  .newsBox__inner__news__item__title {
     font-size: 14px;
   }
 }
-/* line 151, sass/modules/_index.scss */
-.newsBox__date {
+/* line 160, sass/modules/_index.scss */
+.newsBox__inner__date {
   position: absolute;
   top: 0%;
   width: 100%;
   text-align: center;
+}
+
+/* line 169, sass/modules/_index.scss */
+.caret {
+  position: absolute;
+  display: block;
+  top: 50%;
+  top: calc(50% - 18.5px);
+  height: 37px;
+  cursor: pointer;
+  z-index: 999;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+  opacity: 0.3;
+}
+@media (max-device-width: 1024px), (max-width: 1024px) {
+  /* line 169, sass/modules/_index.scss */
+  .caret {
+    filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+    opacity: 1;
+  }
+}
+@media (max-device-width: 767px), (max-width: 767px) {
+  /* line 169, sass/modules/_index.scss */
+  .caret {
+    margin: 1em;
+    height: 2em;
+    top: 3.5%;
+  }
+}
+@media (max-device-width: 767px) and (orientation: landscape) {
+  /* line 169, sass/modules/_index.scss */
+  .caret {
+    top: 1.5%;
+  }
+}
+/* line 189, sass/modules/_index.scss */
+.caret:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+}
+/* line 192, sass/modules/_index.scss */
+.caret--left {
+  left: 20%;
+}
+@media (max-device-width: 767px), (max-width: 767px) {
+  /* line 192, sass/modules/_index.scss */
+  .caret--left {
+    left: 3%;
+  }
+}
+@media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
+  /* line 192, sass/modules/_index.scss */
+  .caret--left {
+    left: 6%;
+  }
+}
+/* line 201, sass/modules/_index.scss */
+.caret--right {
+  right: 20%;
+}
+@media (max-device-width: 767px), (max-width: 767px) {
+  /* line 201, sass/modules/_index.scss */
+  .caret--right {
+    right: 3%;
+  }
+}
+@media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
+  /* line 201, sass/modules/_index.scss */
+  .caret--right {
+    right: 6%;
+  }
+}
+/* line 210, sass/modules/_index.scss */
+.caret--hide {
+  display: none;
+}
+
+/* line 216, sass/modules/_index.scss */
+body {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+}
+
+/* line 219, sass/modules/_index.scss */
+body.show {
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+}
+
+/* line 224, sass/modules/_index.scss */
+body.oldNews .loadBox {
+  background-color: #000;
+}
+/* line 226, sass/modules/_index.scss */
+body.oldNews .loadBox__loadAnimate {
+  -moz-animation: loadAnimate--news 1.7s infinite linear;
+  -webkit-animation: loadAnimate--news 1.7s infinite linear;
+  animation: loadAnimate--news 1.7s infinite linear;
+}
+/* line 228, sass/modules/_index.scss */
+body.oldNews .loadBox__loadAnimate:before {
+  background-color: #FFF;
+}
+/* line 233, sass/modules/_index.scss */
+body.oldNews .head__logo {
+  border-color: #FFF;
+  background-color: #000;
+}
+/* line 237, sass/modules/_index.scss */
+body.oldNews .newsBox {
+  color: #FFF;
+  border: 1px solid #FFF;
+  -moz-box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
+  -webkit-box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
+  box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
+}
+/* line 242, sass/modules/_index.scss */
+body.oldNews .caret__path {
+  stroke: #FFF;
 }

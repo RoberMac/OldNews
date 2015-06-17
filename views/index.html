@@ -10,43 +10,71 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="新聞，舊聞。">
     <base href="/">
-    <link rel="icon" type="image/x-icon" href="https://dn-sypx.qbox.me/img/favicon.ico">
-    <link rel="shortcut icon" href="https://dn-sypx.qbox.me/img/favicon.ico">
-    <link rel="apple-touch-icon" sizes="192x192" href="https://dn-sypx.qbox.me/img/favicon.png">
+    <link rel="icon" type="image/x-icon" href="public/img/favicon.ico">
+    <link rel="shortcut icon" href="public/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="192x192" href="public/img/favicon.png">
     <title>新聞，舊聞。</title>
     <link rel="stylesheet" href="/public/dist/sy-news.min.css">
 </head>
-<body ng-controller="rootController">
+<body ng-controller="rootController" class="animate--general" ng-class="{'oldNews': isOldNews, 'show': true}">
 
-    <!-- 當 AngularJS 加載完畢會自動終結「開場動畫」 -->
-    <div id="opening_animation" ng-if="">
-        <div class="vertically_center">
-            <div class="load_animate"></div>
+    <div class="head">
+        <img ng-click="toggleNews()" class="head__logo animate--general" src="/public/img/logo.png" alt="logo">
+    </div>
+
+    <div class="newsBox animate--general">
+        <div ng-switch on="isOldNews" ng-swipe-left="toggleNews()" ng-swipe-right="toggleNews()" ng-swipe-disable-mouse>
+            <!-- 新聞， -->
+            <div ng-switch-when="false">
+                <div class="newsBox__inner">
+                    <div class="newsBox__inner__date">
+                        <h3>{{selectNewsInfo.selectDate | date:'yyyy 年 M 月 d 日 H 時'}}</h3>
+                    </div>
+                    <ng-include src="'template__newsBox'"></ng-include>
+                </div>
+            </div>
+            <!-- 舊聞。 -->
+            <div ng-switch-when="true">
+                <div class="newsBox__inner">
+                    <div class="newsBox__inner__date">
+                        <h3>{{selectOldNewsInfo.selectDate | date:'yyyy 年 M 月 d 日'}}</h3>
+                    </div>
+                    <ng-include src="'template__newsBox'"></ng-include>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="head animate--general" ng-class="{'head--show': true}">
-        <img ng-click="toggleNews()" class="head__logo animate--general" ng-class="{'head__logo--oldNews': isOldNews}" src="/public/img/logo.png" alt="logo">        
+    <!-- 選擇新聞按鈕 -->
+    <div ng-show="isShow" class="animate--general">
+        <svg ng-click="selectNews(-1)" class="caret caret--left animate--general" ng-class="{'caret--hide': isHideCaretLeft}" viewBox="0 0 206 206" xmlns="http://www.w3.org/2000/svg">
+            <path class="caret__path animate--faster" d="M153 3l-99 100 99 100" stroke="#000" stroke-width="7" fill="none"/>
+        </svg>
+        <svg ng-click="selectNews(1)" class="caret caret--right animate--faster" ng-class="{'caret--hide': isHideCaretRight}" viewBox="0 0 206 206" xmlns="http://www.w3.org/2000/svg">
+            <path class="caret__path animate--general" d="M54 3l99 100-99 100" stroke="#000" stroke-width="7" fill="none"/>
+        </svg>    
     </div>
 
-    <div class="newsBox animate--general" ng-class="{'newsBox--oldNews': isOldNews, 'newsBox--show': true}">
-        <div class="newsBox__date">
-            <h3>{{newsDate}}</h3>
-        </div>
-        <div ng-show="!isOldNews" ng-controller="newsController" ng-include src="'newsBox.html'" class="newsBox__news"></div>
-        <div ng-show="isOldNews" ng-controller="oldNewsController" ng-include src="'newsBox.html'" class="newsBox__news"></div>
-    </div>
 
     <script src="/public/dist/libs.min.js"></script>
     <script src="/public/dist/sy-news.min.js"></script>
-    <script type="text/ng-template" id="newsBox.html">
-        <ul ng-repeat="newsItems in newsBox">
-            <h5>《{{newsItems.source_name}}》</h5>
-            <li ng-repeat="item in newsItems.news" class="newsBox__news__item">
-                <span class="newsBox__news__item__timestamp">{{item.date | date: 'HH:mm'}}</span>
-                <a class="newsBox__news__item__title" ng-href="{{item.url}}" target="_blank">{{item.title}}</a>
-            </li>
-        </ul>
+    <script type="text/ng-template" id="template__newsBox">
+        <div class="newsBox__inner__news">
+            <!-- 過渡動畫 -->
+            <div ng-if="!isShow" class="loadBox animate--general">
+                <div class="vertically_center">
+                    <div class="loadBox__loadAnimate"></div>
+                </div>
+            </div>
+            <!-- 主體 -->
+            <ul ng-repeat="newsItems in newsBox">
+                <h4>{{newsItems.source_name}}</h4>
+                <li ng-repeat="item in newsItems.news" class="newsBox__inner__news__item">
+                    <span class="newsBox__inner__news__item__timestamp">{{item.date | date: 'HH:mm'}}</span>
+                    <a class="newsBox__inner__news__item__title" ng-href="{{item.url}}" target="_blank">{{item.title}}</a>
+                </li>
+            </ul>
+        </div>
     </script>
 </body>
 </html>
