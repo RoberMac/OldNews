@@ -8,8 +8,7 @@
         height: 40px;
         margin: 0 auto;
         border: 1px solid #CECECF;
-        border-radius: 20px;
-        cursor: w-resize;
+        @include border-radius(20px);
         @include animation(loadAnimate--news 1.7s infinite linear);
         &:before {
             content: '';
@@ -19,8 +18,20 @@
             width: 10px;
             height: 10px;
             background-color: #000;
-            border-radius: 5px;
+            @include border-radius(5px);
             @include transition(all 7.7s ease-in-out);
+        }
+    }
+    &--errorBox {
+        text-align: center;
+        &__icon {
+            width: 50%;
+            &__newsBox {
+                @include opacity(.37);
+            }
+            @media #{$phone-landscape} {
+                width: 37%;
+            }
         }
     }
 }
@@ -152,9 +163,6 @@
                     }
                 }
             }
-            &__error {
-                @extend .display--table;
-            }
         }
         // 當前日期
         &__date {
@@ -229,6 +237,16 @@ body.oldNews {
                 background-color: #FFF;
             }
         }
+        &--errorBox {
+            &__icon {
+                &__stroke {
+                    stroke: #FFF;
+                }
+                &__fill {
+                    fill: #FFF;
+                }
+            }
+        }
     }
     .head__logo {
         border-color: #FFF;
@@ -238,6 +256,9 @@ body.oldNews {
         color: #FFF;
         border: 1px solid #FFF;
         @include box-shadow(0 3px 15px 0 rgba(255,255,255,.5));
+        &__inner__news__title {
+            color: #CECECF;
+        }
     }
     .caret__path {
         stroke: #FFF;

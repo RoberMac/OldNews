@@ -114,11 +114,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 73, sass/partials/_base.scss */
-.display--table, .loadBox, .newsBox__inner__news__error {
+.display--table, .loadBox {
   position: absolute;
+  display: table;
+  top: 0%;
+  left: 0%;
   width: 100%;
   height: 100%;
-  display: table;
 }
 
 /* sy-news-reset */
@@ -245,13 +247,14 @@ ng\:form {
   height: 40px;
   margin: 0 auto;
   border: 1px solid #CECECF;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
   border-radius: 20px;
-  cursor: w-resize;
   -moz-animation: loadAnimate--news 1.7s infinite linear;
   -webkit-animation: loadAnimate--news 1.7s infinite linear;
   animation: loadAnimate--news 1.7s infinite linear;
 }
-/* line 14, sass/modules/_index.scss */
+/* line 13, sass/modules/_index.scss */
 .loadBox__loadAnimate:before {
   content: '';
   position: absolute;
@@ -260,11 +263,32 @@ ng\:form {
   width: 10px;
   height: 10px;
   background-color: #000;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
   border-radius: 5px;
   -moz-transition: all 7.7s ease-in-out;
   -o-transition: all 7.7s ease-in-out;
   -webkit-transition: all 7.7s ease-in-out;
   transition: all 7.7s ease-in-out;
+}
+/* line 25, sass/modules/_index.scss */
+.loadBox--errorBox {
+  text-align: center;
+}
+/* line 27, sass/modules/_index.scss */
+.loadBox--errorBox__icon {
+  width: 50%;
+}
+/* line 29, sass/modules/_index.scss */
+.loadBox--errorBox__icon__newsBox {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=37);
+  opacity: 0.37;
+}
+@media (max-device-width: 767px) and (orientation: landscape) {
+  /* line 27, sass/modules/_index.scss */
+  .loadBox--errorBox__icon {
+    width: 37%;
+  }
 }
 
 @-moz-keyframes loadAnimate--news {
@@ -365,7 +389,7 @@ ng\:form {
     transform: rotate(360deg);
   }
 }
-/* line 55, sass/modules/_index.scss */
+/* line 66, sass/modules/_index.scss */
 .head__logo {
   position: absolute;
   display: block;
@@ -380,32 +404,32 @@ ng\:form {
   z-index: 1;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 55, sass/modules/_index.scss */
+  /* line 66, sass/modules/_index.scss */
   .head__logo {
     display: none;
     width: 17%;
   }
 }
 @media (max-device-width: 767px) and (orientation: landscape) {
-  /* line 55, sass/modules/_index.scss */
+  /* line 66, sass/modules/_index.scss */
   .head__logo {
     width: 7%;
   }
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
-  /* line 55, sass/modules/_index.scss */
+  /* line 66, sass/modules/_index.scss */
   .head__logo {
     width: 10%;
   }
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape), (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  /* line 55, sass/modules/_index.scss */
+  /* line 66, sass/modules/_index.scss */
   .head__logo {
     width: 7%;
   }
 }
 
-/* line 82, sass/modules/_index.scss */
+/* line 93, sass/modules/_index.scss */
 .newsBox {
   position: absolute;
   top: 5%;
@@ -421,7 +445,7 @@ ng\:form {
   box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.5);
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 82, sass/modules/_index.scss */
+  /* line 93, sass/modules/_index.scss */
   .newsBox {
     top: 3.5%;
     left: 3%;
@@ -430,7 +454,7 @@ ng\:form {
   }
 }
 @media (max-device-width: 767px) and (orientation: landscape) {
-  /* line 82, sass/modules/_index.scss */
+  /* line 93, sass/modules/_index.scss */
   .newsBox {
     top: 1.5%;
     left: 1.5%;
@@ -439,7 +463,7 @@ ng\:form {
   }
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
-  /* line 82, sass/modules/_index.scss */
+  /* line 93, sass/modules/_index.scss */
   .newsBox {
     top: 12%;
     left: 12%;
@@ -447,25 +471,25 @@ ng\:form {
     height: 76%;
   }
 }
-/* line 111, sass/modules/_index.scss */
+/* line 122, sass/modules/_index.scss */
 .newsBox__inner.ng-enter {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
   left: 100%;
 }
-/* line 115, sass/modules/_index.scss */
+/* line 126, sass/modules/_index.scss */
 .newsBox__inner.ng-enter.ng-enter-active, .newsBox__inner.ng-leave {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
   left: 0%;
 }
-/* line 119, sass/modules/_index.scss */
+/* line 130, sass/modules/_index.scss */
 .newsBox__inner.ng-leave.ng-leave-active {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
   left: -100%;
 }
-/* line 124, sass/modules/_index.scss */
+/* line 135, sass/modules/_index.scss */
 .newsBox__inner__news {
   position: absolute;
   top: 7%;
@@ -475,7 +499,7 @@ ng\:form {
   height: 86%;
   height: calc(100% - 3.5em);
 }
-/* line 133, sass/modules/_index.scss */
+/* line 144, sass/modules/_index.scss */
 .newsBox__inner__news__item {
   overflow: hidden;
   white-space: nowrap;
@@ -483,30 +507,30 @@ ng\:form {
   text-overflow: ellipsis;
   margin: 5% auto;
 }
-/* line 139, sass/modules/_index.scss */
+/* line 150, sass/modules/_index.scss */
 .newsBox__inner__news__item__timestamp {
   margin-right: 1em;
   font-size: 12px;
   color: #CECECF;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 139, sass/modules/_index.scss */
+  /* line 150, sass/modules/_index.scss */
   .newsBox__inner__news__item__timestamp {
     margin-right: 0;
   }
 }
-/* line 147, sass/modules/_index.scss */
+/* line 158, sass/modules/_index.scss */
 .newsBox__inner__news__item__title {
   font-size: 14px;
   text-decoration: underline;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 147, sass/modules/_index.scss */
+  /* line 158, sass/modules/_index.scss */
   .newsBox__inner__news__item__title {
     font-size: 14px;
   }
 }
-/* line 160, sass/modules/_index.scss */
+/* line 168, sass/modules/_index.scss */
 .newsBox__inner__date {
   position: absolute;
   top: 0%;
@@ -514,7 +538,7 @@ ng\:form {
   text-align: center;
 }
 
-/* line 169, sass/modules/_index.scss */
+/* line 177, sass/modules/_index.scss */
 .caret {
   position: absolute;
   display: block;
@@ -527,14 +551,14 @@ ng\:form {
   opacity: 0.3;
 }
 @media (max-device-width: 1024px), (max-width: 1024px) {
-  /* line 169, sass/modules/_index.scss */
+  /* line 177, sass/modules/_index.scss */
   .caret {
     filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
     opacity: 1;
   }
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 169, sass/modules/_index.scss */
+  /* line 177, sass/modules/_index.scss */
   .caret {
     margin: 1em;
     height: 2em;
@@ -542,85 +566,93 @@ ng\:form {
   }
 }
 @media (max-device-width: 767px) and (orientation: landscape) {
-  /* line 169, sass/modules/_index.scss */
+  /* line 177, sass/modules/_index.scss */
   .caret {
     top: 1.5%;
   }
 }
-/* line 189, sass/modules/_index.scss */
+/* line 197, sass/modules/_index.scss */
 .caret:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-/* line 192, sass/modules/_index.scss */
+/* line 200, sass/modules/_index.scss */
 .caret--left {
   left: 20%;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 192, sass/modules/_index.scss */
+  /* line 200, sass/modules/_index.scss */
   .caret--left {
     left: 3%;
   }
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
-  /* line 192, sass/modules/_index.scss */
+  /* line 200, sass/modules/_index.scss */
   .caret--left {
     left: 6%;
   }
 }
-/* line 201, sass/modules/_index.scss */
+/* line 209, sass/modules/_index.scss */
 .caret--right {
   right: 20%;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 201, sass/modules/_index.scss */
+  /* line 209, sass/modules/_index.scss */
   .caret--right {
     right: 3%;
   }
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
-  /* line 201, sass/modules/_index.scss */
+  /* line 209, sass/modules/_index.scss */
   .caret--right {
     right: 6%;
   }
 }
-/* line 210, sass/modules/_index.scss */
+/* line 218, sass/modules/_index.scss */
 .caret--hide {
   display: none;
 }
 
-/* line 216, sass/modules/_index.scss */
+/* line 224, sass/modules/_index.scss */
 body {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
 }
 
-/* line 219, sass/modules/_index.scss */
+/* line 227, sass/modules/_index.scss */
 body.show {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
 
-/* line 224, sass/modules/_index.scss */
+/* line 232, sass/modules/_index.scss */
 body.oldNews .loadBox {
   background-color: #000;
 }
-/* line 226, sass/modules/_index.scss */
+/* line 234, sass/modules/_index.scss */
 body.oldNews .loadBox__loadAnimate {
   -moz-animation: loadAnimate--news 1.7s infinite linear;
   -webkit-animation: loadAnimate--news 1.7s infinite linear;
   animation: loadAnimate--news 1.7s infinite linear;
 }
-/* line 228, sass/modules/_index.scss */
+/* line 236, sass/modules/_index.scss */
 body.oldNews .loadBox__loadAnimate:before {
   background-color: #FFF;
 }
-/* line 233, sass/modules/_index.scss */
+/* line 242, sass/modules/_index.scss */
+body.oldNews .loadBox--errorBox__icon__stroke {
+  stroke: #FFF;
+}
+/* line 245, sass/modules/_index.scss */
+body.oldNews .loadBox--errorBox__icon__fill {
+  fill: #FFF;
+}
+/* line 251, sass/modules/_index.scss */
 body.oldNews .head__logo {
   border-color: #FFF;
   background-color: #000;
 }
-/* line 237, sass/modules/_index.scss */
+/* line 255, sass/modules/_index.scss */
 body.oldNews .newsBox {
   color: #FFF;
   border: 1px solid #FFF;
@@ -628,7 +660,11 @@ body.oldNews .newsBox {
   -webkit-box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
   box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
 }
-/* line 242, sass/modules/_index.scss */
+/* line 259, sass/modules/_index.scss */
+body.oldNews .newsBox__inner__news__title {
+  color: #CECECF;
+}
+/* line 263, sass/modules/_index.scss */
 body.oldNews .caret__path {
   stroke: #FFF;
 }
