@@ -51,6 +51,14 @@ a {
     color: inherit;
     text-decoration: none;
 }
+textarea:focus, input:focus, button:focus {
+    outline: none;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
 ::-webkit-scrollbar {
     display: none;
 }

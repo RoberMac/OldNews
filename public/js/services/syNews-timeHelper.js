@@ -1,15 +1,17 @@
 angular.module('ShinyaNews.timeHelperServices', [])
 .service('syNewsTimeHelper', function(){
 
-    this.getUTCDayMs = function(date){
-        var date = new Date(date)
+    this.getHoursMs = function(hour){
+        var date = new Date(),
+            offset = date.getTimezoneOffset() / 60;
         return  Date.UTC(
                     date.getUTCFullYear(),
                     date.getUTCMonth(),
-                    date.getUTCDate()
+                    date.getUTCDate(),
+                    hour + offset
                 )
     },
-    this.getLocalDayMs = function(date){
+    this.getDayMs = function(date){
         var date = new Date(date)
         return  Date.parse(
                     new Date(

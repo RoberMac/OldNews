@@ -2,7 +2,6 @@
 .loadBox {
     @extend .display--table;
     background-color: #FFF;
-    z-index: 999;
     &__loadAnimate {
         width: 40px;
         height: 40px;
@@ -72,13 +71,18 @@
         border: 1px solid #000;
         @include border-radius(10px);
         cursor: pointer;
-        z-index: 1;
+        z-index: 2;
         @media #{$phone} {
-            display: none;
-            width: 17%;
+            top: 3.5%;
+            right: 3%;
+            width: 2.5em;
+            margin-top: 10px;
+            margin-right: 10px;
+            @include border-radius(7px);
         }
         @media #{$phone-landscape} {
-            width: 7%;
+            top: 1.5%;
+            right: 1.5%;
         }
         @media #{$tablet} {
             width: 10%;
@@ -170,6 +174,9 @@
             top: 0%;
             width: 100%;
             text-align: center;
+            &__button {
+                cursor: pointer;
+            }
         }
     }
 }
@@ -181,42 +188,122 @@
     top: calc(50% - 18.5px);
     height: 37px;
     cursor: pointer;
-    z-index: 999;
+    z-index: 3;
     @include opacity(.3);
     @media #{$all-mobile-Devices} {
         @include opacity(1);
     }
     @media #{$phone} {
-        margin: 1em;
-        height: 2em;
-        top: 3.5%;
-    }
-    @media #{$phone-landscape} {
-        top: 1.5%;
+        display: none;
     }
     &:hover {
         @include opacity(1);
     }
     &--left {
         left: 20%;
-        @media #{$phone} {
-            left: 3%
-        }
         @media #{$tablet} {
             left: 6%;
         }
     }
     &--right {
         right: 20%;
-        @media #{$phone} {
-            right: 3%;
-        }
         @media #{$tablet} {
             right: 6%;
         }
     }
     &--hide {
         display: none;
+    }
+}
+
+.timeMachine {
+    @extend .display--table;
+    text-align: center;
+    background-color: rgba(255, 255, 255, .8);
+    form {
+        margin: 0 auto;
+        width: 40%;
+        @media #{$phone} {
+            width: 94%;
+        }
+        @media #{$phone-landscape} {
+            width: 97%;
+        }
+        @media #{$tablet} {
+            width: 76%;
+        }
+        border: 1px solid #000;
+        background-color: #FFF;
+        @include box-shadow(0 3px 15px 0 rgba(0,0,0,.5));
+        input {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            margin: 1em;
+            padding: 10px;
+            font-size: $font-size-regular;
+            text-align: center;
+            border: 1px solid #555;
+            @include border-radius(50%);
+            background-color: transparent;
+            -webkit-appearance: none;
+        }
+        input:focus {
+            border-color: #000;
+            @include box-shadow(0 3px 15px 0 rgba(0,0,0,.5));
+        }
+        input:disabled {
+            border-color: #CECECF;
+        }
+    }
+    svg {
+        margin: 1em;
+        width: 37px;
+        cursor: pointer;
+        &:hover {
+            & > g {
+                fill: #000;
+                & > g {
+                    stroke: #FFF;
+                }
+            }
+        }
+    }
+    &__button--invalid {
+        display: none;
+    }
+}
+
+.toolBar {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    @media #{$phone} {
+        display: none;
+    }
+    &__button--timeMachine {
+        width: 37px;
+        cursor: pointer;
+        &:hover {
+            @include filter(blur(1px));
+            @include animation(loadAnimate--timeMachine .7s infinite linear);
+            & > g {
+                & > circle {
+                    stroke: #000;
+                }
+                & > g {
+                    fill: #000;
+                }
+            }
+        }
+    }
+}
+@include keyframes(loadAnimate--timeMachine) {
+    0% {
+        @include transform(rotate(0deg));
+    }
+    100% {
+        @include transform(rotate(360deg));
     }
 }
 
@@ -255,12 +342,65 @@ body.oldNews {
     .newsBox {
         color: #FFF;
         border: 1px solid #FFF;
-        @include box-shadow(0 3px 15px 0 rgba(255,255,255,.5));
-        &__inner__news__title {
+        @include box-shadow(0 3px 15px 0 rgba(255, 255, 255, .5));
+        &__inner__news__item__title {
             color: #CECECF;
         }
     }
     .caret__path {
         stroke: #FFF;
+    }
+    .timeMachine {
+        color: #FFF;
+        background-color: rgba(0, 0, 0, .8);
+        form {
+            border: 1px solid #FFF;
+            background-color: #000;
+            @include box-shadow(0 3px 15px 0 rgba(255, 255, 255, .5));
+            input {
+                color: #FFF;
+                border-color: #CECECF;
+            }
+            input:focus {
+                border-color: #FFF;
+                @include box-shadow(0 3px 15px 0 rgba(255, 255, 255, .5));
+            }
+            input:disabled {
+                border-color: #555;
+            }
+        }
+        svg {
+            & > g {
+                fill: #000;
+                & > circle {
+                    stroke: #FFF;
+                }
+                & > g {
+                    stroke: #FFF;
+                }
+            }
+            &:hover {
+                & > g {
+                    fill: #FFF;
+                    & > g {
+                        stroke: #000;
+                    }
+                }
+            }
+        }
+    }
+    .toolBar {
+        &__button--timeMachine {
+            &:hover {
+                & > g {
+                    & > circle {
+                        stroke: #FFF;
+                    }
+                    & > g {
+                        fill: #FFF;
+                    }
+                }
+            }
+        }
     }
 }

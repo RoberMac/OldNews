@@ -19,7 +19,10 @@ var paths = {
         '!public/js/libs/*.map'
     ],
     css_sy: 'public/css/main.css',
-    html_sy: 'public/js/templates/*.html'
+    html_sy: [
+        'views/*.html',
+        '!views/*.min.html'
+    ]
 };
 
 // Minify all AngularJS libs
@@ -63,7 +66,7 @@ gulp.task('html_sy', function (){
         .pipe(rename({
             suffix: '.min'
         }))
-        .pipe(gulp.dest('public/dist'))
+        .pipe(gulp.dest('views'))
 })
 
 // Rerun the task when a file changes 

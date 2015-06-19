@@ -71,7 +71,7 @@ var api_db_helper = {
             selectDate = body.selectDate;
 
         if (body.isAllDay){
-            q_newsFind({date: {'$gte': selectDate, '$lte': selectDate + 86400000}}, country)
+            q_newsFind({date: {'$gt': selectDate, '$lte': selectDate + 86400000}}, country)
             .then(function (found){
                 if (found.length === 0){
                     log.warning('[DB: Not Found]', selectDate, country)

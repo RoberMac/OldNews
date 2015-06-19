@@ -43,6 +43,11 @@ $tablet-landscape: '(min-device-width : 768px) and (max-device-width : 1024px) a
     }
     &--general {
         @include transition(all .7s ease-in-out);
+    }
+    &--faster {
+        @include transition(all .3s ease-in-out);
+    }
+    &--general, &--faster {
         &.ng-enter,
         &.ng-leave.ng-leave-active,
         &.ng-hide {
@@ -52,9 +57,6 @@ $tablet-landscape: '(min-device-width : 768px) and (max-device-width : 1024px) a
         &.ng-enter.ng-enter-active {
           opacity:1;
         }
-    }
-    &--faster {
-        @include transition(all .3s ease-in-out);
     }
 }
 .overflow {
@@ -77,5 +79,6 @@ $tablet-landscape: '(min-device-width : 768px) and (max-device-width : 1024px) a
         left: 0%;
         width: 100%;
         height: 100%;
+        z-index: 999;
     }
 }
