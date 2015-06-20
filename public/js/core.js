@@ -3,6 +3,7 @@ angular.module('ShinyaNews', [
     'ngAnimate',
     'angular-storage',
     'ShinyaNews.stopPropagationDirective',
+    'ShinyaNews.i18nDirective',
     'ShinyaNews.timeHelperServices'
 ])
 .factory('oneDayStore', ['store', function(store){
@@ -32,12 +33,8 @@ angular.module('ShinyaNews', [
         angular
         .element(document.documentElement)
         .toggleClass('oldNews')
-        // 獲取新聞
-        if ($scope.isOldNews){
-            getSelectedDateNews($scope.selectOldNewsInfo)
-        } else {
-            getSelectedDateNews($scope.selectNewsInfo)
-        }
+
+        $scope.refreshNews()
     }
     $scope.toggleTimeMachine = function (){
         // 刷新時間
@@ -61,11 +58,11 @@ angular.module('ShinyaNews', [
      *  `$scope.isHideCaret--XXX` 是否隱藏選擇新聞按鈕
      *  `$scope.selectNews` 選擇新聞
      *  `$scope.timeMachineSelectNews` 「跳躍性選擇新聞」
-     *
+     *  `$scope.refreshNews` 刷新新聞
      */
     var newsBoxCache = {}
     $scope.newsBox = []
-    $scope.selectCountry = 'CN'
+    $scope.selectCountry = store.get('syNewsCountry') || 'HK'
     $scope.selectNewsInfo = {
         selectDate: syNewsTimeHelper.getHoursMs(new Date().getHours()),
         selectCountry: $scope.selectCountry,
@@ -108,7 +105,20 @@ angular.module('ShinyaNews', [
         }
         $scope.isShowTimeMachine = false
     }
+    $scope.refreshNews = function(){
+        if ($scope.isOldNews){
+            getSelectedDateNews($scope.selectOldNewsInfo)
+        } else {
+            getSelectedDateNews($scope.selectNewsInfo)
+        }
+    }
 
+    // 當 `$scope.selectCountry` 變更，刷新「當前新聞信息」並獲取相應新聞
+    $scope.$watch('selectCountry', function (newVal, oldVal){
+        $scope.selectNewsInfo.selectCountry = newVal
+        $scope.selectOldNewsInfo.selectCountry = newVal
+        $scope.refreshNews()
+    })
 
     /*********
      * Helper

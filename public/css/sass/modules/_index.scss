@@ -3,13 +3,15 @@
     @extend .display--table;
     background-color: #FFF;
     &__loadAnimate {
+        @include border-radius(20px);
+        @include animation(loadAnimate--news 1.7s infinite linear);
         width: 40px;
         height: 40px;
         margin: 0 auto;
         border: 1px solid #CECECF;
-        @include border-radius(20px);
-        @include animation(loadAnimate--news 1.7s infinite linear);
         &:before {
+            @include border-radius(5px);
+            @include transition(all 7.7s ease-in-out);
             content: '';
             position: absolute;
             top: 0px;
@@ -17,8 +19,6 @@
             width: 10px;
             height: 10px;
             background-color: #000;
-            @include border-radius(5px);
-            @include transition(all 7.7s ease-in-out);
         }
     }
     &--errorBox {
@@ -36,53 +36,44 @@
 }
 @include keyframes(loadAnimate--news) {
     0% {
-        border-color: #000;
         @include transform(rotate(0deg));
+        border-color: #000;
     }
     50% {
         border-color: #CECECF;
     }
     100% {
-        border-color: #000;
         @include transform(rotate(360deg));
+        border-color: #000;
     }
 }
 @include keyframes(loadAnimate--oldNews) {
     0% {
-        border-color: #FFF;
         @include transform(rotate(0deg));
+        border-color: #FFF;
     }
     50% {
         border-color: #CECECF;
     }
     100% {
-        border-color: #FFF;
         @include transform(rotate(360deg));
+        border-color: #FFF;
     }
 }
-
+/* Logo */
 .head {
     &__logo {
-        position: absolute;
+        @include border-radius(10px);
         display: block;
-        top: 10px;
-        right: 10px;
         width: 5%;
         border: 1px solid #000;
-        @include border-radius(10px);
         cursor: pointer;
-        z-index: 2;
-        @media #{$phone} {
-            top: 3.5%;
-            right: 3%;
-            width: 2.5em;
-            margin-top: 10px;
-            margin-right: 10px;
-            @include border-radius(7px);
+        &:hover {
+            @extend .box-shadow--black;
         }
-        @media #{$phone-landscape} {
-            top: 1.5%;
-            right: 1.5%;
+        @media #{$phone} {
+            width: 2.5em;
+            @include border-radius(7px);
         }
         @media #{$tablet} {
             width: 10%;
@@ -92,17 +83,17 @@
         }
     }
 }
-
-
+/* 主體 */
 .newsBox {
+    @include border-radius(10px);
+    @extend .box-shadow--black;
     position: absolute;
     top: 5%;
     left: 30%;
     width: 40%;
     height: 90%;
     border: 1px solid #000;
-    @include border-radius(10px);
-    @include box-shadow(0 3px 15px 0 rgba(0,0,0,.5));
+    background-color: #FFF;
     @media #{$phone} {
         top: 3.5%;
         left: 3%;
@@ -180,8 +171,9 @@
         }
     }
 }
-
+/* 選擇新聞按鈕 */
 .caret {
+    @include opacity(.3);
     position: absolute;
     display: block;
     top: 50%;
@@ -189,7 +181,6 @@
     height: 37px;
     cursor: pointer;
     z-index: 3;
-    @include opacity(.3);
     @media #{$all-mobile-Devices} {
         @include opacity(1);
     }
@@ -215,7 +206,7 @@
         display: none;
     }
 }
-
+/* 跳躍性選擇新聞 */
 .timeMachine {
     @extend .display--table;
     text-align: center;
@@ -234,8 +225,9 @@
         }
         border: 1px solid #000;
         background-color: #FFF;
-        @include box-shadow(0 3px 15px 0 rgba(0,0,0,.5));
+        @extend .box-shadow--black;
         input {
+            @include border-radius(50%);
             display: inline-block;
             width: 50px;
             height: 50px;
@@ -244,13 +236,12 @@
             font-size: $font-size-regular;
             text-align: center;
             border: 1px solid #555;
-            @include border-radius(50%);
             background-color: transparent;
             -webkit-appearance: none;
         }
         input:focus {
+            @extend .box-shadow--black;
             border-color: #000;
-            @include box-shadow(0 3px 15px 0 rgba(0,0,0,.5));
         }
         input:disabled {
             border-color: #CECECF;
@@ -273,20 +264,27 @@
         display: none;
     }
 }
-
+/* 工具欄 */
 .toolBar {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    @media #{$phone} {
-        display: none;
-    }
     &__button--timeMachine {
-        width: 37px;
+        @include filter(blur(0px));
+        position: absolute;
+        top: calc(5% - 13.5px);
+        left: 49%;
+        left: calc(50% - 13.5px);
+        width: 27px;
         cursor: pointer;
+        z-index: -1;
+        @media #{$phone} {
+            display: none;
+        }
+        @media #{$tablet} {
+            top: 10%;
+            top: calc(12% - 13.5px);
+        }
         &:hover {
             @include filter(blur(1px));
-            @include animation(loadAnimate--timeMachine .7s infinite linear);
+            @include animation(loadAnimate--timeMachine .3s infinite linear);
             & > g {
                 & > circle {
                     stroke: #000;
@@ -295,6 +293,61 @@
                     fill: #000;
                 }
             }
+        }
+    }
+    &__button--country {
+        @include border-radius(14px);
+        @extend .box-shadow--black;
+        width: 27px;
+        height: 27px;
+        margin-bottom: 7px;
+        font-size: 11px;
+        text-align: center;
+        line-height: 27px;
+        overflow: hidden;
+        cursor: pointer;
+        &:hover {
+            @extend .box-shadow--black--opaque;
+        }
+        &.CN, &.HK {
+            color: #FFE200;
+            background-color: #E74010;
+        }
+        &.TW {
+            @include background(linear-gradient(-15deg, #FF2600 0%, #021DA6 25%));
+            color: #FFF;
+        }
+        &.US {
+            @include background(linear-gradient(-15deg, #BF0A30 0%, #002868 25%));
+            color: #FFF;
+        }
+        &.JP {
+            color: #C70025;
+            background-color: #FFF;
+        }
+        &.DE {
+            @include background(linear-gradient(#BF0A30, #BF0A30 50%, #1E1E1E 50%));
+            color: #FED100;
+        }
+        &.FR {
+            @include background(linear-gradient(to right, #00209F, #00209F 50%, #F42A41 50%));
+            color: #FFF;
+        }
+        &.IN {
+            @include background(linear-gradient(-15deg, #138808 0%, #FF9933 25%));
+            color: #000080;
+        }
+        &.KR {
+            @include background(linear-gradient(#C60C30, #C60C30 50%, #003478 50%));
+            color: #FFF;
+        }
+        &.RU {
+            @include background(linear-gradient(#0000FE, #0000FE 50%, #FE0000 50%));
+            color: #FFF;
+        }
+        &.BR {
+            @include background(linear-gradient(-15deg, #3200FE 0%, #007600 25%));
+            color: #FEFE00;
         }
     }
 }
@@ -307,98 +360,108 @@
     }
 }
 
-// 開場
+/* 「舊聞。」下樣式 */
 body {
     @include opacity(0);
-}
-body.show {
-    @include opacity(1);
-}
-// 舊聞。
-body.oldNews {
-    .loadBox {
-        background-color: #000;
-        &__loadAnimate {
-            @include animation(loadAnimate--news 1.7s infinite linear);
-            &:before {
-                background-color: #FFF;
-            }
-        }
-        &--errorBox {
-            &__icon {
-                &__stroke {
-                    stroke: #FFF;
-                }
-                &__fill {
-                    fill: #FFF;
-                }
-            }
-        }
+    &.show {
+        @include opacity(1);
     }
-    .head__logo {
-        border-color: #FFF;
-        background-color: #000;
-    }
-    .newsBox {
-        color: #FFF;
-        border: 1px solid #FFF;
-        @include box-shadow(0 3px 15px 0 rgba(255, 255, 255, .5));
-        &__inner__news__item__title {
-            color: #CECECF;
-        }
-    }
-    .caret__path {
-        stroke: #FFF;
-    }
-    .timeMachine {
-        color: #FFF;
-        background-color: rgba(0, 0, 0, .8);
-        form {
-            border: 1px solid #FFF;
+    &.oldNews {
+        .loadBox {
             background-color: #000;
-            @include box-shadow(0 3px 15px 0 rgba(255, 255, 255, .5));
-            input {
-                color: #FFF;
-                border-color: #CECECF;
-            }
-            input:focus {
-                border-color: #FFF;
-                @include box-shadow(0 3px 15px 0 rgba(255, 255, 255, .5));
-            }
-            input:disabled {
-                border-color: #555;
-            }
-        }
-        svg {
-            & > g {
-                fill: #000;
-                & > circle {
-                    stroke: #FFF;
-                }
-                & > g {
-                    stroke: #FFF;
+            &__loadAnimate {
+                @include animation(loadAnimate--news 1.7s infinite linear);
+                &:before {
+                    background-color: #FFF;
                 }
             }
-            &:hover {
-                & > g {
-                    fill: #FFF;
-                    & > g {
-                        stroke: #000;
+            &--errorBox {
+                &__icon {
+                    &__stroke {
+                        stroke: #FFF;
+                    }
+                    &__fill {
+                        fill: #FFF;
                     }
                 }
             }
         }
-    }
-    .toolBar {
-        &__button--timeMachine {
-            &:hover {
+        .head {
+            &__logo {
+                border-color: #FFF;
+                background-color: #000;
+            }
+        }
+        .newsBox {
+            @extend .box-shadow--white;
+            color: #FFF;
+            border: 1px solid #FFF;
+            background-color: #000;
+            &__inner__news__item__title {
+                color: #CECECF;
+            }
+        }
+        .caret {
+            &__path{
+                stroke: #FFF;
+            }
+        }
+        .timeMachine {
+            color: #FFF;
+            background-color: rgba(0, 0, 0, .8);
+            form {
+                @extend .box-shadow--white;
+                border: 1px solid #FFF;
+                background-color: #000;
+                input {
+                    color: #FFF;
+                    border-color: #CECECF;
+                }
+                input:focus {
+                    @extend .box-shadow--white;
+                    border-color: #FFF;
+                }
+                input:disabled {
+                    border-color: #555;
+                }
+            }
+            svg {
                 & > g {
+                    fill: #000;
                     & > circle {
                         stroke: #FFF;
                     }
                     & > g {
-                        fill: #FFF;
+                        stroke: #FFF;
                     }
+                }
+                &:hover {
+                    & > g {
+                        fill: #FFF;
+                        & > g {
+                            stroke: #000;
+                        }
+                    }
+                }
+            }
+        }
+        .toolBar {
+            &__button--timeMachine {
+                &:hover {
+                    & > g {
+                        & > circle {
+                            stroke: #FFF;
+                        }
+                        & > g {
+                            fill: #FFF;
+                        }
+                    }
+                }
+            }
+            &__button--country {
+                @extend .box-shadow--white;
+                &:hover {
+                    @extend .box-shadow--white--opaque;
                 }
             }
         }

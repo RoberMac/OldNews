@@ -20,7 +20,7 @@
 
     <!-- 標誌 -->
     <div class="head">
-        <img ng-click="toggleNews()" class="head__logo animate--general" src="/public/img/logo.png" alt="logo">
+        <img ng-click="toggleNews()" class="head__logo corner--top--right animate--general" src="/public/img/logo.png" alt="logo">
     </div>
 
     <!-- 主體 -->
@@ -99,20 +99,23 @@
             </div>
         </div>
     </div>
-    <div class="toolBar">
-        <svg ng-click="toggleTimeMachine()" class="toolBar__button--timeMachine" viewBox="0 0 214 214" xmlns="http://www.w3.org/2000/svg">
-            <g transform="translate(7 7)" fill="none">
-                <circle class="animate--faster" stroke="#CECECF" stroke-width="7" cx="100" cy="100" r="100"/>
-                <g class="animate--faster" transform="translate(26 25)" fill="#CECECF">
-                    <circle cx="74.5" cy="75.5" r="18.5"/>
-                    <circle cx="130.5" cy="75.5" r="18.5"/>
-                    <circle cx="18.5" cy="75.5" r="18.5"/>
-                    <circle cx="74.5" cy="19.5" r="18.5"/>
-                    <circle cx="74.5" cy="131.5" r="18.5"/>
-                </g>
+
+    <!-- 工具欄 -->
+    <!-- 多國家新聞 -->
+    <sy-news-i18n></sy-news-i18n>
+    <!-- 跳躍性選擇新聞 -->
+    <svg ng-click="toggleTimeMachine()" class="toolBar__button--timeMachine animate--faster" viewBox="0 0 214 214" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(7 7)" fill="none">
+            <circle class="animate--faster" stroke="#CECECF" stroke-width="7" cx="100" cy="100" r="100"/>
+            <g class="animate--faster" transform="translate(26 25)" fill="#CECECF">
+                <circle cx="74.5" cy="75.5" r="18.5"/>
+                <circle cx="130.5" cy="75.5" r="18.5"/>
+                <circle cx="18.5" cy="75.5" r="18.5"/>
+                <circle cx="74.5" cy="19.5" r="18.5"/>
+                <circle cx="74.5" cy="131.5" r="18.5"/>
             </g>
-        </svg>
-    </div>
+        </g>
+    </svg>
 
     <script src="/public/dist/libs.min.js"></script>
     <script src="/public/dist/sy-news.min.js"></script>
