@@ -60,7 +60,8 @@ angular.module('ShinyaNews', [
      *  `$scope.timeMachineSelectNews` 「跳躍性選擇新聞」
      *  `$scope.refreshNews` 刷新新聞
      */
-    var newsBoxCache = {}
+    var newsBoxCache = {},
+        lastStep = -1;
     $scope.newsBox = []
     $scope.selectCountry = store.get('syNewsCountry') || 'HK'
     $scope.selectNewsInfo = {
@@ -90,6 +91,19 @@ angular.module('ShinyaNews', [
             $scope.selectOldNewsInfo.selectDate += 86400000 * step
             getSelectedDateNews($scope.selectOldNewsInfo)
         }
+
+        // 預加載判斷
+        if (step === lastStep){
+            getSelectedDateNews({
+                selectDate: $scope.isOldNews
+                                ? $scope.selectOldNewsInfo.selectDate + 86400000 * step
+                                : $scope.selectNewsInfo.selectDate + 3600000 * step,
+                selectCountry: $scope.selectCountry,
+                isAllDay: $scope.isOldNews ? true : false
+            }, true)
+        } else {
+            lastStep = step
+        }
     }
     $scope.timeMachineSelectNews = function (){
         if (!$scope.isOldNews){
@@ -117,7 +131,10 @@ angular.module('ShinyaNews', [
     $scope.$watch('selectCountry', function (newVal, oldVal){
         $scope.selectNewsInfo.selectCountry = newVal
         $scope.selectOldNewsInfo.selectCountry = newVal
-        $scope.refreshNews()
+
+        newVal !== oldVal
+        ? $scope.refreshNews()
+        : null
     })
 
     /*********
@@ -133,26 +150,29 @@ angular.module('ShinyaNews', [
     store.get('oneDayNewsExpires') < Date.now()
     ? removeOneDayNews()
     : null
-    function getSelectedDateNews(selectData){
-        if ($scope.isOldNews){
-            checkSelectOldNewsCaret()
-        } else {
-            checkSelectNewsCaret()
-        }
+    function getSelectedDateNews(selectData, isPreload){
+        $scope.isOldNews
+        ? checkSelectOldNewsCaret()
+        : checkSelectNewsCaret()
+
         var news_id = selectData.selectDate + $scope.selectCountry,
             cache_data;
-        $scope.newsBox = []
-        $scope.isShow  = false
-        $scope.isNewsExist = true
+        if (!isPreload){
+            $scope.newsBox = []
+            $scope.isShow  = false
+            $scope.isNewsExist = true
+        }
 
         // 尝试从本地获取新闻
         cache_data = selectData.isAllDay
         ? newsBoxCache[news_id]
         : oneDayStore.get(news_id)
         if (cache_data){
-            $scope.newsBox = cache_data
-            $scope.isShow = true
-            $scope.isNewsExist = true
+            if (!isPreload){
+                $scope.newsBox = cache_data
+                $scope.isShow = true
+                $scope.isNewsExist = true
+            }
             return;
         }
         // 否则，從服務器获取新闻
@@ -164,6 +184,7 @@ angular.module('ShinyaNews', [
             } else {
                 storeOneDayNews(news_id, data.msg)
             }
+            if (isPreload){ return; }
             $timeout(function (){
                 $scope.newsBox = data.msg
                 $scope.isShow = true
@@ -171,12 +192,12 @@ angular.module('ShinyaNews', [
             }, 717)
         })
         .error(function (data, status, headers, config){
+            if (isPreload){ return; }
             $timeout(function (){
                 $scope.newsBox = []
                 $scope.isShow = true
                 $scope.isNewsExist = false
             }, 717)
-            // cb('error', data.msg || $translate.instant('chat.NETWORK_ERROR_MSG'))
         })
     }
     function checkSelectNewsCaret(){

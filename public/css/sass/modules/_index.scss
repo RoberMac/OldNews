@@ -141,7 +141,10 @@
                 white-space: nowrap;
                 text-align: left;
                 text-overflow: ellipsis;
-                margin: 5% auto;
+                margin: 2em auto;
+                @media #{$phone} {
+                    margin: 1em auto;
+                }
                 &__timestamp {
                     margin-right: 1em;
                     font-size: $font-size-small;
@@ -390,6 +393,9 @@ body {
             &__logo {
                 border-color: #FFF;
                 background-color: #000;
+                &:hover {
+                    @extend .box-shadow--white;
+                }
             }
         }
         .newsBox {
