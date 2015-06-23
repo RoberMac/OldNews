@@ -1,14 +1,13 @@
 /* 加載動畫 */
 .loadBox {
     @extend .display--table;
-    background-color: #FFF;
     &__loadAnimate {
         @include border-radius(20px);
         @include animation(loadAnimate--news 1.7s infinite linear);
         width: 40px;
         height: 40px;
         margin: 0 auto;
-        border: 1px solid #CECECF;
+        border: 1px solid $color-gray;
         &:before {
             @include border-radius(5px);
             @include transition(all 7.7s ease-in-out);
@@ -18,7 +17,7 @@
             left: 0px;
             width: 10px;
             height: 10px;
-            background-color: #000;
+            background-color: $color-black;
         }
     }
     &--errorBox {
@@ -37,27 +36,27 @@
 @include keyframes(loadAnimate--news) {
     0% {
         @include transform(rotate(0deg));
-        border-color: #000;
+        border-color: $color-black;
     }
     50% {
-        border-color: #CECECF;
+        border-color: $color-gray;
     }
     100% {
         @include transform(rotate(360deg));
-        border-color: #000;
+        border-color: $color-black;
     }
 }
 @include keyframes(loadAnimate--oldNews) {
     0% {
         @include transform(rotate(0deg));
-        border-color: #FFF;
+        border-color: $color-white;
     }
     50% {
-        border-color: #CECECF;
+        border-color: $color-gray;
     }
     100% {
         @include transform(rotate(360deg));
-        border-color: #FFF;
+        border-color: $color-white;
     }
 }
 /* Logo */
@@ -66,7 +65,7 @@
         @include border-radius(10px);
         display: block;
         width: 5%;
-        border: 1px solid #000;
+        border: 1px solid $color-black;
         cursor: pointer;
         &:hover {
             @extend .box-shadow--black;
@@ -92,8 +91,8 @@
     left: 30%;
     width: 40%;
     height: 90%;
-    border: 1px solid #000;
-    background-color: #FFF;
+    border: 1px solid $color-black;
+    background-color: $color-white;
     @media #{$phone} {
         top: 3.5%;
         left: 3%;
@@ -113,67 +112,81 @@
         height: 76%;
     }
 
-    &__inner {
-        &.ng-enter {
-            @include opacity(0);
-            left: 100%;
-        }
-        &.ng-enter.ng-enter-active, &.ng-leave {
-            @include opacity(1);
-            left: 0%;
-        }
-        &.ng-leave.ng-leave-active {
-            @include opacity(0);
-            left: -100%;
-        }
-        // 新聞
-        &__news {
-            @extend .overflow--y;
-            position: absolute;
-            top: 7%;
-            top: calc(3.5em);
-            left: 5%;
-            width: 90%;
-            height: 86%;
-            height: calc(100% - 3.5em);
-            &__item {
-                overflow: hidden;
-                white-space: nowrap;
-                text-align: left;
-                text-overflow: ellipsis;
-                margin: 2em auto;
+    // 新聞
+    &__news {
+        @extend .overflow--y;
+        position: absolute;
+        top: 7%;
+        top: calc(3.5em);
+        left: 5%;
+        width: 90%;
+        height: 86%;
+        height: calc(100% - 3.5em);
+        &__item {
+            overflow: hidden;
+            white-space: nowrap;
+            text-align: left;
+            text-overflow: ellipsis;
+            margin: 2em auto;
+            @media #{$phone} {
+                margin: 1em auto;
+            }
+            &__timestamp {
+                margin-right: 1em;
+                font-size: $font-size-small;
+                color: $color-gray;
                 @media #{$phone} {
-                    margin: 1em auto;
-                }
-                &__timestamp {
-                    margin-right: 1em;
-                    font-size: $font-size-small;
-                    color: #CECECF;
-                    @media #{$phone} {
-                        margin-right: 0;
-                    }
-                }
-                &__title {
-                    font-size: $font-size-base;
-                    text-decoration: underline;
-                    @media #{$phone} {
-                        font-size: $font-size-base;
-                    }
+                    margin-right: 0;
                 }
             }
-        }
-        // 當前日期
-        &__date {
-            position: absolute;
-            top: 0%;
-            width: 100%;
-            text-align: center;
-            &__button {
-                cursor: pointer;
+            &__title {
+                font-size: $font-size-base;
+                text-decoration: underline;
+                @media #{$phone} {
+                    font-size: $font-size-base;
+                }
             }
         }
     }
+    // 當前日期
+    &__date {
+        position: absolute;
+        top: 0%;
+        width: 100%;
+        text-align: center;
+        &__button {
+            cursor: pointer;
+        }
+    }
 }
+
+/* 搜索 */
+.searchBar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    text-align: right;
+    &__input {
+        width: 30px;
+        height: 20px;
+        text-align: left;
+        border: 0;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAoCAYAAAC8cqlMAAAFHklEQVRYw9VZW2gcVRhOuql90BjUPlVEBKnQisWCBYsgbbUtBgK9+CD6UC2++aB98jGUStuH6IuV0oAFfSnb2kKJD4IlhS4lITszZ/aS7DWpSIsgxeah6ebm+H0z509P1t222d2ZZAcOs5mZc87/ne/7L+ekoyOiy/O8Trb+/v51bPzd0S4XDR4eHu6Kx+OxOuD897yvSQBcbRpY/dx13adTqdRzuVyuu/rdmgNkrn4ymVxvWWqfbdsDaNds28miTaHlHcdJ4D5o2+5Ho6OjL5iAVh2EaQQMP+o4Kp3JZL18vuCNj0946XRmqWWz4/7ziYmcB0B3bFsdL5fLPasORiYHgE1Y7d8KhaJHEDBykYbT6Fwu7xvOxr8JBu//heS8UqnsoV9BKfWO+M8qgshsg2G3i8USDawQgAaTsSznjGVZX8DYj9E+BwOncL+Bd8JKhayBRQ/ffaLBxKJ07Jhm4mVKhCuN+wzBwNA0nh8qFosb6vXHNzsBcoj9LMteUMr1Uqk0+/ZGJjPJBQSDlUxQTjDmASUE437MZrNPmYBplNmqAH1JNihFDeQfMPNqJMw8lJQ6BkddYoLRyIxc9ZIfn5vvKTnKC/1ng3HsX4wF6wyLDd8ZmRcw8Z9cRTovVnXEYKrrSceSsA0w34vMXDflGc4fC5UNSOgIpURJUN+W5e4WJhrJP+i3kQGDYwVSdc6FFsWkbtIreJFRR0viejNSEPCQ6kmCICMYv4znPVLytLyG4h3O/AyzNGUVRCv1dSNs1MhF7wYgfOefB5i3QpGXyACJ7BVMNE0ZMF9gwg+aCZkiH/jFixj3b4JhLsK4H67E5xoB8jpXjEC4ejBgRzMrJ0BYXGLcW2Q68D/3aDNMPxYIJLAFE84RCBv+frsVQEZGRp7FuH8QCP0PheenoQCRCdPp9EuY8C5BMPSCkYPNSGu5ZO1pSotgwEhfKFleIhYzN4AoKQoRKk83M6Hh7H06J/lJFgu0tXqL0HJWmMUJgmBYHAr9jWxlBQic+7wxppJSJ5TtsTFpr55wMahenSPCViM5ZGzMDyAzYEVK+xOhsVFVMHYif1gEETi88xf3JCsBY4ZVjPU7HVzL6h5ktTlUICYrmOyAnryiy5WbiUSi2ygaY2Y1wKzP3zTOjETo90M+X/T3JnobcD6UaFXjMkuVwampW75z6j2JC2a21Sht/ncUBOaeR/84+2ExFqVuIyOo3fZHsi8Rp+eqYeLhyckpGnBfb2OhdTWAMP1GLWlwMwY2v2LOkIqXW1/uGhEBF/QYcwjH+yNhRhIgMzJW9lcNxt+PFwolqZdgt30BwM7i/hO3uTB8WopDfkMmBIhuczqQLOD790MpU+qB0St9nEbQSO20fi1GP5IDCCNP+M/4XqKfCQZg5/XzCtjbGwkzpnyYxOg3LP4eHv0sP0XRhw4z+G4I2XsP7j8HbNrz1WD0IQae23siAaPPdU12NqEdhpHf0FC0K5QY2PgWMvsMcnxtud+oS8wfNL6WzHgmgP7vRRXNfKmtZCNk5hxGsHJ50je+GoxmBoWq2hWJz5hRjZPJ2a5mzD+85opSjhKOzRBL5shMLTDaZ+4LmFCTZWuChrr0KGaYgOVwYk1ewkxQ/thX6zAzK4k3El9pxYE4Vv5yDWZmGd4BNLkmTvCfBAz9CmCGDGYq+tQGmy93e0c7XKbMAOYK6zmyg993QztdCRtM8I8j5zuyMzam3ozskDuM4rReJdFWF31F5511bQvicdd/SIm9RsdS7ugAAAAASUVORK5CYII=) left center / 25px no-repeat;
+        cursor: pointer;
+        &:focus,  &--valid {
+            @include border-radius(7px);
+            width: 100%;
+            height: 37px;
+            padding: 0 0 0 30px;
+            color: $color-gray;
+            border: 1px solid $color-gray;
+            background-color: $color-white;
+            cursor: text;
+        }
+    }
+}
+
 /* 選擇新聞按鈕 */
 .caret {
     @include opacity(.3);
@@ -226,28 +239,22 @@
         @media #{$tablet} {
             width: 76%;
         }
-        border: 1px solid #000;
-        background-color: #FFF;
+        border: 1px solid $color-black;
+        background-color: $color-white;
         @extend .box-shadow--black;
         input {
-            @include border-radius(50%);
             display: inline-block;
             width: 50px;
             height: 50px;
             margin: 1em;
             padding: 10px;
-            font-size: $font-size-regular;
-            text-align: center;
-            border: 1px solid #555;
-            background-color: transparent;
-            -webkit-appearance: none;
         }
         input:focus {
             @extend .box-shadow--black;
-            border-color: #000;
+            border-color: $color-black;
         }
         input:disabled {
-            border-color: #CECECF;
+            border-color: $color-gray;
         }
     }
     svg {
@@ -256,9 +263,9 @@
         cursor: pointer;
         &:hover {
             & > g {
-                fill: #000;
+                fill: $color-black;
                 & > g {
-                    stroke: #FFF;
+                    stroke: $color-white;
                 }
             }
         }
@@ -290,10 +297,10 @@
             @include animation(loadAnimate--timeMachine .3s infinite linear);
             & > g {
                 & > circle {
-                    stroke: #000;
+                    stroke: $color-black;
                 }
                 & > g {
-                    fill: #000;
+                    fill: $color-black;
                 }
             }
         }
@@ -313,44 +320,44 @@
             @extend .box-shadow--black--opaque;
         }
         &.CN, &.HK {
-            color: #FFE200;
-            background-color: #E74010;
+            color: $color-cn-yellow;
+            background-color: $color-cn-red;
         }
         &.TW {
-            @include background(linear-gradient(-15deg, #FF2600 0%, #021DA6 25%));
-            color: #FFF;
+            @include background(linear-gradient(-15deg, $color-tw-red 0%, $color-tw-blue 25%));
+            color: $color-white;
         }
         &.US {
-            @include background(linear-gradient(-15deg, #BF0A30 0%, #002868 25%));
-            color: #FFF;
+            @include background(linear-gradient(-15deg, $color-us-red 0%, $color-us-blue 25%));
+            color: $color-white;
         }
         &.JP {
-            color: #C70025;
-            background-color: #FFF;
+            color: $color-jp-red;
+            background-color: $color-white;
         }
         &.DE {
-            @include background(linear-gradient(#BF0A30, #BF0A30 50%, #1E1E1E 50%));
-            color: #FED100;
+            @include background(linear-gradient($color-de-red, $color-de-red 50%, $color-de-black 50%));
+            color: $color-de-yellow;
         }
         &.FR {
-            @include background(linear-gradient(to right, #00209F, #00209F 50%, #F42A41 50%));
-            color: #FFF;
+            @include background(linear-gradient(to right, $color-fr-blue, $color-fr-blue 50%, $color-fr-red 50%));
+            color: $color-white;
         }
         &.IN {
-            @include background(linear-gradient(-15deg, #138808 0%, #FF9933 25%));
-            color: #000080;
+            @include background(linear-gradient(-15deg, $color-in-green 0%, $color-in-yellow 25%));
+            color: $color-in-black;
         }
         &.KR {
-            @include background(linear-gradient(#C60C30, #C60C30 50%, #003478 50%));
-            color: #FFF;
+            @include background(linear-gradient($color-kr-red, $color-kr-red 50%, $color-kr-blue 50%));
+            color: $color-white;
         }
         &.RU {
-            @include background(linear-gradient(#0000FE, #0000FE 50%, #FE0000 50%));
-            color: #FFF;
+            @include background(linear-gradient($color-ru-blue, $color-ru-blue 50%, $color-ru-red 50%));
+            color: $color-white;
         }
         &.BR {
-            @include background(linear-gradient(-15deg, #3200FE 0%, #007600 25%));
-            color: #FEFE00;
+            @include background(linear-gradient(-15deg, $color-br-blue 0%, $color-br-green 25%));
+            color: $color-br-yellow;
         }
     }
 }
@@ -371,28 +378,27 @@ body {
     }
     &.oldNews {
         .loadBox {
-            background-color: #000;
             &__loadAnimate {
                 @include animation(loadAnimate--news 1.7s infinite linear);
                 &:before {
-                    background-color: #FFF;
+                    background-color: $color-white;
                 }
             }
             &--errorBox {
                 &__icon {
                     &__stroke {
-                        stroke: #FFF;
+                        stroke: $color-white;
                     }
                     &__fill {
-                        fill: #FFF;
+                        fill: $color-white;
                     }
                 }
             }
         }
         .head {
             &__logo {
-                border-color: #FFF;
-                background-color: #000;
+                border-color: $color-white;
+                background-color: $color-black;
                 &:hover {
                     @extend .box-shadow--white;
                 }
@@ -400,52 +406,59 @@ body {
         }
         .newsBox {
             @extend .box-shadow--white;
-            color: #FFF;
-            border: 1px solid #FFF;
-            background-color: #000;
-            &__inner__news__item__title {
-                color: #CECECF;
+            color: $color-white;
+            border: 1px solid $color-white;
+            background-color: $color-black;
+            &__news__item__title {
+                color: $color-gray;
+            }
+        }
+        .searchBar {
+            &__input {
+                &:focus,  &--valid {
+                    background-color: $color-black;
+                }
             }
         }
         .caret {
             &__path{
-                stroke: #FFF;
+                stroke: $color-white;
             }
         }
         .timeMachine {
-            color: #FFF;
+            color: $color-white;
             background-color: rgba(0, 0, 0, .8);
             form {
                 @extend .box-shadow--white;
-                border: 1px solid #FFF;
-                background-color: #000;
+                border: 1px solid $color-white;
+                background-color: $color-black;
                 input {
-                    color: #FFF;
-                    border-color: #CECECF;
+                    color: $color-white;
+                    border-color: $color-gray;
                 }
                 input:focus {
                     @extend .box-shadow--white;
-                    border-color: #FFF;
+                    border-color: $color-white;
                 }
                 input:disabled {
-                    border-color: #555;
+                    border-color: $color-steel;
                 }
             }
             svg {
                 & > g {
-                    fill: #000;
+                    fill: $color-black;
                     & > circle {
-                        stroke: #FFF;
+                        stroke: $color-white;
                     }
                     & > g {
-                        stroke: #FFF;
+                        stroke: $color-white;
                     }
                 }
                 &:hover {
                     & > g {
-                        fill: #FFF;
+                        fill: $color-white;
                         & > g {
-                            stroke: #000;
+                            stroke: $color-black;
                         }
                     }
                 }
@@ -456,10 +469,10 @@ body {
                 &:hover {
                     & > g {
                         & > circle {
-                            stroke: #FFF;
+                            stroke: $color-white;
                         }
                         & > g {
-                            fill: #FFF;
+                            fill: $color-white;
                         }
                     }
                 }

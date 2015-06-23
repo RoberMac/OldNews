@@ -16,6 +16,7 @@ var paths = {
     js_libs: [
         'public/js/libs/angular.min.js',
         'public/js/libs/*.js',
+        '!public/js/libs/inobounce.min.js',
         '!public/js/libs/*.map'
     ],
     css_sy: 'public/css/main.css',
