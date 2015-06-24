@@ -65,12 +65,12 @@ angular.module('ShinyaNews', [
     $scope.newsBox = []
     $scope.selectCountry = store.get('syNewsCountry') || 'HK'
     $scope.selectNewsInfo = {
-        selectDate: syNewsTimeHelper.getHoursMs(new Date().getHours()),
+        selectDate: oneDayStore.get('lastNewsDate') || syNewsTimeHelper.getHoursMs(new Date().getHours()),
         selectCountry: $scope.selectCountry,
         isAllDay: false
     }
     $scope.selectOldNewsInfo = {
-        selectDate: syNewsTimeHelper.getDayMs(Date.now()) - 86400000,
+        selectDate: store.get('lastOldNewsDate') || syNewsTimeHelper.getDayMs(Date.now()) - 86400000,
         selectCountry: $scope.selectCountry,
         isAllDay: true
     }
@@ -85,11 +85,9 @@ angular.module('ShinyaNews', [
         if (!$scope.isOldNews){
             // 選擇「新聞，」
             $scope.selectNewsInfo.selectDate += 3600000 * step
-            getSelectedDateNews($scope.selectNewsInfo)
         } else {
             // 選擇「舊聞。」
             $scope.selectOldNewsInfo.selectDate += 86400000 * step
-            getSelectedDateNews($scope.selectOldNewsInfo)
         }
 
         // 預加載判斷
@@ -108,71 +106,100 @@ angular.module('ShinyaNews', [
     $scope.timeMachineSelectNews = function (){
         if (!$scope.isOldNews){
             $scope.selectNewsInfo.selectDate = syNewsTimeHelper.getHoursMs($scope.timeMachineInfo.H)
-            getSelectedDateNews($scope.selectNewsInfo)
         } else {
             $scope.selectOldNewsInfo.selectDate = syNewsTimeHelper.getDayMs(
                 new Date(2015, 
                 $scope.timeMachineInfo.M - 1, 
                 $scope.timeMachineInfo.D)
             )
-            getSelectedDateNews($scope.selectOldNewsInfo)
         }
         $scope.isShowTimeMachine = false
     }
     $scope.refreshNews = function(){
-        if ($scope.isOldNews){
-            getSelectedDateNews($scope.selectOldNewsInfo)
-        } else {
-            getSelectedDateNews($scope.selectNewsInfo)
-        }
+        $scope.isOldNews
+        ? getSelectedDateNews($scope.selectOldNewsInfo)
+        : getSelectedDateNews($scope.selectNewsInfo)
     }
 
-    // 當 `$scope.selectCountry` 變更，刷新「當前新聞信息」並獲取相應新聞
+
+    /*******
+     * 監聽
+     *
+     *  `selectCountry` 刷新「當前新聞信息」並獲取相應新聞
+     *  `selectNewsInfo.selectDate` 刷新「上次瀏覽『新聞，』日期」並獲取「新聞，」
+     *  `selectOldNewsInfo.selectDate` 刷新「上次瀏覽『舊聞。』日期」並獲取「舊聞。」
+     *  `newBox` 滾動到頂部
+     */
     $scope.$watch('selectCountry', function (newVal, oldVal){
+
+        if (newVal === oldVal){ return; }
+
         $scope.selectNewsInfo.selectCountry = newVal
         $scope.selectOldNewsInfo.selectCountry = newVal
+        $scope.refreshNews()
+    })
+    $scope.$watch('selectNewsInfo.selectDate', function (newVal, oldVal){
 
-        newVal !== oldVal
-        ? $scope.refreshNews()
-        : null
+        if (newVal === oldVal){ return; }
+
+        oneDayStore.set('lastNewsDate', $scope.selectNewsInfo.selectDate)
+        getSelectedDateNews($scope.selectNewsInfo)
+    })
+    $scope.$watch('selectOldNewsInfo.selectDate', function (newVal, oldVal){
+
+        if (newVal === oldVal){ return; }
+
+        store.set('lastOldNewsDate', $scope.selectOldNewsInfo.selectDate)
+        getSelectedDateNews($scope.selectOldNewsInfo)
+    })
+    $scope.$watch('newsBox', function (newVal, oldVal){
+
+        if (newVal === oldVal){ return; }
+
+        document.getElementsByClassName('newsBox__news')[0].scrollTop = 0
     })
 
     /*********
      * Helper
      *
+     *  `setSelectNewsState` 設置 `$scope.newsBox`, `$scope.isShow` & `$scope.isNewsExist`
      *  `getSelectedDateNews` 獲取選擇時段／日期的新聞
      *  `checkSelectNewsCaret` 檢測是否顯示選擇新聞按鈕
      *  `storeOneDayNews` 存储新闻与本地並設置過期時間
      *  `removeOneDayNews` 清除過期的新聞
      */
-    checkSelectNewsCaret()
-    getSelectedDateNews($scope.selectNewsInfo)
     store.get('oneDayNewsExpires') < Date.now()
     ? removeOneDayNews()
     : null
+    checkSelectNewsCaret()
+    getSelectedDateNews($scope.selectNewsInfo)
+
+    function setSelectNewsState(data, isShow, isNewsExist){
+        $scope.newsBox     = data
+        $scope.isShow      = isShow
+        $scope.isNewsExist = isNewsExist
+    }
     function getSelectedDateNews(selectData, isPreload){
         $scope.isOldNews
         ? checkSelectOldNewsCaret()
         : checkSelectNewsCaret()
 
-        var news_id = selectData.selectDate + $scope.selectCountry,
+        var newsID = selectData.selectDate + $scope.selectCountry,
             cache_data;
-        if (!isPreload){
-            $scope.newsBox = []
-            $scope.isShow  = false
-            $scope.isNewsExist = true
-        }
+
+        isPreload
+        ? null
+        : setSelectNewsState([], false, true)
 
         // 尝试从本地获取新闻
         cache_data = selectData.isAllDay
-        ? newsBoxCache[news_id]
-        : oneDayStore.get(news_id)
+        ? newsBoxCache[newsID]
+        : oneDayStore.get(newsID)
         if (cache_data){
-            if (!isPreload){
-                $scope.newsBox = cache_data
-                $scope.isShow = true
-                $scope.isNewsExist = true
-            }
+            isPreload
+            ? null
+            : setSelectNewsState(cache_data, true, true)
+
             return;
         }
         // 否则，從服務器获取新闻
@@ -180,24 +207,16 @@ angular.module('ShinyaNews', [
         .post('/api/getSelectedDateNews', selectData)
         .success(function (data, status, headers, config){
             if (config.data.isAllDay){
-                newsBoxCache[news_id] = data.msg
+                newsBoxCache[newsID] = data.msg
             } else {
-                storeOneDayNews(news_id, data.msg)
+                storeOneDayNews(newsID, data.msg)
             }
             if (isPreload){ return; }
-            $timeout(function (){
-                $scope.newsBox = data.msg
-                $scope.isShow = true
-                $scope.isNewsExist = true
-            }, 717)
+            setSelectNewsState(data.msg, true, true)
         })
         .error(function (data, status, headers, config){
             if (isPreload){ return; }
-            $timeout(function (){
-                $scope.newsBox = []
-                $scope.isShow = true
-                $scope.isNewsExist = false
-            }, 717)
+            setSelectNewsState([], true, false)
         })
     }
     function checkSelectNewsCaret(){
@@ -219,8 +238,8 @@ angular.module('ShinyaNews', [
         ? true
         : false
     }
-    function storeOneDayNews(news_id, news){
-        oneDayStore.set(news_id, news)
+    function storeOneDayNews(newsID, news){
+        oneDayStore.set(newsID, news)
         var tomorrow = Date.now() + 86400000
         store.set('oneDayNewsExpires', syNewsTimeHelper.getDayMs(tomorrow))
     }
