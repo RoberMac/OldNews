@@ -15,6 +15,11 @@ angular.module('ShinyaNews', [
         'syNewsTimeHelper',
     function ($scope, $http, $timeout, $window, store, oneDayStore, syNewsTimeHelper){
 
+    // 刪除緩存於本地的過期信息
+    store.get('oneDayNewsExpires') < Date.now()
+    ? removeOneDayNews()
+    : null
+
     /*************
      * 用戶介面相關
      *
@@ -168,9 +173,6 @@ angular.module('ShinyaNews', [
      *  `storeOneDayNews` 存储新闻与本地並設置過期時間
      *  `removeOneDayNews` 清除過期的新聞
      */
-    store.get('oneDayNewsExpires') < Date.now()
-    ? removeOneDayNews()
-    : null
     checkSelectNewsCaret()
     getSelectedDateNews($scope.selectNewsInfo)
 

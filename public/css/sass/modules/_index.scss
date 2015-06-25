@@ -140,6 +140,7 @@
                 }
             }
             &__title {
+                @include user-select(text);
                 font-size: $font-size-base;
                 text-decoration: underline;
                 @media #{$phone} {
