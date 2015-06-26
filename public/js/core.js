@@ -189,9 +189,14 @@ angular.module('ShinyaNews', [
         var newsID = selectData.selectDate + $scope.selectCountry,
             cache_data;
 
-        isPreload
-        ? null
-        : setSelectNewsState([], false, true)
+        if (isPreload){
+            // 取消預加載此新聞
+            if (lastStep === 1 && $scope.isHideCaretRight || lastStep === -1 && $scope.isHideCaretLeft ){
+                return;
+            }
+        } else {
+            setSelectNewsState([], false, true)
+        }
 
         // 尝试从本地获取新闻
         cache_data = selectData.isAllDay

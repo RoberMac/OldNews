@@ -94,16 +94,12 @@
     border: 1px solid $color-black;
     background-color: $color-white;
     @media #{$phone} {
-        top: 3.5%;
-        left: 3%;
-        width: 94%;
-        height: 95.5%;
-    }
-    @media #{$phone-landscape} {
-        top: 1.5%;
-        left: 1.5%;
-        width: 97%;
-        height: 97%;
+        @include border-radius(7px);
+        border: 0;
+        top: .5%;
+        left: .5%;
+        width: 99%;
+        height: 99%;
     }
     @media #{$tablet} {
         top: 12%;
@@ -410,6 +406,9 @@ body {
             color: $color-white;
             border: 1px solid $color-white;
             background-color: $color-black;
+            @media #{$phone} {
+                border: 0;
+            }
             &__news__item__title {
                 color: $color-gray;
             }

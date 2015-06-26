@@ -2,9 +2,15 @@
 html {
     height: 100%;
     overflow: hidden;
-
+    background-color: $color-white;
+    @media #{$phone} {
+        background-color: $color-black;
+    }
     &.oldNews {
-        background-color: #000;
+        background-color: $color-black;
+        @media #{$phone} {
+            background-color: $color-gray;
+        }
     }
 }
 body {

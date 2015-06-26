@@ -134,14 +134,10 @@ $tablet-landscape: '(min-device-width : 768px) and (max-device-width : 1024px) a
         left: 10px;
         z-index: 2;
         @media #{$phone} {
-            top: 3.5%;
-            left: 3%;
+            top: .5%;
+            left: .5%;
             margin-top: 10px;
             margin-left: 10px;
-        }
-        @media #{$phone-landscape} {
-            top: 1.5%;
-            left: 1.5%;
         }
     }
     &--top--right {
@@ -150,14 +146,10 @@ $tablet-landscape: '(min-device-width : 768px) and (max-device-width : 1024px) a
         right: 10px;
         z-index: 2;
         @media #{$phone} {
-            top: 3.5%;
-            right: 3%;
+            top: .5%;
+            right: .5%;
             margin-top: 10px;
             margin-right: 10px;
-        }
-        @media #{$phone-landscape} {
-            top: 1.5%;
-            right: 1.5%;
         }
     }
 }
