@@ -27,5 +27,6 @@ build/Release
 node_modules
 
 TODO
+test/angular-mocks.js
 .sass-cache
 .DS_Store

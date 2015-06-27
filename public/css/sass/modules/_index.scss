@@ -94,12 +94,12 @@
     border: 1px solid $color-black;
     background-color: $color-white;
     @media #{$phone} {
-        @include border-radius(7px);
+        @include border-radius(3px);
         border: 0;
-        top: .5%;
-        left: .5%;
-        width: 99%;
-        height: 99%;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
     }
     @media #{$tablet} {
         top: 12%;
@@ -160,7 +160,7 @@
 /* 搜索 */
 .searchBar {
     position: absolute;
-    top: 0;
+    top: 7px;
     right: 0;
     width: 100%;
     text-align: right;

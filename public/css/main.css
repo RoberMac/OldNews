@@ -528,14 +528,14 @@ ng\:form {
 @media (max-device-width: 767px), (max-width: 767px) {
   /* line 86, sass/modules/_index.scss */
   .newsBox {
-    -moz-border-radius: 7px;
-    -webkit-border-radius: 7px;
-    border-radius: 7px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
     border: 0;
-    top: .5%;
-    left: .5%;
-    width: 99%;
-    height: 99%;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
   }
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
@@ -614,7 +614,7 @@ ng\:form {
 /* line 161, sass/modules/_index.scss */
 .searchBar {
   position: absolute;
-  top: 0;
+  top: 7px;
   right: 0;
   width: 100%;
   text-align: right;

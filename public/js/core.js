@@ -87,6 +87,9 @@ angular.module('ShinyaNews', [
     $scope.isHideCaretLeft  = false
     $scope.isHideCaretRight = false
     $scope.selectNews = function (step){
+        // 屏蔽（移動端）無效的獲取新聞（滑動）
+        if (step === 1 && $scope.isHideCaretRight || step === -1 && $scope.isHideCaretLeft){ return; }
+
         if (!$scope.isOldNews){
             // 選擇「新聞，」
             $scope.selectNewsInfo.selectDate += 3600000 * step
