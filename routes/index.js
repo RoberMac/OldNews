@@ -1,7 +1,7 @@
 var platform  = require('platform'),
     router    = require('express').Router();
 
-router.get(['/'], function (req, res, next){
+router.get(['/*'], function (req, res, next){
 
     log.info('[GET: /]', req.ip)
 

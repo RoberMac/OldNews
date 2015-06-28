@@ -1,11 +1,53 @@
 angular.module('ShinyaNews', [
     'ngTouch',
     'ngAnimate',
+    'ui.router',
     'angular-storage',
     'ShinyaNews.stopPropagationDirective',
     'ShinyaNews.i18nDirective',
     'ShinyaNews.timeHelperServices'
 ])
+.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', 
+    function($locationProvider, $stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise(function (){
+        var now     = new Date(),
+            year    = now.getFullYear(),
+            month   = now.getMonth() + 1,
+            day     = now.getDate(),
+            h       = now.getHours(),
+            country = localStorage.getItem('syNewsCountry').split('"')[1] || 'HK';
+
+        return country + '/' + year + '/' + month + '/' + day + '?h=' + h;
+    })
+
+    $locationProvider.html5Mode(true)
+
+    $stateProvider
+        .state('country', {
+            abstract: true,
+            url: "/{country:BR|CN|DE|FR|HK|IN|JP|KR|RU|TW|US}",
+            template: '<ui-view/>',
+            onEnter: function (){
+                console.log('...')
+            }
+        })
+        .state('date', {
+            parent: 'country',
+            url: "/2015/{month:0?[1-9]|1[0-2]}/{day:0?[0-9]|[12][0-9]|3[0-1]}?h",
+            templateUrl: '/public/dist/newsBox.min.html',
+            controller: ['$stateParams', function ($stateParams){
+
+                var country = $stateParams.country,
+                    month   = $stateParams.month,
+                    day     = $stateParams.day,
+                    hour    = $stateParams.h;
+
+                console.log(country, month, day, hour)
+            }]
+        })
+
+}])
 .factory('oneDayStore', ['store', function(store){
     return store.getNamespacedStore('one-day-news', '-');
 }])

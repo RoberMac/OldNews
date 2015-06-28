@@ -20,9 +20,12 @@ var paths = {
         '!public/js/libs/*.map'
     ],
     css_sy: 'public/css/main.css',
-    html_sy: [
+    html_index: [
         'views/*.html',
         '!views/*.min.html'
+    ],
+    html_sy: [
+        'public/js/templates/*.html'
     ]
 };
 
@@ -59,6 +62,17 @@ gulp.task('css_sy', function () {
         .pipe(gulp.dest('public/dist'))
 })
 
+// Minify ShinyaApp-News index page
+gulp.task('html_index', function (){
+
+    return gulp.src(paths.html_index)
+        .pipe(minifyHTML())
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(gulp.dest('views'))
+})
+
 // Minify all ShinyaApp-News HTML template files
 gulp.task('html_sy', function (){
 
@@ -67,7 +81,7 @@ gulp.task('html_sy', function (){
         .pipe(rename({
             suffix: '.min'
         }))
-        .pipe(gulp.dest('views'))
+        .pipe(gulp.dest('public/dist'))
 })
 
 // Rerun the task when a file changes 
@@ -77,8 +91,9 @@ gulp.task('watch', function() {
     gulp.watch(paths.js_libs, ['js_libs']);
     gulp.watch(paths.css_sy, ['css_sy']);
     gulp.watch(paths.css_libs, ['css_libs']);
+    gulp.watch(paths.html_index, ['html_index']);
     gulp.watch(paths.html_sy, ['html_sy']);
 });
 
 // The default task (called when you run `gulp` from cli) 
-gulp.task('default', ['watch', 'js_sy', 'js_libs', 'css_sy', 'html_sy']);
+gulp.task('default', ['watch', 'js_sy', 'js_libs', 'css_sy', 'html_index', 'html_sy']);
