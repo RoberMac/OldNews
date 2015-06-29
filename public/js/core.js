@@ -10,15 +10,16 @@ angular.module('ShinyaNews', [
 .config(['$locationProvider', '$stateProvider', '$urlRouterProvider', 
     function($locationProvider, $stateProvider, $urlRouterProvider) {
 
+    // 無效 URL，跳轉到今日現時「新聞，」
     $urlRouterProvider.otherwise(function (){
         var now     = new Date(),
             year    = now.getFullYear(),
             month   = now.getMonth() + 1,
             day     = now.getDate(),
             h       = now.getHours(),
-            country = localStorage.getItem('syNewsCountry').split('"')[1] || 'HK';
+            country = localStorage.getItem('syNewsCountry') || '"HK"';
 
-        return country + '/' + year + '/' + month + '/' + day + '?h=' + h;
+        return JSON.parse(country) + '/' + year + '/' + month + '/' + day + '?h=' + h;
     })
 
     $locationProvider.html5Mode(true)
@@ -27,23 +28,37 @@ angular.module('ShinyaNews', [
         .state('country', {
             abstract: true,
             url: "/{country:BR|CN|DE|FR|HK|IN|JP|KR|RU|TW|US}",
-            template: '<ui-view/>',
-            onEnter: function (){
-                console.log('...')
-            }
+            template: '<div ui-view><div/>',
+            controller: ['$scope', '$stateParams', function ($scope, $stateParams){
+                // 更改並保存「國家」
+                $scope.saveCountry($stateParams.country)
+            }]
         })
         .state('date', {
             parent: 'country',
-            url: "/2015/{month:0?[1-9]|1[0-2]}/{day:0?[0-9]|[12][0-9]|3[0-1]}?h",
+            url: "/{year:2015}/{month:0?[1-9]|1[0-2]}/{day:0?[0-9]|[12][0-9]|3[0-1]}?h",
             templateUrl: '/public/dist/newsBox.min.html',
-            controller: ['$stateParams', function ($stateParams){
+            controller: ['$scope', '$stateParams', 'store', 'syNewsTimeHelper', 
+                function ($scope, $stateParams, store, syNewsTimeHelper){
 
-                var country = $stateParams.country,
+                var year    = $stateParams.year,
                     month   = $stateParams.month,
                     day     = $stateParams.day,
-                    hour    = $stateParams.h;
+                    hour    = $stateParams.h > 0 && $stateParams.h <= 24
+                                ? $stateParams.h
+                                : new Date().getHours();
 
-                console.log(country, month, day, hour)
+                if (syNewsTimeHelper.isToday(year, month, day)){
+                    $scope.selectNewsInfo.selectDate = syNewsTimeHelper.toHourMs(year, month, day, hour)
+                } else {
+                    $scope.selectOldNewsInfo.selectDate = syNewsTimeHelper.toDayMs(year, month, day)
+                    store.set('lastOldNewsDate', $scope.selectOldNewsInfo.selectDate)
+
+                    $scope.isOldNews
+                    ? null
+                    : $scope.toggleNews() // 從 URL 直接訪問「舊聞。」
+                }
+                $scope.refreshNews()
             }]
         })
 
@@ -53,9 +68,9 @@ angular.module('ShinyaNews', [
 }])
 .controller('rootController', [
         '$scope', '$http', '$timeout', 
-        '$window', 'store', 'oneDayStore', 
-        'syNewsTimeHelper',
-    function ($scope, $http, $timeout, $window, store, oneDayStore, syNewsTimeHelper){
+        '$window', '$state', '$stateParams', 'store', 
+        'oneDayStore', 'syNewsTimeHelper',
+    function ($scope, $http, $timeout, $window, $state, $stateParams, store, oneDayStore, syNewsTimeHelper){
 
     // 刪除緩存於本地的過期信息
     store.get('oneDayNewsExpires') < Date.now()
@@ -75,13 +90,32 @@ angular.module('ShinyaNews', [
     $scope.isOldNews = false
     $scope.isShowTimeMachine = false
     $scope.toggleNews = function (){
+
+        if ($scope.isOldNews){
+            var newsDate = new Date($scope.selectNewsInfo.selectDate 
+                            || syNewsTimeHelper.getHoursMs(new Date().getHours()))
+            $state.go('date', {
+                year : newsDate.getFullYear().toString(),
+                month: (newsDate.getMonth() + 1).toString(),
+                day  : newsDate.getDate().toString(),
+                h    : newsDate.getHours().toString()
+            })
+        } else {
+            var oldNewsDate = new Date($scope.selectOldNewsInfo.selectDate
+                                || syNewsTimeHelper.getDayMs(Date.now()) - 86400000)
+            $state.go('date', {
+                year : oldNewsDate.getFullYear().toString(),
+                month: (oldNewsDate.getMonth() + 1).toString(),
+                day  : oldNewsDate.getDate().toString(),
+                h    : null
+            })
+        }
+
         $scope.isOldNews = !$scope.isOldNews
         // 背景色
         angular
         .element(document.documentElement)
         .toggleClass('oldNews')
-
-        $scope.refreshNews()
     }
     $scope.toggleTimeMachine = function (){
         // 刷新時間
@@ -112,40 +146,50 @@ angular.module('ShinyaNews', [
     $scope.newsBox = []
     $scope.selectCountry = store.get('syNewsCountry') || 'HK'
     $scope.selectNewsInfo = {
-        selectDate: oneDayStore.get('lastNewsDate') || syNewsTimeHelper.getHoursMs(new Date().getHours()),
+        selectDate: 0,
         selectCountry: $scope.selectCountry,
         isAllDay: false
     }
     $scope.selectOldNewsInfo = {
-        selectDate: store.get('lastOldNewsDate') || syNewsTimeHelper.getDayMs(Date.now()) - 86400000,
+        selectDate: store.get('lastOldNewsDate'),
         selectCountry: $scope.selectCountry,
         isAllDay: true
     }
-    $scope.timeMachineInfo = {
-        H: new Date().getHours(),
-        M: new Date().getMonth() + 1,
-        D: new Date().getDate()
-    }
+    $scope.timeMachineInfo = {}
     $scope.isHideCaretLeft  = false
     $scope.isHideCaretRight = false
     $scope.selectNews = function (step){
+
         // 屏蔽（移動端）無效的獲取新聞（滑動）
         if (step === 1 && $scope.isHideCaretRight || step === -1 && $scope.isHideCaretLeft){ return; }
 
         if (!$scope.isOldNews){
             // 選擇「新聞，」
-            $scope.selectNewsInfo.selectDate += 3600000 * step
+            $state.go('date', {
+                year : $stateParams.year,
+                month: $stateParams.month,
+                day  : $stateParams.day,
+                h    : (parseInt($stateParams.h 
+                                    ? $stateParams.h 
+                                    : new Date().getHours()
+                                ) + step).toString()
+            })
         } else {
             // 選擇「舊聞。」
-            $scope.selectOldNewsInfo.selectDate += 86400000 * step
+            $state.go('date', {
+                year : $stateParams.year,
+                month: $stateParams.month,
+                day  : (parseInt($stateParams.day) + step).toString(),
+                h    : null
+            })
         }
 
         // 預加載判斷
         if (step === lastStep){
             getSelectedDateNews({
                 selectDate: $scope.isOldNews
-                                ? $scope.selectOldNewsInfo.selectDate + 86400000 * step
-                                : $scope.selectNewsInfo.selectDate + 3600000 * step,
+                                ? $scope.selectOldNewsInfo.selectDate + 172800000 * step
+                                : $scope.selectNewsInfo.selectDate + 7200000 * step,
                 selectCountry: $scope.selectCountry,
                 isAllDay: $scope.isOldNews ? true : false
             }, true)
@@ -155,13 +199,19 @@ angular.module('ShinyaNews', [
     }
     $scope.timeMachineSelectNews = function (){
         if (!$scope.isOldNews){
-            $scope.selectNewsInfo.selectDate = syNewsTimeHelper.getHoursMs($scope.timeMachineInfo.H)
+            $state.go('date', {
+                year : $stateParams.year,
+                month: $stateParams.month,
+                day  : $stateParams.day,
+                h    : $scope.timeMachineInfo.H
+            })
         } else {
-            $scope.selectOldNewsInfo.selectDate = syNewsTimeHelper.getDayMs(
-                new Date(2015, 
-                $scope.timeMachineInfo.M - 1, 
-                $scope.timeMachineInfo.D)
-            )
+            $state.go('date', {
+                year : $stateParams.year,
+                month: $scope.timeMachineInfo.M,
+                day  : $scope.timeMachineInfo.D,
+                h    : null
+            })
         }
         $scope.isShowTimeMachine = false
     }
@@ -172,43 +222,6 @@ angular.module('ShinyaNews', [
     }
 
 
-    /*******
-     * 監聽
-     *
-     *  `selectCountry` 刷新「當前新聞信息」並獲取相應新聞
-     *  `selectNewsInfo.selectDate` 刷新「上次瀏覽『新聞，』日期」並獲取「新聞，」
-     *  `selectOldNewsInfo.selectDate` 刷新「上次瀏覽『舊聞。』日期」並獲取「舊聞。」
-     *  `newBox` 滾動到頂部
-     */
-    $scope.$watch('selectCountry', function (newVal, oldVal){
-
-        if (newVal === oldVal){ return; }
-
-        $scope.selectNewsInfo.selectCountry = newVal
-        $scope.selectOldNewsInfo.selectCountry = newVal
-        $scope.refreshNews()
-    })
-    $scope.$watch('selectNewsInfo.selectDate', function (newVal, oldVal){
-
-        if (newVal === oldVal){ return; }
-
-        oneDayStore.set('lastNewsDate', $scope.selectNewsInfo.selectDate)
-        getSelectedDateNews($scope.selectNewsInfo)
-    })
-    $scope.$watch('selectOldNewsInfo.selectDate', function (newVal, oldVal){
-
-        if (newVal === oldVal){ return; }
-
-        store.set('lastOldNewsDate', $scope.selectOldNewsInfo.selectDate)
-        getSelectedDateNews($scope.selectOldNewsInfo)
-    })
-    $scope.$watch('newsBox', function (newVal, oldVal){
-
-        if (newVal === oldVal){ return; }
-
-        document.getElementsByClassName('newsBox__news')[0].scrollTop = 0
-    })
-
     /*********
      * Helper
      *
@@ -218,9 +231,6 @@ angular.module('ShinyaNews', [
      *  `storeOneDayNews` 存储新闻与本地並設置過期時間
      *  `removeOneDayNews` 清除過期的新聞
      */
-    checkSelectNewsCaret()
-    getSelectedDateNews($scope.selectNewsInfo)
-
     function setSelectNewsState(data, isShow, isNewsExist){
         $scope.newsBox     = data
         $scope.isShow      = isShow
