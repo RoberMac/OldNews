@@ -80,8 +80,7 @@ $tablet-landscape: '(min-device-width : 768px) and (max-device-width : 1024px) a
     }
     &--general, &--faster {
         &.ng-enter,
-        &.ng-leave.ng-leave-active,
-        &.ng-hide {
+        &.ng-leave.ng-leave-active {
           opacity:0;
         }
         &.ng-leave,

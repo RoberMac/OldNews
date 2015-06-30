@@ -28,7 +28,7 @@ angular.module('ShinyaNews', [
         .state('country', {
             abstract: true,
             url: "/{country:BR|CN|DE|FR|HK|IN|JP|KR|RU|TW|US}",
-            template: '<div ui-view><div/>',
+            template: '<div ui-view></div>',
             controller: ['$scope', '$stateParams', function ($scope, $stateParams){
                 // 更改並保存「國家」
                 $scope.saveCountry($stateParams.country)
@@ -91,7 +91,15 @@ angular.module('ShinyaNews', [
     $scope.isShowTimeMachine = false
     $scope.toggleNews = function (){
 
+        // 翻面動畫
+        var elem = angular.element(document.getElementById('view-newsBox'))
+        elem.addClass('cardFlip')
+        $timeout(function (){
+            elem.removeClass('cardFlip')
+        }, 777)
+
         if ($scope.isOldNews){
+            // 切換到「新聞，」
             var newsDate = new Date($scope.selectNewsInfo.selectDate 
                             || syNewsTimeHelper.getHoursMs(new Date().getHours()))
             $state.go('date', {
@@ -101,6 +109,7 @@ angular.module('ShinyaNews', [
                 h    : newsDate.getHours().toString()
             })
         } else {
+            // 切換到「舊聞。」
             var oldNewsDate = new Date($scope.selectOldNewsInfo.selectDate
                                 || syNewsTimeHelper.getDayMs(Date.now()) - 86400000)
             $state.go('date', {
@@ -159,6 +168,14 @@ angular.module('ShinyaNews', [
     $scope.isHideCaretLeft  = false
     $scope.isHideCaretRight = false
     $scope.selectNews = function (step){
+
+        var elem = angular.element(document.getElementById('view-newsBox'))
+        if (step === 1){
+            elem.removeClass('rtl')
+        } else {
+            elem.addClass('rtl')
+        }
+        console.log(angular.element(document.getElementById('view-newsBox')))
 
         // 屏蔽（移動端）無效的獲取新聞（滑動）
         if (step === 1 && $scope.isHideCaretRight || step === -1 && $scope.isHideCaretLeft){ return; }
