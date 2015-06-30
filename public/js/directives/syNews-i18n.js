@@ -4,16 +4,17 @@ angular.module('ShinyaNews.i18nDirective', [])
         restrict: 'E',
         replace : true,
         template: '<div class="corner--top--left animate--faster">'
-                +   '<div ng-repeat="country in countryList" class="toolBar__button--country animate--faster" ng-class="country" ng-click="changeLanguage(country)">'
+                +   '<div ng-repeat="country in countryList" class="toolBar__button--country animate--faster" ng-class="country" ng-click="changeCountry(country)">'
                 +       '{{country}}'
                 +   '</div>'
                 + '</div>',
-        controller: ['$scope', '$timeout', 'store', function ($scope, $timeout, store){
+        controller: ['$scope', '$timeout', '$state', '$stateParams' , 'store', 
+            function ($scope, $timeout, $state, $stateParams, store){
 
             var country_list = ['HK', 'CN', 'JP', 'TW', 'US', 'BR', 'IN', 'KR', 'RU', 'DE', 'FR']
 
             $scope.countryList = [$scope.selectCountry]
-            $scope.changeLanguage = function (country){
+            $scope.changeCountry = function (country){
                 var country_len = $scope.countryList.length,
                     index = country_list.indexOf(country);
                 if (country === $scope.countryList[0]){
@@ -23,10 +24,21 @@ angular.module('ShinyaNews.i18nDirective', [])
                     : showCountryList()
                 } else {
                     // 更改國家
-                    store.set('syNewsCountry', country)
-                    $scope.selectCountry = country
-                    hideCountryList(country)
+                    $state.go('date', {
+                        country: country,
+                        year   : $stateParams.year,
+                        month  : $stateParams.month,
+                        day    : $stateParams.day,
+                        h      : $stateParams.h
+                    })
                 }
+            }
+            $scope.saveCountry = function (country){
+                store.set('syNewsCountry', country)
+                $scope.selectCountry = country
+                $scope.selectNewsInfo.selectCountry = country
+                $scope.selectOldNewsInfo.selectCountry = country
+                hideCountryList(country)
             }
             function showCountryList(){
                 for (var i = 0; i < country_list.length; i++){

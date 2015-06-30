@@ -92,53 +92,53 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   transition: all 0.3s ease-in-out;
 }
 /* line 82, sass/partials/_base.scss */
-.animate--general.ng-enter, .animate--general.ng-leave.ng-leave-active, .animate--general.ng-hide, .animate--faster.ng-enter, .animate--faster.ng-leave.ng-leave-active, .animate--faster.ng-hide {
+.animate--general.ng-enter, .animate--general.ng-leave.ng-leave-active, .animate--faster.ng-enter, .animate--faster.ng-leave.ng-leave-active {
   opacity: 0;
 }
-/* line 87, sass/partials/_base.scss */
+/* line 86, sass/partials/_base.scss */
 .animate--general.ng-leave, .animate--general.ng-enter.ng-enter-active, .animate--faster.ng-leave, .animate--faster.ng-enter.ng-enter-active {
   opacity: 1;
 }
 
-/* line 94, sass/partials/_base.scss */
+/* line 93, sass/partials/_base.scss */
 .box-shadow--white, body.oldNews .head__logo:hover, body.oldNews .newsBox, body.oldNews .timeMachine form, body.oldNews .timeMachine form input:focus, body.oldNews .toolBar__button--country {
   -moz-box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
   -webkit-box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
   box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
 }
-/* line 96, sass/partials/_base.scss */
+/* line 95, sass/partials/_base.scss */
 .box-shadow--white--opaque, body.oldNews .toolBar__button--country:hover {
   -moz-box-shadow: 0 3px 15px 0 white;
   -webkit-box-shadow: 0 3px 15px 0 white;
   box-shadow: 0 3px 15px 0 white;
 }
-/* line 100, sass/partials/_base.scss */
+/* line 99, sass/partials/_base.scss */
 .box-shadow--black, .head__logo:hover, .newsBox, .timeMachine form, .timeMachine form input:focus, .toolBar__button--country {
   -moz-box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.5);
 }
-/* line 102, sass/partials/_base.scss */
+/* line 101, sass/partials/_base.scss */
 .box-shadow--black--opaque, .toolBar__button--country:hover {
   -moz-box-shadow: 0 3px 15px 0 black;
   -webkit-box-shadow: 0 3px 15px 0 black;
   box-shadow: 0 3px 15px 0 black;
 }
 
-/* line 108, sass/partials/_base.scss */
+/* line 107, sass/partials/_base.scss */
 .overflow--x {
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 }
-/* line 113, sass/partials/_base.scss */
+/* line 112, sass/partials/_base.scss */
 .overflow--y, .newsBox__news {
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-/* line 120, sass/partials/_base.scss */
+/* line 119, sass/partials/_base.scss */
 .display--table, .loadBox, .timeMachine {
   position: absolute;
   display: table;
@@ -149,7 +149,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   z-index: 999;
 }
 
-/* line 131, sass/partials/_base.scss */
+/* line 130, sass/partials/_base.scss */
 .corner--top--left {
   position: absolute;
   top: 10px;
@@ -157,7 +157,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   z-index: 2;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 131, sass/partials/_base.scss */
+  /* line 130, sass/partials/_base.scss */
   .corner--top--left {
     top: .5%;
     left: .5%;
@@ -165,7 +165,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     margin-left: 10px;
   }
 }
-/* line 143, sass/partials/_base.scss */
+/* line 142, sass/partials/_base.scss */
 .corner--top--right {
   position: absolute;
   top: 10px;
@@ -173,7 +173,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   z-index: 2;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 143, sass/partials/_base.scss */
+  /* line 142, sass/partials/_base.scss */
   .corner--top--right {
     top: .5%;
     right: .5%;
@@ -1041,4 +1041,94 @@ body.oldNews .toolBar__button--timeMachine:hover > g > circle {
 /* line 474, sass/modules/_index.scss */
 body.oldNews .toolBar__button--timeMachine:hover > g > g {
   fill: #FFF;
+}
+
+/* ui-view 動畫 */
+/* line 493, sass/modules/_index.scss */
+#view-newsBox [ui-view].ng-enter, #view-newsBox [ui-view].ng-leave {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -moz-transition: all 0.7s ease-in-out;
+  -o-transition: all 0.7s ease-in-out;
+  -webkit-transition: all 0.7s ease-in-out;
+  transition: all 0.7s ease-in-out;
+}
+@media (max-device-width: 1024px), (max-width: 1024px) {
+  /* line 493, sass/modules/_index.scss */
+  #view-newsBox [ui-view].ng-enter, #view-newsBox [ui-view].ng-leave {
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+}
+/* line 502, sass/modules/_index.scss */
+#view-newsBox [ui-view].ng-enter {
+  opacity: 0;
+  -moz-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+  -ms-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+  -webkit-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+  transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+}
+/* line 506, sass/modules/_index.scss */
+#view-newsBox [ui-view].ng-enter-active, #view-newsBox [ui-view].ng-leave {
+  opacity: 1;
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+/* line 510, sass/modules/_index.scss */
+#view-newsBox [ui-view].ng-leave-active {
+  opacity: 0;
+  -moz-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+  -ms-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+  -webkit-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+  transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+}
+/* line 516, sass/modules/_index.scss */
+#view-newsBox.rtl [ui-view].ng-enter {
+  -moz-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+  -ms-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+  -webkit-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+  transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+}
+/* line 519, sass/modules/_index.scss */
+#view-newsBox.rtl [ui-view].ng-enter-active, #view-newsBox.rtl [ui-view].ng-leave {
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+/* line 522, sass/modules/_index.scss */
+#view-newsBox.rtl [ui-view].ng-leave-active {
+  -moz-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+  -ms-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+  -webkit-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+  transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+}
+/* line 527, sass/modules/_index.scss */
+#view-newsBox.cardFlip [ui-view].ng-enter {
+  opacity: 0;
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+/* line 531, sass/modules/_index.scss */
+#view-newsBox.cardFlip [ui-view].ng-enter-active, #view-newsBox.cardFlip [ui-view].ng-leave {
+  opacity: 1;
+  -moz-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+/* line 535, sass/modules/_index.scss */
+#view-newsBox.cardFlip [ui-view].ng-leave-active {
+  opacity: 0;
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
