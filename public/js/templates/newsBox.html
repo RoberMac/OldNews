@@ -5,14 +5,14 @@
         <h3>
             <span class="newsBox__date__button" ng-click="toggleTimeMachine()">
                 <span ng-hide="isOldNews">{{selectNewsInfo.selectDate | date:'HH:00'}}</span>
-                <span ng-show="isOldNews">{{selectOldNewsInfo.selectDate | date:'yyyy-MM-d'}}</span>
+                <span ng-show="isOldNews">{{selectOldNewsInfo.selectDate | date:'yyyy-MM-dd'}}</span>
             </span>
         </h3>
     </div>
     <div class="newsBox__news">
         <!-- 搜索 -->
         <form class="searchBar" novalidate name="searchForm">
-            <input class="searchBar__input animate--faster" ng-class="{'searchBar__input--valid': searchForm.$valid}" type="text" ng-model="search.title" required>
+            <input class="searchBar__input animate--faster" ng-class="{'searchBar__input--valid': searchForm.$valid}" type="text" ng-model="search.title" ng-model-options="{debounce: 300}"required>
         </form>
         <!-- 主體 -->
         <ul ng-repeat="newsItems in newsBox | filter: search.title">
