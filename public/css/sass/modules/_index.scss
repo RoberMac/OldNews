@@ -119,6 +119,7 @@
         height: 86%;
         height: calc(100% - 3.5em);
         &__item {
+            position: relative;
             overflow: hidden;
             white-space: nowrap;
             text-align: left;
@@ -141,6 +142,25 @@
                 text-decoration: underline;
                 @media #{$phone} {
                     font-size: $font-size-base;
+                }
+            }
+            &__link {
+                position: absolute;
+                display: none;
+                right: 0px;
+                width: 10px;
+                height: 100%;
+                cursor: pointer;
+                &:hover {
+                    g {
+                        stroke: #000;
+                    }
+                }
+            }
+            &:hover > &__link {
+                display: inline;
+                @media #{$all-mobile-Devices} {
+                    display: none;
                 }
             }
         }
@@ -411,6 +431,13 @@ body {
             }
             &__news__item__title {
                 color: $color-gray;
+            }
+            &__news__item__link {
+                &:hover {
+                    g {
+                        stroke: #FFF;
+                    }
+                }
             }
         }
         .searchBar {

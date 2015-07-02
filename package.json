@@ -1,6 +1,6 @@
 {
   "name": "ShinyaApp-News",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A News App",
   "main": "app.js",
   "repository": {

@@ -20,6 +20,12 @@
             <li ng-repeat="item in newsItems.news | orderBy: 'date' | filter: search" class="newsBox__news__item">
                 <span class="newsBox__news__item__timestamp">{{item.date | date: 'HH:mm'}}</span>
                 <a class="newsBox__news__item__title" ng-href="{{item.url}}" target="_blank">{{item.title}}</a>
+                <svg ng-click="updateQueryParam(item.title)" class="newsBox__news__item__link" viewBox="0 0 81 81" xmlns="http://www.w3.org/2000/svg">
+                    <g class="animate--faster" transform="translate(3 3)" stroke="#CECECF" stroke-width="5" fill="none">
+                        <circle cx="25" cy="25" r="25"/>
+                        <circle cx="50" cy="50" r="25"/>
+                    </g>
+                </svg>
             </li>
         </ul>
         <!-- 錯誤消息 -->

@@ -89,6 +89,7 @@ angular.module('ShinyaNews', [
      *  `$scope.isNewsExist` 是否顯示「獲取新聞錯誤」提醒
      *  `$scope.isOldNews` & `$scope.toggleNews` 「新聞，」「舊聞。」切換
      *  `$scope.isShowTimeMachine & $scope.toggleTimeMachine` 顯示／隱藏「跳躍性選擇新聞介面」
+     *  `$scope.updateQueryParam` 「定位新聞」，更新 URL，方便分享新聞
      */
     $scope.isShow = false
     $scope.isNewsExist = true
@@ -140,7 +141,15 @@ angular.module('ShinyaNews', [
         }
         $scope.isShowTimeMachine = !$scope.isShowTimeMachine
     }
-
+    $scope.updateQueryParam = function (title){
+        $state.go('date', {
+            year : $stateParams.year,
+            month: $stateParams.month,
+            day  : $stateParams.day,
+            h    : $stateParams.h,
+            q    : title
+        }, { notify: false, reload: false })
+    }
 
     /*************
      * 獲取新聞相關
