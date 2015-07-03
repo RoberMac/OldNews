@@ -12,7 +12,7 @@
     <div class="newsBox__news">
         <!-- 搜索 -->
         <form class="searchBar" novalidate name="searchForm">
-            <input class="searchBar__input animate--faster" ng-class="{'searchBar__input--valid': searchForm.$valid}" type="text" ng-model="search.title" ng-model-options="{debounce: 300}"required>
+            <input class="searchBar__input animate--faster" ng-class="{'searchBar__input--valid': searchForm.$valid}" type="text" ng-model="search.title" ng-model-options="{debounce: 300}" required>
         </form>
         <!-- 主體 -->
         <ul ng-repeat="newsItems in newsBox | filter: search.title">

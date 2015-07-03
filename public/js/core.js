@@ -112,7 +112,8 @@ angular.module('ShinyaNews', [
                 year : newsDate.getFullYear().toString(),
                 month: (newsDate.getMonth() + 1).toString(),
                 day  : newsDate.getDate().toString(),
-                h    : newsDate.getHours().toString()
+                h    : newsDate.getHours().toString(),
+                q    : null
             })
         } else {
             // 切換到「舊聞。」
@@ -122,7 +123,8 @@ angular.module('ShinyaNews', [
                 year : oldNewsDate.getFullYear().toString(),
                 month: (oldNewsDate.getMonth() + 1).toString(),
                 day  : oldNewsDate.getDate().toString(),
-                h    : null
+                h    : null,
+                q    : null
             })
         }
 
@@ -191,7 +193,6 @@ angular.module('ShinyaNews', [
         } else {
             elem.addClass('rtl')
         }
-        console.log(angular.element(document.getElementById('view-newsBox')))
 
         // 屏蔽（移動端）無效的獲取新聞（滑動）
         if (step === 1 && $scope.isHideCaretRight || step === -1 && $scope.isHideCaretLeft){ return; }
@@ -205,7 +206,8 @@ angular.module('ShinyaNews', [
                 h    : (parseInt($stateParams.h 
                                     ? $stateParams.h 
                                     : new Date().getHours()
-                                ) + step).toString()
+                                ) + step).toString(),
+                q    : null
             })
         } else {
             // 選擇「舊聞。」
@@ -213,7 +215,8 @@ angular.module('ShinyaNews', [
                 year : $stateParams.year,
                 month: $stateParams.month,
                 day  : (parseInt($stateParams.day) + step).toString(),
-                h    : null
+                h    : null,
+                q    : null
             })
         }
 
@@ -236,14 +239,16 @@ angular.module('ShinyaNews', [
                 year : $stateParams.year,
                 month: $stateParams.month,
                 day  : $stateParams.day,
-                h    : $scope.timeMachineInfo.H
+                h    : $scope.timeMachineInfo.H,
+                q    : null
             })
         } else {
             $state.go('date', {
                 year : $stateParams.year,
                 month: $scope.timeMachineInfo.M,
                 day  : $scope.timeMachineInfo.D,
-                h    : null
+                h    : null,
+                q    : null
             })
         }
         $scope.isShowTimeMachine = false
