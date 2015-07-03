@@ -124,7 +124,9 @@ angular.module('ShinyaNews', [
                 month: (oldNewsDate.getMonth() + 1).toString(),
                 day  : oldNewsDate.getDate().toString(),
                 h    : null,
-                q    : null
+                q    : $stateParams.h
+                            ? null
+                            : $stateParams.q
             })
         }
 
