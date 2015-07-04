@@ -147,12 +147,8 @@ angular.module('ShinyaNews', [
     }
     $scope.updateQueryParam = function (title){
         $state.go('date', {
-            year : $stateParams.year,
-            month: $stateParams.month,
-            day  : $stateParams.day,
-            h    : $stateParams.h,
             q    : title
-        }, { notify: false, reload: false })
+        }, { notify: false, reload: true })
     }
 
     /*************
@@ -202,9 +198,6 @@ angular.module('ShinyaNews', [
         if (!$scope.isOldNews){
             // 選擇「新聞，」
             $state.go('date', {
-                year : $stateParams.year,
-                month: $stateParams.month,
-                day  : $stateParams.day,
                 h    : (parseInt($stateParams.h 
                                     ? $stateParams.h 
                                     : new Date().getHours()
@@ -214,8 +207,6 @@ angular.module('ShinyaNews', [
         } else {
             // 選擇「舊聞。」
             $state.go('date', {
-                year : $stateParams.year,
-                month: $stateParams.month,
                 day  : (parseInt($stateParams.day) + step).toString(),
                 h    : null,
                 q    : null
@@ -238,15 +229,11 @@ angular.module('ShinyaNews', [
     $scope.timeMachineSelectNews = function (){
         if (!$scope.isOldNews){
             $state.go('date', {
-                year : $stateParams.year,
-                month: $stateParams.month,
-                day  : $stateParams.day,
                 h    : $scope.timeMachineInfo.H,
                 q    : null
             })
         } else {
             $state.go('date', {
-                year : $stateParams.year,
                 month: $scope.timeMachineInfo.M,
                 day  : $scope.timeMachineInfo.D,
                 h    : null,
@@ -272,12 +259,8 @@ angular.module('ShinyaNews', [
         if (newVal === oldVal){ return; }
 
         $state.go('date', {
-            year : $stateParams.year,
-            month: $stateParams.month,
-            day  : $stateParams.day,
-            h    : $stateParams.h,
             q    : newVal
-        }, { notify: false, reload: false })
+        }, { notify: false, reload: true })
     })
 
 

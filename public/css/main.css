@@ -64,81 +64,81 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 67, sass/partials/_base.scss */
+/* line 83, sass/partials/_base.scss */
 .vertically_center {
   display: table-cell;
   vertical-align: middle;
 }
 
-/* line 72, sass/partials/_base.scss */
+/* line 88, sass/partials/_base.scss */
 .animate--slower {
   -moz-transition: all 1.7s ease-in-out;
   -o-transition: all 1.7s ease-in-out;
   -webkit-transition: all 1.7s ease-in-out;
   transition: all 1.7s ease-in-out;
 }
-/* line 75, sass/partials/_base.scss */
+/* line 91, sass/partials/_base.scss */
 .animate--general {
   -moz-transition: all 0.7s ease-in-out;
   -o-transition: all 0.7s ease-in-out;
   -webkit-transition: all 0.7s ease-in-out;
   transition: all 0.7s ease-in-out;
 }
-/* line 78, sass/partials/_base.scss */
+/* line 94, sass/partials/_base.scss */
 .animate--faster {
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-/* line 82, sass/partials/_base.scss */
+/* line 98, sass/partials/_base.scss */
 .animate--general.ng-enter, .animate--general.ng-leave.ng-leave-active, .animate--faster.ng-enter, .animate--faster.ng-leave.ng-leave-active {
   opacity: 0;
 }
-/* line 86, sass/partials/_base.scss */
+/* line 102, sass/partials/_base.scss */
 .animate--general.ng-leave, .animate--general.ng-enter.ng-enter-active, .animate--faster.ng-leave, .animate--faster.ng-enter.ng-enter-active {
   opacity: 1;
 }
 
-/* line 93, sass/partials/_base.scss */
+/* line 109, sass/partials/_base.scss */
 .box-shadow--white, body.oldNews .head__logo:hover, body.oldNews .newsBox, body.oldNews .timeMachine form, body.oldNews .timeMachine form input:focus, body.oldNews .toolBar__button--country {
   -moz-box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
   -webkit-box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
   box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
 }
-/* line 95, sass/partials/_base.scss */
+/* line 111, sass/partials/_base.scss */
 .box-shadow--white--opaque, body.oldNews .toolBar__button--country:hover {
   -moz-box-shadow: 0 3px 15px 0 white;
   -webkit-box-shadow: 0 3px 15px 0 white;
   box-shadow: 0 3px 15px 0 white;
 }
-/* line 99, sass/partials/_base.scss */
+/* line 115, sass/partials/_base.scss */
 .box-shadow--black, .head__logo:hover, .newsBox, .timeMachine form, .timeMachine form input:focus, .toolBar__button--country {
   -moz-box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.5);
 }
-/* line 101, sass/partials/_base.scss */
+/* line 117, sass/partials/_base.scss */
 .box-shadow--black--opaque, .toolBar__button--country:hover {
   -moz-box-shadow: 0 3px 15px 0 black;
   -webkit-box-shadow: 0 3px 15px 0 black;
   box-shadow: 0 3px 15px 0 black;
 }
 
-/* line 107, sass/partials/_base.scss */
+/* line 123, sass/partials/_base.scss */
 .overflow--x {
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 }
-/* line 112, sass/partials/_base.scss */
+/* line 128, sass/partials/_base.scss */
 .overflow--y, .newsBox__news {
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-/* line 119, sass/partials/_base.scss */
+/* line 135, sass/partials/_base.scss */
 .display--table, .loadBox, .timeMachine {
   position: absolute;
   display: table;
@@ -149,7 +149,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   z-index: 999;
 }
 
-/* line 130, sass/partials/_base.scss */
+/* line 146, sass/partials/_base.scss */
 .corner--top--left {
   position: absolute;
   top: 10px;
@@ -157,7 +157,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   z-index: 2;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 130, sass/partials/_base.scss */
+  /* line 146, sass/partials/_base.scss */
   .corner--top--left {
     top: .5%;
     left: .5%;
@@ -165,7 +165,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     margin-left: 10px;
   }
 }
-/* line 142, sass/partials/_base.scss */
+/* line 158, sass/partials/_base.scss */
 .corner--top--right {
   position: absolute;
   top: 10px;
@@ -173,7 +173,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   z-index: 2;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 142, sass/partials/_base.scss */
+  /* line 158, sass/partials/_base.scss */
   .corner--top--right {
     top: .5%;
     right: .5%;
@@ -311,9 +311,51 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   margin: 0;
 }
 
-/* line 75, sass/partials/_reset.scss */
+/* line 13, sass/partials/_base.scss */
 ::-webkit-scrollbar {
-  display: none;
+  width: 1px;
+  height: 1px;
+}
+
+/* line 17, sass/partials/_base.scss */
+::-webkit-scrollbar-thumb {
+  background: #FFF;
+  -moz-border-radius: 1px;
+  -webkit-border-radius: 1px;
+  border-radius: 1px;
+}
+
+/* line 21, sass/partials/_base.scss */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* line 24, sass/partials/_base.scss */
+body {
+  scrollbar-face-color: #FFF;
+  scrollbar-track-color: transparent;
+}
+
+/* line 13, sass/partials/_base.scss */
+.oldNews ::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+}
+/* line 17, sass/partials/_base.scss */
+.oldNews ::-webkit-scrollbar-thumb {
+  background: #CECECF;
+  -moz-border-radius: 1px;
+  -webkit-border-radius: 1px;
+  border-radius: 1px;
+}
+/* line 21, sass/partials/_base.scss */
+.oldNews ::-webkit-scrollbar-track {
+  background: transparent;
+}
+/* line 24, sass/partials/_base.scss */
+.oldNews body {
+  scrollbar-face-color: #CECECF;
+  scrollbar-track-color: transparent;
 }
 
 /* angular-csp */

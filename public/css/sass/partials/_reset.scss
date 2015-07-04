@@ -72,6 +72,8 @@ input {
         margin: 0;
     }
 }
-::-webkit-scrollbar {
-    display: none;
+
+@include scrollbars(1px, $color-white, transparent);
+.oldNews {
+    @include scrollbars(1px, $color-gray, transparent);
 }
