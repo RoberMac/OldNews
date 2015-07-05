@@ -184,30 +184,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /* sy-news-reset */
 /* line 2, sass/partials/_reset.scss */
-html {
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   height: 100%;
   overflow: hidden;
   background-color: #FFF;
-}
-@media (max-device-width: 767px), (max-width: 767px) {
-  /* line 2, sass/partials/_reset.scss */
-  html {
-    background-color: #000;
-  }
-}
-/* line 9, sass/partials/_reset.scss */
-html.oldNews {
-  background-color: #000;
-}
-@media (max-device-width: 767px), (max-width: 767px) {
-  /* line 9, sass/partials/_reset.scss */
-  html.oldNews {
-    background-color: #CECECF;
-  }
-}
-
-/* line 16, sass/partials/_reset.scss */
-body {
   font-family: "Helvetica Neue", "Palatino", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-size: 14px;
   line-height: 1.4;
@@ -215,15 +201,15 @@ body {
   cursor: default;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+@media (max-device-width: 767px), (max-width: 767px) {
+  /* line 2, sass/partials/_reset.scss */
+  body {
+    background-color: #000;
+  }
 }
 
-/* line 27, sass/partials/_reset.scss */
+/* line 18, sass/partials/_reset.scss */
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -246,55 +232,59 @@ body {
   text-align: center;
 }
 
-/* line 33, sass/partials/_reset.scss */
+/* line 24, sass/partials/_reset.scss */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   margin: 1em 0;
   text-align: center;
 }
 
-/* line 38, sass/partials/_reset.scss */
+/* line 29, sass/partials/_reset.scss */
 h1 {
   font-size: 2em;
 }
 
-/* line 41, sass/partials/_reset.scss */
+/* line 32, sass/partials/_reset.scss */
 h2 {
   font-size: 1.5em;
 }
 
-/* line 44, sass/partials/_reset.scss */
+/* line 35, sass/partials/_reset.scss */
 h3 {
   font-size: 1.17em;
 }
 
-/* line 47, sass/partials/_reset.scss */
+/* line 38, sass/partials/_reset.scss */
 h4 {
   font-size: 1.12em;
 }
 
-/* line 50, sass/partials/_reset.scss */
+/* line 41, sass/partials/_reset.scss */
 h5 {
   font-size: .83em;
 }
 
-/* line 53, sass/partials/_reset.scss */
+/* line 44, sass/partials/_reset.scss */
 h6 {
   font-size: .75em;
 }
 
-/* line 56, sass/partials/_reset.scss */
+/* line 47, sass/partials/_reset.scss */
 a {
   color: inherit;
   text-decoration: none;
 }
+/* line 50, sass/partials/_reset.scss */
+a:focus {
+  outline: 1px solid #000;
+}
 
-/* line 60, sass/partials/_reset.scss */
+/* line 54, sass/partials/_reset.scss */
 textarea:focus, input:focus, button:focus {
   outline: none;
 }
 
-/* line 63, sass/partials/_reset.scss */
+/* line 57, sass/partials/_reset.scss */
 input {
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -305,7 +295,7 @@ input {
   background-color: transparent;
   -webkit-appearance: none;
 }
-/* line 70, sass/partials/_reset.scss */
+/* line 64, sass/partials/_reset.scss */
 input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -336,26 +326,41 @@ body {
   scrollbar-track-color: transparent;
 }
 
+/* 「舊聞。」下樣式 */
+/* line 73, sass/partials/_reset.scss */
+body.oldNews {
+  background-color: #000;
+}
 /* line 13, sass/partials/_base.scss */
-.oldNews ::-webkit-scrollbar {
+body.oldNews ::-webkit-scrollbar {
   width: 1px;
   height: 1px;
 }
 /* line 17, sass/partials/_base.scss */
-.oldNews ::-webkit-scrollbar-thumb {
+body.oldNews ::-webkit-scrollbar-thumb {
   background: #CECECF;
   -moz-border-radius: 1px;
   -webkit-border-radius: 1px;
   border-radius: 1px;
 }
 /* line 21, sass/partials/_base.scss */
-.oldNews ::-webkit-scrollbar-track {
+body.oldNews ::-webkit-scrollbar-track {
   background: transparent;
 }
 /* line 24, sass/partials/_base.scss */
-.oldNews body {
+body.oldNews body {
   scrollbar-face-color: #CECECF;
   scrollbar-track-color: transparent;
+}
+@media (max-device-width: 767px), (max-width: 767px) {
+  /* line 73, sass/partials/_reset.scss */
+  body.oldNews {
+    background-color: #CECECF;
+  }
+}
+/* line 79, sass/partials/_reset.scss */
+body.oldNews a:focus {
+  outline-color: #CECECF;
 }
 
 /* angular-csp */

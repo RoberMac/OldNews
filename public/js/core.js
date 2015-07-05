@@ -17,9 +17,9 @@ angular.module('ShinyaNews', [
             month   = now.getMonth() + 1,
             day     = now.getDate(),
             h       = now.getHours(),
-            country = localStorage.getItem('syNewsCountry') || '"HK"';
+            country = JSON.parse(localStorage.getItem('syNewsCountry')) || "HK";
 
-        return JSON.parse(country) + '/' + year + '/' + month + '/' + day + '?h=' + h;
+        return country + '/' + year + '/' + month + '/' + day + '?h=' + h;
     })
 
     $locationProvider.html5Mode(true)
@@ -166,7 +166,8 @@ angular.module('ShinyaNews', [
      *  `$scope.refreshNews` 刷新新聞
      */
     var newsBoxCache = {},
-        lastStep = -1;
+        lastStep = -1,
+        currentNewsItem = -1;
     $scope.newsBox = []
     $scope.selectCountry = store.get('syNewsCountry') || 'HK'
     $scope.selectNewsInfo = {
@@ -225,6 +226,9 @@ angular.module('ShinyaNews', [
         } else {
             lastStep = step
         }
+
+        // 重置新聞項
+        currentNewsItem = -1
     }
     $scope.timeMachineSelectNews = function (){
         if (!$scope.isOldNews){
@@ -262,6 +266,19 @@ angular.module('ShinyaNews', [
             q    : newVal
         }, { notify: false, reload: true })
     })
+    $window.addEventListener('keydown', function (e){
+        var keyCode    = e.keyCode
+        console.log(keyCode)
+        keyCode === 37    // ←
+            ? $scope.selectNews(-1)
+        : keyCode === 39  // →
+            ? $scope.selectNews(1)
+        : keyCode === 38  // ↑
+            ? selectNewsItem(-1)
+        : keyCode === 40  // ↓
+            ? selectNewsItem(1)
+        : null
+    })
 
 
     /*********
@@ -272,6 +289,7 @@ angular.module('ShinyaNews', [
      *  `checkSelectNewsCaret` 檢測是否顯示選擇新聞按鈕
      *  `storeOneDayNews` 存储新闻与本地並設置過期時間
      *  `removeOneDayNews` 清除過期的新聞
+     *  `selectNewsItem` 選擇下一新聞項
      */
     function setSelectNewsState(data, isShow, isNewsExist){
         $scope.newsBox     = data
@@ -356,6 +374,18 @@ angular.module('ShinyaNews', [
             reg.test(ls.key(j))
                 ? store.remove(ls.key(j))
                 : j ++
+        }
+    }
+    function selectNewsItem(step){
+        var newsItemList = document.getElementsByClassName('newsBox__news__item__title'),
+            len          = newsItemList.length;
+
+        if (step === -1 && currentNewsItem > 0 && currentNewsItem < len){
+            currentNewsItem--
+            newsItemList[currentNewsItem].focus()
+        } else if (step === 1 && currentNewsItem >= -1 && currentNewsItem < len - 1){
+            currentNewsItem++
+            newsItemList[currentNewsItem].focus()
         }
     }
 }])
