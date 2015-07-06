@@ -5,7 +5,10 @@ angular.module('ShinyaNews', [
     'angular-storage',
     'ShinyaNews.stopPropagationDirective',
     'ShinyaNews.i18nDirective',
-    'ShinyaNews.timeHelperServices'
+    'ShinyaNews.timeHelperServices',
+    'ShinyaNews.selectNewsItemServices',
+    'ShinyaNews.oneDayStoreServices',
+    'ShinyaNews.UIServices'
 ])
 .config(['$locationProvider', '$stateProvider', '$urlRouterProvider', 
     function($locationProvider, $stateProvider, $urlRouterProvider) {
@@ -68,18 +71,22 @@ angular.module('ShinyaNews', [
         })
 
 }])
-.factory('oneDayStore', ['store', function(store){
-    return store.getNamespacedStore('one-day-news', '-');
+.factory('oldNewsCache', ['$cacheFactory', function($cacheFactory){
+    return $cacheFactory('oldNewsCache')
 }])
 .controller('rootController', [
-        '$scope', '$http', '$timeout', 
-        '$window', '$state', '$stateParams', 'store', 
-        'oneDayStore', 'syNewsTimeHelper',
-    function ($scope, $http, $timeout, $window, $state, $stateParams, store, oneDayStore, syNewsTimeHelper){
+        '$scope', '$http', '$timeout', '$window', 
+        '$state', '$stateParams', 'store', 
+        'oldNewsCache', 'syNewsTimeHelper', 
+        'sySelectNewsItem', 'syOneDayStore', 'syUI',
+    function ($scope, $http, $timeout, $window, 
+        $state, $stateParams, store, 
+        oldNewsCache, syNewsTimeHelper, 
+        sySelectNewsItem, syOneDayStore, syUI){
 
     // 刪除緩存於本地的過期信息
     store.get('oneDayNewsExpires') < Date.now()
-        ? removeOneDayNews()
+        ? syOneDayStore.removeAll()
         : null
 
     /*************
@@ -97,12 +104,8 @@ angular.module('ShinyaNews', [
     $scope.isShowTimeMachine = false
     $scope.toggleNews = function (){
 
-        // 翻面動畫
-        var elem = angular.element(document.getElementById('view-newsBox'))
-        elem.addClass('cardFlip')
-        $timeout(function (){
-            elem.removeClass('cardFlip')
-        }, 777)
+        syUI.toggleBGC()
+        syUI.cardFlip()
 
         if ($scope.isOldNews){
             // 切換到「新聞，」
@@ -131,10 +134,6 @@ angular.module('ShinyaNews', [
         }
 
         $scope.isOldNews = !$scope.isOldNews
-        // 背景色
-        angular
-        .element(document.documentElement)
-        .toggleClass('oldNews')
     }
     $scope.toggleTimeMachine = function (){
         // 刷新時間
@@ -154,7 +153,6 @@ angular.module('ShinyaNews', [
     /*************
      * 獲取新聞相關
      *
-     *  `newsBoxCache` 緩存已獲取的新聞
      *  `$scope.newsBox` 當前顯示的新聞
      *  `$scope.selectNewsInfo` 存儲「新聞，」當前新聞日期信息
      *  `$scope.selectOldNewsInfo` 存儲「舊聞。」當前新聞日期信息
@@ -165,9 +163,8 @@ angular.module('ShinyaNews', [
      *  `$scope.timeMachineSelectNews` 「跳躍性選擇新聞」
      *  `$scope.refreshNews` 刷新新聞
      */
-    var newsBoxCache = {},
-        lastStep = -1,
-        currentNewsItem = -1;
+    var lastStep = -1
+
     $scope.newsBox = []
     $scope.selectCountry = store.get('syNewsCountry') || 'HK'
     $scope.selectNewsInfo = {
@@ -186,29 +183,27 @@ angular.module('ShinyaNews', [
     $scope.isHideCaretRight = false
     $scope.selectNews = function (step){
 
-        var elem = angular.element(document.getElementById('view-newsBox'))
-        if (step === 1){
-            elem.removeClass('rtl')
-        } else {
-            elem.addClass('rtl')
-        }
+        syUI.toggleDirection(step)
 
-        // 屏蔽（移動端）無效的獲取新聞（滑動）
+        // 屏蔽（移動端／鍵盤操作）無效的獲取新聞（滑動）
         if (step === 1 && $scope.isHideCaretRight || step === -1 && $scope.isHideCaretLeft){ return; }
 
         if (!$scope.isOldNews){
             // 選擇「新聞，」
             $state.go('date', {
-                h    : (parseInt($stateParams.h 
-                                    ? $stateParams.h 
-                                    : new Date().getHours()
-                                ) + step).toString(),
-                q    : null
+                h: (parseInt($stateParams.h 
+                                ? $stateParams.h 
+                                : new Date().getHours()
+                            ) + step).toString(),
+                q: null
             })
         } else {
             // 選擇「舊聞。」
+            var dateObj = syNewsTimeHelper.getDateObj(
+                            $scope.selectOldNewsInfo.selectDate + 86400000 * step)
             $state.go('date', {
-                day  : (parseInt($stateParams.day) + step).toString(),
+                month: dateObj.month,
+                day  : dateObj.day,
                 h    : null,
                 q    : null
             })
@@ -228,7 +223,7 @@ angular.module('ShinyaNews', [
         }
 
         // 重置新聞項
-        currentNewsItem = -1
+        sySelectNewsItem.reset()
     }
     $scope.timeMachineSelectNews = function (){
         if (!$scope.isOldNews){
@@ -257,6 +252,7 @@ angular.module('ShinyaNews', [
      * 監聽
      *
      *  `$scope.search.title` 更新 URL
+     *  `keydown` 鍵盤操作
      */
     $scope.$watch('search.title', function (newVal, oldVal){
 
@@ -267,16 +263,17 @@ angular.module('ShinyaNews', [
         }, { notify: false, reload: true })
     })
     $window.addEventListener('keydown', function (e){
-        var keyCode    = e.keyCode
-        console.log(keyCode)
+
+        var keyCode = e.keyCode
+
         keyCode === 37    // ←
             ? $scope.selectNews(-1)
         : keyCode === 39  // →
             ? $scope.selectNews(1)
         : keyCode === 38  // ↑
-            ? selectNewsItem(-1)
+            ? sySelectNewsItem.go(-1)
         : keyCode === 40  // ↓
-            ? selectNewsItem(1)
+            ? sySelectNewsItem.go(1)
         : null
     })
 
@@ -287,9 +284,6 @@ angular.module('ShinyaNews', [
      *  `setSelectNewsState` 設置 `$scope.newsBox`, `$scope.isShow` & `$scope.isNewsExist`
      *  `getSelectedDateNews` 獲取選擇時段／日期的新聞
      *  `checkSelectNewsCaret` 檢測是否顯示選擇新聞按鈕
-     *  `storeOneDayNews` 存储新闻与本地並設置過期時間
-     *  `removeOneDayNews` 清除過期的新聞
-     *  `selectNewsItem` 選擇下一新聞項
      */
     function setSelectNewsState(data, isShow, isNewsExist){
         $scope.newsBox     = data
@@ -306,22 +300,27 @@ angular.module('ShinyaNews', [
 
         if (isPreload){
             // 取消預加載此新聞
-            if (lastStep === 1 && $scope.isHideCaretRight || lastStep === -1 && $scope.isHideCaretLeft ){
-                return;
-            }
+            if (lastStep === 1 && $scope.isHideCaretRight 
+                || lastStep === -1 && $scope.isHideCaretLeft){ return; }
         } else {
             setSelectNewsState([], false, true)
+            // 已閱標記
+            if (syOneDayStore.get(newsID + '-Done')){
+                $scope.isNewsDone = true
+            } else {
+                syOneDayStore.set(newsID + '-Done', true)
+                $scope.isNewsDone = false
+            }
         }
 
         // 尝试从本地获取新闻
         cache_data = selectData.isAllDay
-            ? newsBoxCache[newsID]
-            : oneDayStore.get(newsID)
+                        ? oldNewsCache.get(newsID)
+                        : syOneDayStore.get(newsID)
         if (cache_data){
             isPreload
                 ? null
                 : setSelectNewsState(cache_data, true, true)
-
             return;
         }
         // 否则，從服務器获取新闻
@@ -329,9 +328,9 @@ angular.module('ShinyaNews', [
         .post('/api/getSelectedDateNews', selectData)
         .success(function (data, status, headers, config){
             if (config.data.isAllDay){
-                newsBoxCache[newsID] = data.msg
+                oldNewsCache.put(newsID, data.msg)
             } else {
-                storeOneDayNews(newsID, data.msg)
+                syOneDayStore.set(newsID, data.msg)
             }
             if (isPreload){ return; }
             setSelectNewsState(data.msg, true, true)
@@ -359,33 +358,5 @@ angular.module('ShinyaNews', [
         $scope.isHideCaretRight = selectDate + 172800000 > Date.now()
             ? true
             : false
-    }
-    function storeOneDayNews(newsID, news){
-        oneDayStore.set(newsID, news)
-        var tomorrow = Date.now() + 86400000
-        store.set('oneDayNewsExpires', syNewsTimeHelper.getDayMs(tomorrow))
-    }
-    function removeOneDayNews(){
-        var ls = $window.localStorage,
-            len = localStorage.length,
-            reg = /^one-day-news-/,
-            j = 0;
-        for (var i = 0; i < len; i++){
-            reg.test(ls.key(j))
-                ? store.remove(ls.key(j))
-                : j ++
-        }
-    }
-    function selectNewsItem(step){
-        var newsItemList = document.getElementsByClassName('newsBox__news__item__title'),
-            len          = newsItemList.length;
-
-        if (step === -1 && currentNewsItem > 0 && currentNewsItem < len){
-            currentNewsItem--
-            newsItemList[currentNewsItem].focus()
-        } else if (step === 1 && currentNewsItem >= -1 && currentNewsItem < len - 1){
-            currentNewsItem++
-            newsItemList[currentNewsItem].focus()
-        }
     }
 }])

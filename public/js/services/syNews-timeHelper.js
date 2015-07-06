@@ -22,6 +22,14 @@ angular.module('ShinyaNews.timeHelperServices', [])
                         )
                 )
     },
+    this.getDateObj = function (dateMs){
+        var date = new Date(dateMs)
+        return {
+            year : date.getFullYear(),
+            month: date.getMonth() + 1,
+            day  : date.getDate()
+        }
+    },
     this.isToday = function (year, month, day){
         var now       = new Date(),
             now_year  = now.getFullYear(),

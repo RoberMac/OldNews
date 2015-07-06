@@ -8,8 +8,8 @@ angular.module('ShinyaNews.i18nDirective', [])
                 +       '{{country}}'
                 +   '</div>'
                 + '</div>',
-        controller: ['$scope', '$timeout', '$state', '$stateParams' , 'store', 
-            function ($scope, $timeout, $state, $stateParams, store){
+        controller: ['$scope', '$timeout', '$state', '$stateParams' , 'store', 'sySelectNewsItem',
+            function ($scope, $timeout, $state, $stateParams, store, sySelectNewsItem){
 
             var country_list = ['HK', 'CN', 'JP', 'TW', 'US', 'BR', 'IN', 'KR', 'RU', 'DE', 'FR']
 
@@ -25,11 +25,7 @@ angular.module('ShinyaNews.i18nDirective', [])
                 } else {
                     // 更改國家
                     $state.go('date', {
-                        country: country,
-                        year   : $stateParams.year,
-                        month  : $stateParams.month,
-                        day    : $stateParams.day,
-                        h      : $stateParams.h
+                        country: country
                     })
                 }
             }
@@ -39,6 +35,7 @@ angular.module('ShinyaNews.i18nDirective', [])
                 $scope.selectNewsInfo.selectCountry = country
                 $scope.selectOldNewsInfo.selectCountry = country
                 hideCountryList(country)
+                sySelectNewsItem.reset()
             }
             function showCountryList(){
                 for (var i = 0; i < country_list.length; i++){

@@ -173,6 +173,9 @@
         text-align: center;
         &__button {
             cursor: pointer;
+            &--done {
+                text-decoration: line-through;
+            }
         }
     }
 }

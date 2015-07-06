@@ -3,7 +3,7 @@
     <!-- 日期 -->
     <div class="newsBox__date">
         <h3>
-            <span class="newsBox__date__button" ng-click="toggleTimeMachine()">
+            <span class="newsBox__date__button" ng-class="{'newsBox__date__button--done': isNewsDone}" ng-click="toggleTimeMachine()">
                 <span ng-hide="isOldNews">{{selectNewsInfo.selectDate | date:'HH:00'}}</span>
                 <span ng-show="isOldNews">{{selectOldNewsInfo.selectDate | date:'yyyy-MM-dd'}}</span>
             </span>
