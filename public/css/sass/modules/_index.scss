@@ -153,7 +153,7 @@
                 cursor: pointer;
                 &:hover {
                     g {
-                        stroke: #000;
+                        stroke: $color-black;
                     }
                 }
             }
@@ -247,9 +247,10 @@
     @extend .display--table;
     text-align: center;
     background-color: rgba(255, 255, 255, .8);
-    form {
-        margin: 0 auto;
+    &__inner {
+        position: relative;
         width: 40%;
+        margin: 0 auto;
         @media #{$phone} {
             width: 94%;
         }
@@ -259,6 +260,8 @@
         @media #{$tablet} {
             width: 76%;
         }
+    }
+    form {
         border: 1px solid $color-black;
         background-color: $color-white;
         @extend .box-shadow--black;
@@ -277,21 +280,33 @@
             border-color: $color-gray;
         }
     }
-    svg {
+    &__button {
         margin: 1em;
         width: 37px;
         cursor: pointer;
-        &:hover {
-            & > g {
-                fill: $color-black;
+        &--fillBG {
+            &:hover {
                 & > g {
-                    stroke: $color-white;
+                    fill: $color-black;
+                    & > g {
+                        stroke: $color-white;
+                    }
                 }
             }
         }
-    }
-    &__button--invalid {
-        display: none;
+        &--fillTRI {
+            path:last-child {
+                fill: $color-white;
+            }
+            &:hover {
+                path:last-child {
+                    fill: $color-black;
+                }
+            }
+        }
+        &--invalid {
+            display: none;
+        }
     }
 }
 /* 工具欄 */
@@ -438,7 +453,7 @@ body {
             &__news__item__link {
                 &:hover {
                     g {
-                        stroke: #FFF;
+                        stroke: $color-white;
                     }
                 }
             }
@@ -474,7 +489,7 @@ body {
                     border-color: $color-steel;
                 }
             }
-            svg {
+            &__button {
                 & > g {
                     fill: $color-black;
                     & > circle {
@@ -484,13 +499,18 @@ body {
                         stroke: $color-white;
                     }
                 }
-                &:hover {
-                    & > g {
-                        fill: $color-white;
+                &--fillBG {
+                    &:hover {
                         & > g {
-                            stroke: $color-black;
+                            fill: $color-white;
+                            & > g {
+                                stroke: $color-black;
+                            }
                         }
                     }
+                }
+                &--fillTRI {
+                    display: none;
                 }
             }
         }

@@ -225,13 +225,28 @@ angular.module('ShinyaNews', [
         // 重置新聞項
         sySelectNewsItem.reset()
     }
-    $scope.timeMachineSelectNews = function (){
+    $scope.timeMachineSelectNews = function (hour){
         if (!$scope.isOldNews){
+            var h = hour
+                        ? hour === -1
+                            ? 1
+                            : new Date().getHours()
+                        : $scope.timeMachineInfo.H
+
+            h <= $stateParams.h
+                ? syUI.toggleDirection(-1)
+                : syUI.toggleDirection(1)
+
             $state.go('date', {
-                h    : $scope.timeMachineInfo.H,
+                h    : h,
                 q    : null
             })
         } else {
+            $scope.timeMachineInfo.M  <= $stateParams.month 
+            && $scope.timeMachineInfo.D <= $stateParams.day
+                ? syUI.toggleDirection(-1)
+                : syUI.toggleDirection(1)
+
             $state.go('date', {
                 month: $scope.timeMachineInfo.M,
                 day  : $scope.timeMachineInfo.D,
@@ -305,9 +320,10 @@ angular.module('ShinyaNews', [
         } else {
             setSelectNewsState([], false, true)
             // 已閱標記
+            $scope.isNewsDone = false
             if (syOneDayStore.get(newsID + '-Done')){
                 $scope.isNewsDone = true
-            } else {
+            } else if (!$scope.isOldNews){
                 syOneDayStore.set(newsID + '-Done', true)
                 $scope.isNewsDone = false
             }

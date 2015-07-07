@@ -150,6 +150,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 146, sass/partials/_base.scss */
+.float--left {
+  float: left;
+}
+/* line 149, sass/partials/_base.scss */
+.float--right {
+  float: right;
+}
+
+/* line 154, sass/partials/_base.scss */
 .corner--top--left {
   position: absolute;
   top: 10px;
@@ -157,7 +166,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   z-index: 2;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 146, sass/partials/_base.scss */
+  /* line 154, sass/partials/_base.scss */
   .corner--top--left {
     top: .5%;
     left: .5%;
@@ -165,7 +174,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     margin-left: 10px;
   }
 }
-/* line 158, sass/partials/_base.scss */
+/* line 166, sass/partials/_base.scss */
 .corner--top--right {
   position: absolute;
   top: 10px;
@@ -173,7 +182,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   z-index: 2;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 158, sass/partials/_base.scss */
+  /* line 166, sass/partials/_base.scss */
   .corner--top--right {
     top: .5%;
     right: .5%;
@@ -780,31 +789,35 @@ ng\:form {
   background-color: rgba(255, 255, 255, 0.8);
 }
 /* line 250, sass/modules/_index.scss */
-.timeMachine form {
-  margin: 0 auto;
+.timeMachine__inner {
+  position: relative;
   width: 40%;
-  border: 1px solid #000;
-  background-color: #FFF;
+  margin: 0 auto;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
   /* line 250, sass/modules/_index.scss */
-  .timeMachine form {
+  .timeMachine__inner {
     width: 94%;
   }
 }
 @media (max-device-width: 767px) and (orientation: landscape) {
   /* line 250, sass/modules/_index.scss */
-  .timeMachine form {
+  .timeMachine__inner {
     width: 97%;
   }
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
   /* line 250, sass/modules/_index.scss */
-  .timeMachine form {
+  .timeMachine__inner {
     width: 76%;
   }
 }
-/* line 265, sass/modules/_index.scss */
+/* line 264, sass/modules/_index.scss */
+.timeMachine form {
+  border: 1px solid #000;
+  background-color: #FFF;
+}
+/* line 268, sass/modules/_index.scss */
 .timeMachine form input {
   display: inline-block;
   width: 50px;
@@ -812,35 +825,43 @@ ng\:form {
   margin: 1em;
   padding: 10px;
 }
-/* line 272, sass/modules/_index.scss */
+/* line 275, sass/modules/_index.scss */
 .timeMachine form input:focus {
   border-color: #000;
 }
-/* line 276, sass/modules/_index.scss */
+/* line 279, sass/modules/_index.scss */
 .timeMachine form input:disabled {
   border-color: #CECECF;
 }
-/* line 280, sass/modules/_index.scss */
-.timeMachine svg {
+/* line 283, sass/modules/_index.scss */
+.timeMachine__button {
   margin: 1em;
   width: 37px;
   cursor: pointer;
 }
-/* line 285, sass/modules/_index.scss */
-.timeMachine svg:hover > g {
+/* line 289, sass/modules/_index.scss */
+.timeMachine__button--fillBG:hover > g {
   fill: #000;
 }
-/* line 287, sass/modules/_index.scss */
-.timeMachine svg:hover > g > g {
+/* line 291, sass/modules/_index.scss */
+.timeMachine__button--fillBG:hover > g > g {
   stroke: #FFF;
 }
-/* line 293, sass/modules/_index.scss */
+/* line 298, sass/modules/_index.scss */
+.timeMachine__button--fillTRI path:last-child {
+  fill: #FFF;
+}
+/* line 302, sass/modules/_index.scss */
+.timeMachine__button--fillTRI:hover path:last-child {
+  fill: #000;
+}
+/* line 307, sass/modules/_index.scss */
 .timeMachine__button--invalid {
   display: none;
 }
 
 /* 工具欄 */
-/* line 299, sass/modules/_index.scss */
+/* line 314, sass/modules/_index.scss */
 .toolBar__button--timeMachine {
   -webkit-filter: blur(0px);
   filter: blur(0px);
@@ -853,19 +874,19 @@ ng\:form {
   z-index: -1;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 299, sass/modules/_index.scss */
+  /* line 314, sass/modules/_index.scss */
   .toolBar__button--timeMachine {
     display: none;
   }
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
-  /* line 299, sass/modules/_index.scss */
+  /* line 314, sass/modules/_index.scss */
   .toolBar__button--timeMachine {
     top: 10%;
     top: calc(12% - 13.5px);
   }
 }
-/* line 315, sass/modules/_index.scss */
+/* line 330, sass/modules/_index.scss */
 .toolBar__button--timeMachine:hover {
   -webkit-filter: blur(1px);
   filter: blur(1px);
@@ -873,15 +894,15 @@ ng\:form {
   -webkit-animation: loadAnimate--timeMachine 0.3s infinite linear;
   animation: loadAnimate--timeMachine 0.3s infinite linear;
 }
-/* line 319, sass/modules/_index.scss */
+/* line 334, sass/modules/_index.scss */
 .toolBar__button--timeMachine:hover > g > circle {
   stroke: #000;
 }
-/* line 322, sass/modules/_index.scss */
+/* line 337, sass/modules/_index.scss */
 .toolBar__button--timeMachine:hover > g > g {
   fill: #000;
 }
-/* line 328, sass/modules/_index.scss */
+/* line 343, sass/modules/_index.scss */
 .toolBar__button--country {
   -moz-border-radius: 14px;
   -webkit-border-radius: 14px;
@@ -895,12 +916,12 @@ ng\:form {
   overflow: hidden;
   cursor: pointer;
 }
-/* line 342, sass/modules/_index.scss */
+/* line 357, sass/modules/_index.scss */
 .toolBar__button--country.CN, .toolBar__button--country.HK {
   color: #FFE200;
   background-color: #E74010;
 }
-/* line 346, sass/modules/_index.scss */
+/* line 361, sass/modules/_index.scss */
 .toolBar__button--country.TW {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNjU4NDk0IiB5MT0iMS4wOTE1MDYiIHgyPSIwLjM0MTUwNiIgeTI9Ii0wLjA5MTUwNiI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmMjYwMCIvPjxzdG9wIG9mZnNldD0iMjUlIiBzdG9wLWNvbG9yPSIjMDIxZGE2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
   background: -moz-linear-gradient(105deg, #ff2600 0%, #021da6 25%);
@@ -908,7 +929,7 @@ ng\:form {
   background: linear-gradient(-15deg, #ff2600 0%, #021da6 25%);
   color: #FFF;
 }
-/* line 350, sass/modules/_index.scss */
+/* line 365, sass/modules/_index.scss */
 .toolBar__button--country.US {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNjU4NDk0IiB5MT0iMS4wOTE1MDYiIHgyPSIwLjM0MTUwNiIgeTI9Ii0wLjA5MTUwNiI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2JmMGEzMCIvPjxzdG9wIG9mZnNldD0iMjUlIiBzdG9wLWNvbG9yPSIjMDAyODY4Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
   background: -moz-linear-gradient(105deg, #bf0a30 0%, #002868 25%);
@@ -916,12 +937,12 @@ ng\:form {
   background: linear-gradient(-15deg, #bf0a30 0%, #002868 25%);
   color: #FFF;
 }
-/* line 354, sass/modules/_index.scss */
+/* line 369, sass/modules/_index.scss */
 .toolBar__button--country.JP {
   color: #C70025;
   background-color: #FFF;
 }
-/* line 358, sass/modules/_index.scss */
+/* line 373, sass/modules/_index.scss */
 .toolBar__button--country.DE {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2JmMGEzMCIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjYmYwYTMwIi8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiMxZTFlMWUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #bf0a30), color-stop(50%, #bf0a30), color-stop(50%, #1e1e1e));
@@ -930,7 +951,7 @@ ng\:form {
   background: linear-gradient(#bf0a30, #bf0a30 50%, #1e1e1e 50%);
   color: #FED100;
 }
-/* line 362, sass/modules/_index.scss */
+/* line 377, sass/modules/_index.scss */
 .toolBar__button--country.FR {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMjA5ZiIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjMDAyMDlmIi8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNmNDJhNDEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
   background: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #00209f), color-stop(50%, #00209f), color-stop(50%, #f42a41));
@@ -939,7 +960,7 @@ ng\:form {
   background: linear-gradient(to right, #00209f, #00209f 50%, #f42a41 50%);
   color: #FFF;
 }
-/* line 366, sass/modules/_index.scss */
+/* line 381, sass/modules/_index.scss */
 .toolBar__button--country.IN {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNjU4NDk0IiB5MT0iMS4wOTE1MDYiIHgyPSIwLjM0MTUwNiIgeTI9Ii0wLjA5MTUwNiI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzEzODgwOCIvPjxzdG9wIG9mZnNldD0iMjUlIiBzdG9wLWNvbG9yPSIjZmY5OTMzIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
   background: -moz-linear-gradient(105deg, #138808 0%, #ff9933 25%);
@@ -947,7 +968,7 @@ ng\:form {
   background: linear-gradient(-15deg, #138808 0%, #ff9933 25%);
   color: #000080;
 }
-/* line 370, sass/modules/_index.scss */
+/* line 385, sass/modules/_index.scss */
 .toolBar__button--country.KR {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2M2MGMzMCIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjYzYwYzMwIi8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiMwMDM0NzgiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #c60c30), color-stop(50%, #c60c30), color-stop(50%, #003478));
@@ -956,7 +977,7 @@ ng\:form {
   background: linear-gradient(#c60c30, #c60c30 50%, #003478 50%);
   color: #FFF;
 }
-/* line 374, sass/modules/_index.scss */
+/* line 389, sass/modules/_index.scss */
 .toolBar__button--country.RU {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDBmZSIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjMDAwMGZlIi8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNmZTAwMDAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #0000fe), color-stop(50%, #0000fe), color-stop(50%, #fe0000));
@@ -965,7 +986,7 @@ ng\:form {
   background: linear-gradient(#0000fe, #0000fe 50%, #fe0000 50%);
   color: #FFF;
 }
-/* line 378, sass/modules/_index.scss */
+/* line 393, sass/modules/_index.scss */
 .toolBar__button--country.BR {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNjU4NDk0IiB5MT0iMS4wOTE1MDYiIHgyPSIwLjM0MTUwNiIgeTI9Ii0wLjA5MTUwNiI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzMyMDBmZSIvPjxzdG9wIG9mZnNldD0iMjUlIiBzdG9wLWNvbG9yPSIjMDA3NjAwIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
   background: -moz-linear-gradient(105deg, #3200fe 0%, #007600 25%);
@@ -1009,121 +1030,125 @@ ng\:form {
   }
 }
 /* 「舊聞。」下樣式 */
-/* line 394, sass/modules/_index.scss */
+/* line 409, sass/modules/_index.scss */
 body {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
 }
-/* line 396, sass/modules/_index.scss */
+/* line 411, sass/modules/_index.scss */
 body.show {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-/* line 401, sass/modules/_index.scss */
+/* line 416, sass/modules/_index.scss */
 body.oldNews .loadBox__loadAnimate {
   -moz-animation: loadAnimate--news 1.7s infinite linear;
   -webkit-animation: loadAnimate--news 1.7s infinite linear;
   animation: loadAnimate--news 1.7s infinite linear;
 }
-/* line 403, sass/modules/_index.scss */
+/* line 418, sass/modules/_index.scss */
 body.oldNews .loadBox__loadAnimate:before {
   background-color: #FFF;
 }
-/* line 409, sass/modules/_index.scss */
+/* line 424, sass/modules/_index.scss */
 body.oldNews .loadBox--errorBox__icon__stroke {
   stroke: #FFF;
 }
-/* line 412, sass/modules/_index.scss */
+/* line 427, sass/modules/_index.scss */
 body.oldNews .loadBox--errorBox__icon__fill {
   fill: #FFF;
 }
-/* line 419, sass/modules/_index.scss */
+/* line 434, sass/modules/_index.scss */
 body.oldNews .head__logo {
   border-color: #FFF;
   background-color: #000;
 }
-/* line 427, sass/modules/_index.scss */
+/* line 442, sass/modules/_index.scss */
 body.oldNews .newsBox {
   color: #FFF;
   border: 1px solid #FFF;
   background-color: #000;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 427, sass/modules/_index.scss */
+  /* line 442, sass/modules/_index.scss */
   body.oldNews .newsBox {
     border: 0;
   }
 }
-/* line 435, sass/modules/_index.scss */
+/* line 450, sass/modules/_index.scss */
 body.oldNews .newsBox__news__item__title {
   color: #CECECF;
 }
-/* line 440, sass/modules/_index.scss */
+/* line 455, sass/modules/_index.scss */
 body.oldNews .newsBox__news__item__link:hover g {
   stroke: #FFF;
 }
-/* line 448, sass/modules/_index.scss */
+/* line 463, sass/modules/_index.scss */
 body.oldNews .searchBar__input:focus, body.oldNews .searchBar__input--valid {
   background-color: #000;
 }
-/* line 454, sass/modules/_index.scss */
+/* line 469, sass/modules/_index.scss */
 body.oldNews .caret__path {
   stroke: #FFF;
 }
-/* line 458, sass/modules/_index.scss */
+/* line 473, sass/modules/_index.scss */
 body.oldNews .timeMachine {
   color: #FFF;
   background-color: rgba(0, 0, 0, 0.8);
 }
-/* line 461, sass/modules/_index.scss */
+/* line 476, sass/modules/_index.scss */
 body.oldNews .timeMachine form {
   border: 1px solid #FFF;
   background-color: #000;
 }
-/* line 465, sass/modules/_index.scss */
+/* line 480, sass/modules/_index.scss */
 body.oldNews .timeMachine form input {
   color: #FFF;
   border-color: #CECECF;
 }
-/* line 469, sass/modules/_index.scss */
+/* line 484, sass/modules/_index.scss */
 body.oldNews .timeMachine form input:focus {
   border-color: #FFF;
 }
-/* line 473, sass/modules/_index.scss */
+/* line 488, sass/modules/_index.scss */
 body.oldNews .timeMachine form input:disabled {
   border-color: #666;
 }
-/* line 478, sass/modules/_index.scss */
-body.oldNews .timeMachine svg > g {
+/* line 493, sass/modules/_index.scss */
+body.oldNews .timeMachine__button > g {
   fill: #000;
 }
-/* line 480, sass/modules/_index.scss */
-body.oldNews .timeMachine svg > g > circle {
+/* line 495, sass/modules/_index.scss */
+body.oldNews .timeMachine__button > g > circle {
   stroke: #FFF;
 }
-/* line 483, sass/modules/_index.scss */
-body.oldNews .timeMachine svg > g > g {
-  stroke: #FFF;
-}
-/* line 488, sass/modules/_index.scss */
-body.oldNews .timeMachine svg:hover > g {
-  fill: #FFF;
-}
-/* line 490, sass/modules/_index.scss */
-body.oldNews .timeMachine svg:hover > g > g {
-  stroke: #000;
-}
-/* line 501, sass/modules/_index.scss */
-body.oldNews .toolBar__button--timeMachine:hover > g > circle {
+/* line 498, sass/modules/_index.scss */
+body.oldNews .timeMachine__button > g > g {
   stroke: #FFF;
 }
 /* line 504, sass/modules/_index.scss */
+body.oldNews .timeMachine__button--fillBG:hover > g {
+  fill: #FFF;
+}
+/* line 506, sass/modules/_index.scss */
+body.oldNews .timeMachine__button--fillBG:hover > g > g {
+  stroke: #000;
+}
+/* line 512, sass/modules/_index.scss */
+body.oldNews .timeMachine__button--fillTRI {
+  display: none;
+}
+/* line 521, sass/modules/_index.scss */
+body.oldNews .toolBar__button--timeMachine:hover > g > circle {
+  stroke: #FFF;
+}
+/* line 524, sass/modules/_index.scss */
 body.oldNews .toolBar__button--timeMachine:hover > g > g {
   fill: #FFF;
 }
 
 /* ui-view 動畫 */
-/* line 523, sass/modules/_index.scss */
+/* line 543, sass/modules/_index.scss */
 #view-newsBox [ui-view].ng-enter, #view-newsBox [ui-view].ng-leave {
   position: absolute;
   width: 100%;
@@ -1134,7 +1159,7 @@ body.oldNews .toolBar__button--timeMachine:hover > g > g {
   transition: all 0.7s ease-in-out;
 }
 @media (max-device-width: 1024px), (max-width: 1024px) {
-  /* line 523, sass/modules/_index.scss */
+  /* line 543, sass/modules/_index.scss */
   #view-newsBox [ui-view].ng-enter, #view-newsBox [ui-view].ng-leave {
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
@@ -1142,7 +1167,7 @@ body.oldNews .toolBar__button--timeMachine:hover > g > g {
     transition: all 0.3s ease-in-out;
   }
 }
-/* line 532, sass/modules/_index.scss */
+/* line 552, sass/modules/_index.scss */
 #view-newsBox [ui-view].ng-enter {
   opacity: 0;
   -moz-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
@@ -1150,7 +1175,7 @@ body.oldNews .toolBar__button--timeMachine:hover > g > g {
   -webkit-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
 }
-/* line 536, sass/modules/_index.scss */
+/* line 556, sass/modules/_index.scss */
 #view-newsBox [ui-view].ng-enter-active, #view-newsBox [ui-view].ng-leave {
   opacity: 1;
   -moz-transform: translate3d(0, 0, 0);
@@ -1158,7 +1183,7 @@ body.oldNews .toolBar__button--timeMachine:hover > g > g {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 540, sass/modules/_index.scss */
+/* line 560, sass/modules/_index.scss */
 #view-newsBox [ui-view].ng-leave-active {
   opacity: 0;
   -moz-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
@@ -1166,28 +1191,28 @@ body.oldNews .toolBar__button--timeMachine:hover > g > g {
   -webkit-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
 }
-/* line 546, sass/modules/_index.scss */
+/* line 566, sass/modules/_index.scss */
 #view-newsBox.rtl [ui-view].ng-enter {
   -moz-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   -ms-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   -webkit-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
 }
-/* line 549, sass/modules/_index.scss */
+/* line 569, sass/modules/_index.scss */
 #view-newsBox.rtl [ui-view].ng-enter-active, #view-newsBox.rtl [ui-view].ng-leave {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 552, sass/modules/_index.scss */
+/* line 572, sass/modules/_index.scss */
 #view-newsBox.rtl [ui-view].ng-leave-active {
   -moz-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   -ms-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   -webkit-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
 }
-/* line 557, sass/modules/_index.scss */
+/* line 577, sass/modules/_index.scss */
 #view-newsBox.cardFlip [ui-view].ng-enter {
   opacity: 0;
   -moz-transform: rotateY(180deg);
@@ -1195,7 +1220,7 @@ body.oldNews .toolBar__button--timeMachine:hover > g > g {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
-/* line 561, sass/modules/_index.scss */
+/* line 581, sass/modules/_index.scss */
 #view-newsBox.cardFlip [ui-view].ng-enter-active, #view-newsBox.cardFlip [ui-view].ng-leave {
   opacity: 1;
   -moz-transform: rotateY(0deg);
@@ -1203,7 +1228,7 @@ body.oldNews .toolBar__button--timeMachine:hover > g > g {
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
 }
-/* line 565, sass/modules/_index.scss */
+/* line 585, sass/modules/_index.scss */
 #view-newsBox.cardFlip [ui-view].ng-leave-active {
   opacity: 0;
   -moz-transform: rotateY(180deg);
