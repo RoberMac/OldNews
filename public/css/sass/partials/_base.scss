@@ -175,4 +175,16 @@ $tablet-landscape: '(min-device-width : 768px) and (max-device-width : 1024px) a
             margin-right: 10px;
         }
     }
+    &--bottom--left {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        z-index: 2;
+        @media #{$phone} {
+            bottom: .5%;
+            left: .5%;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+    }
 }

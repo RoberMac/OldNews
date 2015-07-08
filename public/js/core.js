@@ -162,6 +162,7 @@ angular.module('ShinyaNews', [
      *  `$scope.selectNews` 選擇新聞
      *  `$scope.timeMachineSelectNews` 「跳躍性選擇新聞」
      *  `$scope.refreshNews` 刷新新聞
+     *  `$scope.toggleFullScreen` 全屏模式
      */
     var lastStep = -1
 
@@ -260,6 +261,9 @@ angular.module('ShinyaNews', [
         $scope.isOldNews
             ? getSelectedDateNews($scope.selectOldNewsInfo)
             : getSelectedDateNews($scope.selectNewsInfo)
+    }
+    $scope.toggleFullscreen = function (){
+        syUI.toggleFullScreen()
     }
 
 

@@ -1,13 +1,15 @@
 /* sy-news-reset */
-body {
-    @include user-select(none);
-    @include font-smoothing;
+html {
     height: 100%;
     overflow: hidden;
     background-color: $color-white;
     @media #{$phone} {
         background-color: $color-black;
     }
+}
+body {
+    @include user-select(none);
+    @include font-smoothing;
     font-family: $font-family-base;
     font-size: $font-size-base;
     line-height: $line-height-base;
@@ -70,12 +72,14 @@ input {
 
 
 /* 「舊聞。」下樣式 */
-body.oldNews {
-    @include scrollbars(1px, $color-gray, transparent);
+html.oldNews {
     background-color: $color-black;
     @media #{$phone} {
         background-color: $color-gray;
     }
+}
+body.oldNews {
+    @include scrollbars(1px, $color-gray, transparent);
     a:focus {
         outline-color: $color-gray;
     }

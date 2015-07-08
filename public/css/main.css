@@ -190,9 +190,38 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     margin-right: 10px;
   }
 }
+/* line 178, sass/partials/_base.scss */
+.corner--bottom--left {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 2;
+}
+@media (max-device-width: 767px), (max-width: 767px) {
+  /* line 178, sass/partials/_base.scss */
+  .corner--bottom--left {
+    bottom: .5%;
+    left: .5%;
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+}
 
 /* sy-news-reset */
 /* line 2, sass/partials/_reset.scss */
+html {
+  height: 100%;
+  overflow: hidden;
+  background-color: #FFF;
+}
+@media (max-device-width: 767px), (max-width: 767px) {
+  /* line 2, sass/partials/_reset.scss */
+  html {
+    background-color: #000;
+  }
+}
+
+/* line 10, sass/partials/_reset.scss */
 body {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -200,9 +229,6 @@ body {
   user-select: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100%;
-  overflow: hidden;
-  background-color: #FFF;
   font-family: "Helvetica Neue", "Palatino", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-size: 14px;
   line-height: 1.4;
@@ -211,14 +237,8 @@ body {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
 }
-@media (max-device-width: 767px), (max-width: 767px) {
-  /* line 2, sass/partials/_reset.scss */
-  body {
-    background-color: #000;
-  }
-}
 
-/* line 18, sass/partials/_reset.scss */
+/* line 20, sass/partials/_reset.scss */
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -241,59 +261,59 @@ body {
   text-align: center;
 }
 
-/* line 24, sass/partials/_reset.scss */
+/* line 26, sass/partials/_reset.scss */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   margin: 1em 0;
   text-align: center;
 }
 
-/* line 29, sass/partials/_reset.scss */
+/* line 31, sass/partials/_reset.scss */
 h1 {
   font-size: 2em;
 }
 
-/* line 32, sass/partials/_reset.scss */
+/* line 34, sass/partials/_reset.scss */
 h2 {
   font-size: 1.5em;
 }
 
-/* line 35, sass/partials/_reset.scss */
+/* line 37, sass/partials/_reset.scss */
 h3 {
   font-size: 1.17em;
 }
 
-/* line 38, sass/partials/_reset.scss */
+/* line 40, sass/partials/_reset.scss */
 h4 {
   font-size: 1.12em;
 }
 
-/* line 41, sass/partials/_reset.scss */
+/* line 43, sass/partials/_reset.scss */
 h5 {
   font-size: .83em;
 }
 
-/* line 44, sass/partials/_reset.scss */
+/* line 46, sass/partials/_reset.scss */
 h6 {
   font-size: .75em;
 }
 
-/* line 47, sass/partials/_reset.scss */
+/* line 49, sass/partials/_reset.scss */
 a {
   color: inherit;
   text-decoration: none;
 }
-/* line 50, sass/partials/_reset.scss */
+/* line 52, sass/partials/_reset.scss */
 a:focus {
   outline: 1px solid #000;
 }
 
-/* line 54, sass/partials/_reset.scss */
+/* line 56, sass/partials/_reset.scss */
 textarea:focus, input:focus, button:focus {
   outline: none;
 }
 
-/* line 57, sass/partials/_reset.scss */
+/* line 59, sass/partials/_reset.scss */
 input {
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -304,7 +324,7 @@ input {
   background-color: transparent;
   -webkit-appearance: none;
 }
-/* line 64, sass/partials/_reset.scss */
+/* line 66, sass/partials/_reset.scss */
 input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -336,10 +356,17 @@ body {
 }
 
 /* 「舊聞。」下樣式 */
-/* line 73, sass/partials/_reset.scss */
-body.oldNews {
+/* line 75, sass/partials/_reset.scss */
+html.oldNews {
   background-color: #000;
 }
+@media (max-device-width: 767px), (max-width: 767px) {
+  /* line 75, sass/partials/_reset.scss */
+  html.oldNews {
+    background-color: #CECECF;
+  }
+}
+
 /* line 13, sass/partials/_base.scss */
 body.oldNews ::-webkit-scrollbar {
   width: 1px;
@@ -361,13 +388,7 @@ body.oldNews body {
   scrollbar-face-color: #CECECF;
   scrollbar-track-color: transparent;
 }
-@media (max-device-width: 767px), (max-width: 767px) {
-  /* line 73, sass/partials/_reset.scss */
-  body.oldNews {
-    background-color: #CECECF;
-  }
-}
-/* line 79, sass/partials/_reset.scss */
+/* line 83, sass/partials/_reset.scss */
 body.oldNews a:focus {
   outline-color: #CECECF;
 }
@@ -1029,126 +1050,161 @@ ng\:form {
     transform: rotate(360deg);
   }
 }
+/* 全屏模式 */
+/* line 408, sass/modules/_index.scss */
+.fullscreen {
+  width: 10px;
+  cursor: pointer;
+}
+/* line 411, sass/modules/_index.scss */
+.fullscreen:hover {
+  width: 15px;
+}
+/* line 413, sass/modules/_index.scss */
+.fullscreen:hover path {
+  stroke: #000;
+  fill: #000;
+}
+/* line 418, sass/modules/_index.scss */
+.fullscreen--on {
+  width: 15px;
+}
+/* line 420, sass/modules/_index.scss */
+.fullscreen--on:hover {
+  width: 10px;
+}
+@media (max-device-width: 1024px), (max-width: 1024px) {
+  /* line 408, sass/modules/_index.scss */
+  .fullscreen {
+    display: none;
+  }
+}
+
 /* 「舊聞。」下樣式 */
-/* line 409, sass/modules/_index.scss */
+/* line 430, sass/modules/_index.scss */
 body {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
 }
-/* line 411, sass/modules/_index.scss */
+/* line 432, sass/modules/_index.scss */
 body.show {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-/* line 416, sass/modules/_index.scss */
+/* line 437, sass/modules/_index.scss */
 body.oldNews .loadBox__loadAnimate {
   -moz-animation: loadAnimate--news 1.7s infinite linear;
   -webkit-animation: loadAnimate--news 1.7s infinite linear;
   animation: loadAnimate--news 1.7s infinite linear;
 }
-/* line 418, sass/modules/_index.scss */
+/* line 439, sass/modules/_index.scss */
 body.oldNews .loadBox__loadAnimate:before {
   background-color: #FFF;
 }
-/* line 424, sass/modules/_index.scss */
+/* line 445, sass/modules/_index.scss */
 body.oldNews .loadBox--errorBox__icon__stroke {
   stroke: #FFF;
 }
-/* line 427, sass/modules/_index.scss */
+/* line 448, sass/modules/_index.scss */
 body.oldNews .loadBox--errorBox__icon__fill {
   fill: #FFF;
 }
-/* line 434, sass/modules/_index.scss */
+/* line 455, sass/modules/_index.scss */
 body.oldNews .head__logo {
   border-color: #FFF;
   background-color: #000;
 }
-/* line 442, sass/modules/_index.scss */
+/* line 463, sass/modules/_index.scss */
 body.oldNews .newsBox {
   color: #FFF;
   border: 1px solid #FFF;
   background-color: #000;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 442, sass/modules/_index.scss */
+  /* line 463, sass/modules/_index.scss */
   body.oldNews .newsBox {
     border: 0;
   }
 }
-/* line 450, sass/modules/_index.scss */
+/* line 471, sass/modules/_index.scss */
 body.oldNews .newsBox__news__item__title {
   color: #CECECF;
 }
-/* line 455, sass/modules/_index.scss */
+/* line 476, sass/modules/_index.scss */
 body.oldNews .newsBox__news__item__link:hover g {
   stroke: #FFF;
 }
-/* line 463, sass/modules/_index.scss */
+/* line 484, sass/modules/_index.scss */
 body.oldNews .searchBar__input:focus, body.oldNews .searchBar__input--valid {
   background-color: #000;
 }
-/* line 469, sass/modules/_index.scss */
+/* line 490, sass/modules/_index.scss */
 body.oldNews .caret__path {
   stroke: #FFF;
 }
-/* line 473, sass/modules/_index.scss */
+/* line 494, sass/modules/_index.scss */
 body.oldNews .timeMachine {
   color: #FFF;
   background-color: rgba(0, 0, 0, 0.8);
 }
-/* line 476, sass/modules/_index.scss */
+/* line 497, sass/modules/_index.scss */
 body.oldNews .timeMachine form {
   border: 1px solid #FFF;
   background-color: #000;
 }
-/* line 480, sass/modules/_index.scss */
+/* line 501, sass/modules/_index.scss */
 body.oldNews .timeMachine form input {
   color: #FFF;
   border-color: #CECECF;
 }
-/* line 484, sass/modules/_index.scss */
+/* line 505, sass/modules/_index.scss */
 body.oldNews .timeMachine form input:focus {
   border-color: #FFF;
 }
-/* line 488, sass/modules/_index.scss */
+/* line 509, sass/modules/_index.scss */
 body.oldNews .timeMachine form input:disabled {
   border-color: #666;
 }
-/* line 493, sass/modules/_index.scss */
+/* line 514, sass/modules/_index.scss */
 body.oldNews .timeMachine__button > g {
   fill: #000;
 }
-/* line 495, sass/modules/_index.scss */
+/* line 516, sass/modules/_index.scss */
 body.oldNews .timeMachine__button > g > circle {
   stroke: #FFF;
 }
-/* line 498, sass/modules/_index.scss */
+/* line 519, sass/modules/_index.scss */
 body.oldNews .timeMachine__button > g > g {
   stroke: #FFF;
 }
-/* line 504, sass/modules/_index.scss */
+/* line 525, sass/modules/_index.scss */
 body.oldNews .timeMachine__button--fillBG:hover > g {
   fill: #FFF;
 }
-/* line 506, sass/modules/_index.scss */
+/* line 527, sass/modules/_index.scss */
 body.oldNews .timeMachine__button--fillBG:hover > g > g {
   stroke: #000;
 }
-/* line 512, sass/modules/_index.scss */
+/* line 533, sass/modules/_index.scss */
 body.oldNews .timeMachine__button--fillTRI {
   display: none;
 }
-/* line 521, sass/modules/_index.scss */
+/* line 542, sass/modules/_index.scss */
 body.oldNews .toolBar__button--timeMachine:hover > g > circle {
   stroke: #FFF;
 }
-/* line 524, sass/modules/_index.scss */
+/* line 545, sass/modules/_index.scss */
 body.oldNews .toolBar__button--timeMachine:hover > g > g {
+  fill: #FFF;
+}
+/* line 560, sass/modules/_index.scss */
+body.oldNews .fullscreen:hover path {
+  stroke: #FFF;
   fill: #FFF;
 }
 
 /* ui-view 動畫 */
-/* line 543, sass/modules/_index.scss */
+/* line 572, sass/modules/_index.scss */
 #view-newsBox [ui-view].ng-enter, #view-newsBox [ui-view].ng-leave {
   position: absolute;
   width: 100%;
@@ -1159,7 +1215,7 @@ body.oldNews .toolBar__button--timeMachine:hover > g > g {
   transition: all 0.7s ease-in-out;
 }
 @media (max-device-width: 1024px), (max-width: 1024px) {
-  /* line 543, sass/modules/_index.scss */
+  /* line 572, sass/modules/_index.scss */
   #view-newsBox [ui-view].ng-enter, #view-newsBox [ui-view].ng-leave {
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
@@ -1167,7 +1223,7 @@ body.oldNews .toolBar__button--timeMachine:hover > g > g {
     transition: all 0.3s ease-in-out;
   }
 }
-/* line 552, sass/modules/_index.scss */
+/* line 581, sass/modules/_index.scss */
 #view-newsBox [ui-view].ng-enter {
   opacity: 0;
   -moz-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
@@ -1175,7 +1231,7 @@ body.oldNews .toolBar__button--timeMachine:hover > g > g {
   -webkit-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
 }
-/* line 556, sass/modules/_index.scss */
+/* line 585, sass/modules/_index.scss */
 #view-newsBox [ui-view].ng-enter-active, #view-newsBox [ui-view].ng-leave {
   opacity: 1;
   -moz-transform: translate3d(0, 0, 0);
@@ -1183,7 +1239,7 @@ body.oldNews .toolBar__button--timeMachine:hover > g > g {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 560, sass/modules/_index.scss */
+/* line 589, sass/modules/_index.scss */
 #view-newsBox [ui-view].ng-leave-active {
   opacity: 0;
   -moz-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
@@ -1191,28 +1247,28 @@ body.oldNews .toolBar__button--timeMachine:hover > g > g {
   -webkit-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
 }
-/* line 566, sass/modules/_index.scss */
+/* line 595, sass/modules/_index.scss */
 #view-newsBox.rtl [ui-view].ng-enter {
   -moz-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   -ms-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   -webkit-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
 }
-/* line 569, sass/modules/_index.scss */
+/* line 598, sass/modules/_index.scss */
 #view-newsBox.rtl [ui-view].ng-enter-active, #view-newsBox.rtl [ui-view].ng-leave {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 572, sass/modules/_index.scss */
+/* line 601, sass/modules/_index.scss */
 #view-newsBox.rtl [ui-view].ng-leave-active {
   -moz-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   -ms-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   -webkit-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
 }
-/* line 577, sass/modules/_index.scss */
+/* line 606, sass/modules/_index.scss */
 #view-newsBox.cardFlip [ui-view].ng-enter {
   opacity: 0;
   -moz-transform: rotateY(180deg);
@@ -1220,7 +1276,7 @@ body.oldNews .toolBar__button--timeMachine:hover > g > g {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
-/* line 581, sass/modules/_index.scss */
+/* line 610, sass/modules/_index.scss */
 #view-newsBox.cardFlip [ui-view].ng-enter-active, #view-newsBox.cardFlip [ui-view].ng-leave {
   opacity: 1;
   -moz-transform: rotateY(0deg);
@@ -1228,7 +1284,7 @@ body.oldNews .toolBar__button--timeMachine:hover > g > g {
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
 }
-/* line 585, sass/modules/_index.scss */
+/* line 614, sass/modules/_index.scss */
 #view-newsBox.cardFlip [ui-view].ng-leave-active {
   opacity: 0;
   -moz-transform: rotateY(180deg);

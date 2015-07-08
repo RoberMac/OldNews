@@ -404,6 +404,27 @@
         @include transform(rotate(360deg));
     }
 }
+/* 全屏模式 */
+.fullscreen {
+    width: 10px;
+    cursor: pointer;
+    &:hover {
+        width: 15px;
+        path {
+            stroke: #000;
+            fill: #000;
+        }
+    }
+    &--on {
+        width: 15px;
+        &:hover {
+            width: 10px;
+        }
+    }
+    @media #{$all-mobile-Devices} {
+        display: none;
+    }
+}
 
 /* 「舊聞。」下樣式 */
 body {
@@ -531,6 +552,14 @@ body {
                 @extend .box-shadow--white;
                 &:hover {
                     @extend .box-shadow--white--opaque;
+                }
+            }
+        }
+        .fullscreen {
+            &:hover {
+                path {
+                    stroke: #FFF;
+                    fill: #FFF;
                 }
             }
         }
