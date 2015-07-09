@@ -37,10 +37,6 @@ angular.module('ShinyaNews.UIServices', [])
             : document.documentElement.webkitRequestFullscreen
                 ? document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT)
             : null
-
-            angular
-            .element(document.getElementsByClassName('fullscreen')[0])
-            .addClass('fullscreen--on')
         } else {
 
             document.exitFullscreen
@@ -50,10 +46,6 @@ angular.module('ShinyaNews.UIServices', [])
             : document.webkitExitFullscreen
                 ? document.webkitExitFullscreen()
             : null
-
-            angular
-            .element(document.getElementsByClassName('fullscreen')[0])
-            .removeClass('fullscreen--on')
         }
     }
 }])

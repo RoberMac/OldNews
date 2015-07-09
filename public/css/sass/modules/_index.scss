@@ -415,17 +415,37 @@
             fill: #000;
         }
     }
-    &--on {
-        width: 15px;
-        &:hover {
-            width: 10px;
-        }
-    }
     @media #{$all-mobile-Devices} {
         display: none;
     }
 }
 
+
+/* 全屏模式下樣式 */
+:-webkit-full-screen {
+    .fullscreen {
+        width: 15px;
+        &:hover {
+            width: 10px;
+        }
+    }
+}
+:-moz-full-screen {
+    .fullscreen {
+        width: 15px;
+        &:hover {
+            width: 10px;
+        }
+    }
+}
+:full-screen {
+    .fullscreen {
+        width: 15px;
+        &:hover {
+            width: 10px;
+        }
+    }
+}
 /* 「舊聞。」下樣式 */
 body {
     @include opacity(0);

@@ -26,6 +26,8 @@
         scrollbar-track-color: $background-color;
     }
 }
+
+
 // Base Font
 $font-family-base: "Helvetica Neue","Palatino","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
 $line-height-base: 1.4;
@@ -79,6 +81,7 @@ $phone-landscape: '(max-device-width : 767px) and (orientation : landscape)';
 $tablet: '(min-device-width : 768px) and (max-device-width : 1024px),(min-width: 768px) and (max-width: 1024px)';
 // iPad in landscape
 $tablet-landscape: '(min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape),(min-width: 768px) and (max-width: 1024px) and (orientation : landscape)';
+
 
 .vertically_center {
     display: table-cell;
