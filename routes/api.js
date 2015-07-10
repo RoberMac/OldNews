@@ -4,7 +4,7 @@ var router = require('express').Router(),
 
 router.post('/getSelectedDateNews', function (req, res, next){
 
-    log.info('[POST: /getSelectedDateNews]', req.body, req.ip)
+    log.info(req.body.selectDate, req.body.selectCountry, req.body.isAllDay, req.ip)
     api_db_helper.getSelectedDateNews(req.body, res, next)
 })
 

@@ -1,6 +1,8 @@
 // Q
-var q_newsFindOne = Q.nbind(News.findOne, News),
-    q_newsFind    = Q.nbind(News.find, News);
+var q_newsFindOne   = Q.nbind(News.findOne, News),
+    q_newsFind      = Q.nbind(News.find, News),
+    q_newsAggregate = Q.nbind(News.aggregate, News);
+
 
 // Helper
 function countrySanitization(country){
@@ -33,35 +35,6 @@ function dateSanitization(date, hour, timezoneOffset){
         )
     return selectDate
 }
-function combineData(data, country){
-    var cache = [],
-        source_cache = {},
-        len = data.length,
-        data_item, news_item, news_item_source;
-
-    for (var i = 0; i < len; i++){
-        data_item = data[i][country] || []
-        if (data_item.length > 0){
-            for (var j = 0; j < data_item.length; j++){
-                news_item = data_item[j]
-                news_item_source = news_item['source_name']
-                if (news_item_source in source_cache){
-                    source_cache[news_item_source] = source_cache[news_item_source].concat(news_item['news'])
-                } else {
-                    source_cache[news_item_source] = news_item['news']
-                }
-            }
-        }
-    }
-    for (var k in source_cache){
-        cache.push({
-            'source_name': k,
-            'news': source_cache[k]
-        })
-    }
-    return cache
-}
-
 
 var api_db_helper = {
 
@@ -71,14 +44,36 @@ var api_db_helper = {
             selectDate = body.selectDate;
 
         if (body.isAllDay){
-            q_newsFind({date: {'$gt': selectDate, '$lte': selectDate + 86400000}}, country)
+            q_newsAggregate(
+                {$match: {date: {'$gt': selectDate, '$lte': selectDate + 86400000}}}, // 全日新聞
+                {$project: {selectCountry: '$' + country}}, // 篩選「選定國家」
+                {$unwind: '$selectCountry'}, // 展開選定國家的所有「新聞集合」
+                {$group: {
+                        _id: '$selectCountry.source_name',
+                        newsSet: {$addToSet: '$selectCountry.news'}
+                    }
+                }, // 按「新聞來源」重排
+                {$unwind: '$newsSet'}, // 展開至「新聞來源集合」
+                {$unwind: '$newsSet'}, // 展開至「新聞項」
+                {$group: {
+                        _id: '$_id',
+                        newsSet: {$addToSet:'$newsSet'}
+                    }
+                }, // 按「新聞來源」集合全部「新聞項」
+                {$project: {
+                        source_name: '$_id',
+                        news: '$newsSet',
+                        _id: 0
+                    }
+                } // 重構後輸出
+            )
             .then(function (found){
                 if (found.length === 0){
                     log.warning('[DB: Not Found]', selectDate, country)
                     res.status(400).json({'status': 'error', 'msg': 'chat.NEWS_NOT_EXIST'})
                     return;
                 }
-                res.send({'status': 'ok', 'msg': combineData(found, country)})
+                res.send({'status': 'ok', 'msg': found})
             }, function (err){
                 log.error('[DB: Query Error]', err)
                 next({'code': 500, 'status': 'error', 'msg': 'error.SERVER_ERROR'})
