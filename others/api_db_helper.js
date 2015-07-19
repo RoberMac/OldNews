@@ -45,7 +45,13 @@ var api_db_helper = {
 
         if (body.isAllDay){
             q_newsAggregate(
-                {$match: {date: {'$gt': selectDate, '$lte': selectDate + 86400000}}}, // 全日新聞
+                {$match: {
+                    date: {
+                        '$gt': selectDate,
+                        '$lte': selectDate + 86400000
+                        }
+                    }
+                }, // 全日新聞
                 {$project: {selectCountry: '$' + country}}, // 篩選「選定國家」
                 {$unwind: '$selectCountry'}, // 展開選定國家的所有「新聞集合」
                 {$group: {

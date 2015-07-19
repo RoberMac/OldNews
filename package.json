@@ -1,6 +1,6 @@
 {
   "name": "ShinyaApp-News",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "A News App",
   "main": "app.js",
   "repository": {
@@ -41,6 +41,7 @@
     "gulp-concat": "~2.5.2",
     "gulp-minify-css": "^1.1.6",
     "gulp-minify-html": "^1.0.3",
+    "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.0.1",
     "gulp-sourcemaps": "~1.5.2",

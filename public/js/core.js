@@ -5,6 +5,8 @@ angular.module('ShinyaNews', [
     'angular-storage',
     'ShinyaNews.stopPropagationDirective',
     'ShinyaNews.i18nDirective',
+    'ShinyaNews.fullscreenButtonDirective',
+    'ShinyaNews.timeMachineDirective',
     'ShinyaNews.timeHelperServices',
     'ShinyaNews.selectNewsItemServices',
     'ShinyaNews.oneDayStoreServices',
@@ -95,7 +97,7 @@ angular.module('ShinyaNews', [
      *  `$scope.isShow` 是否顯示 XXX（加載動畫、選擇新聞按鈕）
      *  `$scope.isNewsExist` 是否顯示「獲取新聞錯誤」提醒
      *  `$scope.isOldNews` & `$scope.toggleNews` 「新聞，」「舊聞。」切換
-     *  `$scope.isShowTimeMachine & $scope.toggleTimeMachine` 顯示／隱藏「跳躍性選擇新聞介面」
+     *  `$scope.isShowTimeMachine` 顯示／隱藏「跳躍性選擇新聞介面」
      *  `$scope.updateQueryParam` 「定位新聞」，更新 URL，方便分享新聞
      */
     $scope.isShow = false
@@ -135,15 +137,6 @@ angular.module('ShinyaNews', [
 
         $scope.isOldNews = !$scope.isOldNews
     }
-    $scope.toggleTimeMachine = function (){
-        // 刷新時間
-        $scope.timeMachineInfo = {
-            H: new Date($scope.selectNewsInfo.selectDate).getHours(),
-            M: new Date($scope.selectOldNewsInfo.selectDate).getMonth() + 1,
-            D: new Date($scope.selectOldNewsInfo.selectDate).getDate()
-        }
-        $scope.isShowTimeMachine = !$scope.isShowTimeMachine
-    }
     $scope.updateQueryParam = function (title){
         $state.go('date', {
             q    : title
@@ -162,7 +155,6 @@ angular.module('ShinyaNews', [
      *  `$scope.selectNews` 選擇新聞
      *  `$scope.timeMachineSelectNews` 「跳躍性選擇新聞」
      *  `$scope.refreshNews` 刷新新聞
-     *  `$scope.toggleFullScreen` 全屏模式
      */
     var lastStep = -1
 
@@ -261,9 +253,6 @@ angular.module('ShinyaNews', [
         $scope.isOldNews
             ? getSelectedDateNews($scope.selectOldNewsInfo)
             : getSelectedDateNews($scope.selectNewsInfo)
-    }
-    $scope.toggleFullscreen = function (){
-        syUI.toggleFullScreen()
     }
 
 

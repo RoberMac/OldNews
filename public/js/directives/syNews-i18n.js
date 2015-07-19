@@ -3,11 +3,13 @@ angular.module('ShinyaNews.i18nDirective', [])
     return {
         restrict: 'E',
         replace : true,
-        template: '<div class="corner--top--left animate--faster">'
-                +   '<div ng-repeat="country in countryList" class="toolBar__button--country animate--faster" ng-class="country" ng-click="changeCountry(country)">'
-                +       '{{country}}'
-                +   '</div>'
-                + '</div>',
+        template: '
+            <div class="corner--top--left animate--faster">
+                <div ng-repeat="country in countryList" class="toolBar__button--country animate--faster" ng-class="country" ng-click="changeCountry(country)">
+                    {{country}}
+                </div>
+            </div>
+        ',
         controller: ['$scope', '$timeout', '$state', '$stateParams' , 'store', 'sySelectNewsItem',
             function ($scope, $timeout, $state, $stateParams, store, sySelectNewsItem){
 

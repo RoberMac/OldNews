@@ -1,5 +1,6 @@
 var gulp       = require('gulp'),
     rename     = require('gulp-rename'),
+    plumber    = require('gulp-plumber'),
     concat     = require('gulp-concat'),
     uglify     = require('gulp-uglify'),
     sourcemaps = require('gulp-sourcemaps'),
@@ -33,17 +34,19 @@ var paths = {
 gulp.task('js_libs', function() {
 
     return gulp.src(paths.js_libs)
-    .pipe(sourcemaps.init())
-        .pipe(uglify())
-        .pipe(concat('libs.min.js'))
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('public/dist'));
+        .pipe(plumber())
+        .pipe(sourcemaps.init())
+            .pipe(uglify())
+            .pipe(concat('libs.min.js'))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('public/dist'));
 });
 
 // Minify all ShinyaApp-News Scripts
 gulp.task('js_sy', function() {
 
     return gulp.src(paths.js_sy)
+        .pipe(plumber())
         .pipe(sourcemaps.init())
             .pipe(uglify())
             .pipe(concat('sy-news.min.js'))

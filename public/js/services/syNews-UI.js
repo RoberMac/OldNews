@@ -23,29 +23,5 @@ angular.module('ShinyaNews.UIServices', [])
         } else {
             elem.addClass('rtl')
         }
-    },
-    // 切換全屏模式
-    this.toggleFullScreen = function (){
-        if (!document.fullscreenElement
-         && !document.webkitFullscreenElement
-         && !document.mozFullScreenElement){
-
-            document.documentElement.requestFullscreen
-                ? document.documentElement.requestFullscreen()
-            : document.documentElement.mozRequestFullScreen
-                ? document.documentElement.mozRequestFullScreen()
-            : document.documentElement.webkitRequestFullscreen
-                ? document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT)
-            : null
-        } else {
-
-            document.exitFullscreen
-                ? document.exitFullscreen()
-            : document.mozCancelFullScreen
-                ? document.mozCancelFullScreen()
-            : document.webkitExitFullscreen
-                ? document.webkitExitFullscreen()
-            : null
-        }
     }
 }])
