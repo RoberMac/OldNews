@@ -9,13 +9,13 @@ angular.module('ShinyaNews.timeMachineDirective', [])
                         <div class="timeMachine__inner">
                             <form novalidate ng-submit="timeMachineSelectNews()" name="form" sy-news-stop-propagation>
                                 <div ng-if="!isOldNews">
-                                    <input type="number" placeholder="H" ng-model="timeMachineInfo.H" class="animate--faster" min="1" max="24" required>:
+                                    <input sy-news-autofocus type="number" placeholder="H" ng-model="timeMachineInfo.H" class="animate--faster" min="1" max="24" required>:
                                     <input type="number" placeholder="00" disabled>
                                 </div>
                                 <div ng-if="isOldNews">
                                     <input type="number" placeholder="15" disabled>-
                                     <input type="number" placeholder="M" ng-model="timeMachineInfo.M" class="animate--faster" min="1" max="12" required>-
-                                    <input type="number" placeholder="D" ng-model="timeMachineInfo.D" class="animate--faster" min="1" max="31" required>
+                                    <input sy-news-autofocus type="number" placeholder="D" ng-model="timeMachineInfo.D" class="animate--faster" min="1" max="31" required>
                                 </div>
                             </form>
                             <div sy-news-stop-propagation>

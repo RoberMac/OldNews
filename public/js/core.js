@@ -7,6 +7,7 @@ angular.module('ShinyaNews', [
     'ShinyaNews.i18nDirective',
     'ShinyaNews.fullscreenButtonDirective',
     'ShinyaNews.timeMachineDirective',
+    'ShinyaNews.autofocusDirective',
     'ShinyaNews.timeHelperServices',
     'ShinyaNews.selectNewsItemServices',
     'ShinyaNews.oneDayStoreServices',
@@ -271,6 +272,8 @@ angular.module('ShinyaNews', [
         }, { notify: false, reload: true })
     })
     $window.addEventListener('keydown', function (e){
+
+        if (e.target.tagName.toLowerCase() === 'input') return;
 
         var keyCode = e.keyCode
 
