@@ -30,3 +30,4 @@ TODO
 test/angular-mocks.js
 .sass-cache
 .DS_Store
+.env

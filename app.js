@@ -12,6 +12,8 @@ var express    = require('express'),
     Log        = require('log'),
     touch      = require('touch');
 
+// load dotenv
+require('dotenv').load()
 
 // Log
 var log_file     = __dirname + '/logs/' + new Date().toUTCString() + '.log',
@@ -43,8 +45,8 @@ process.on('uncaughtException', function (err) {
 });
 
 // read database config form VCAP_SERVICES env
-var db_uri = process.env.VCAP_SERVICES 
-    ? JSON.parse(process.env.VCAP_SERVICES).mongodb[0].credentials.uri
+var db_uri = process.env.MONGODB
+    ? JSON.parse(process.env.MONGODB).uri
     : 'mongodb://test:test@localhost:27017/test'
 
 // Connect to DB
