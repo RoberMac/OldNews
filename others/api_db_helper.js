@@ -75,13 +75,11 @@ var api_db_helper = {
             )
             .then(function (found){
                 if (found.length === 0){
-                    log.warning('[DB: Not Found]', selectDate, country)
                     res.status(400).json({'status': 'error', 'msg': 'chat.NEWS_NOT_EXIST'})
                     return;
                 }
                 res.send({'status': 'ok', 'msg': found})
             }, function (err){
-                log.error('[DB: Query Error]', err)
                 next({'code': 500, 'status': 'error', 'msg': 'error.SERVER_ERROR'})
                 throw new Error('Query Error')
             })
@@ -89,13 +87,11 @@ var api_db_helper = {
             q_newsFindOne({date: selectDate})
             .then(function (found){
                 if (!found){
-                    log.warning('[DB: Not Found]', selectDate, country)
                     res.status(400).json({'status': 'error', 'msg': 'chat.NEWS_NOT_EXIST'})
                     return;
                 }
                 res.send({'status': 'ok', 'msg': found[country]})
             }, function (err){
-                log.error('[DB: Query Error]', err)
                 next({'code': 500, 'status': 'error', 'msg': 'error.SERVER_ERROR'})
                 throw new Error('Query Error')
             })
