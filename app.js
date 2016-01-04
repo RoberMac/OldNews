@@ -48,9 +48,9 @@ app.use(helmet())
 app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }))
 app.use(helmet.contentSecurityPolicy({
     defaultSrc: ["'self'"],
-    // scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
-    // styleSrc: ["'self'", "http://*.qbox.me.com"],
-    imgSrc: ["*"],
+    scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+    styleSrc: ["'self'", "'unsafe-inline'"],
+    imgSrc: ["*", "data:"],
     connectSrc: ['*'],
     reportOnly: false, // set to true if you only want to report errors
     setAllHeaders: false, // set to true if you want to set all headers

@@ -13,7 +13,7 @@ angular.module('ShinyaNews.timeMachineDirective', [])
                                     <input type="number" placeholder="00" disabled>
                                 </div>
                                 <div ng-if="isOldNews">
-                                    <input type="number" placeholder="15" disabled>-
+                                    <input type="number" placeholder="Y" ng-model="timeMachineInfo.Y" min="15" max="16" required>-
                                     <input type="number" placeholder="M" ng-model="timeMachineInfo.M" class="animate--faster" min="1" max="12" required>-
                                     <input sy-news-autofocus type="number" placeholder="D" ng-model="timeMachineInfo.D" class="animate--faster" min="1" max="31" required>
                                 </div>
@@ -76,9 +76,10 @@ angular.module('ShinyaNews.timeMachineDirective', [])
         controller: ['$scope', function ($scope){
             $scope.toggleTimeMachine = function (){
                 $scope.timeMachineInfo = {
-                    H: new Date($scope.selectNewsInfo.selectDate).getHours(),
+                    Y: new Date($scope.selectOldNewsInfo.selectDate).getFullYear() % 2000,
                     M: new Date($scope.selectOldNewsInfo.selectDate).getMonth() + 1,
-                    D: new Date($scope.selectOldNewsInfo.selectDate).getDate()
+                    D: new Date($scope.selectOldNewsInfo.selectDate).getDate(),
+                    H: new Date($scope.selectNewsInfo.selectDate).getHours()
                 }
                 $scope.isShowTimeMachine = !$scope.isShowTimeMachine
             }

@@ -42,7 +42,7 @@ angular.module('ShinyaNews', [
         })
         .state('date', {
             parent: 'country',
-            url: "/{year:2015}/{month:0?[1-9]|1[0-2]}/{day:0?[0-9]|[12][0-9]|3[0-1]}?h&q",
+            url: "/{year:201[5-6]}/{month:0?[1-9]|1[0-2]}/{day:0?[0-9]|[12][0-9]|3[0-1]}?h&q",
             templateUrl: '/public/dist/newsBox.min.html',
             controller: ['$scope', '$location', '$stateParams', 'store', 'syNewsTimeHelper', 
                 function ($scope, $location, $stateParams, store, syNewsTimeHelper){
@@ -242,6 +242,7 @@ angular.module('ShinyaNews', [
                 : syUI.toggleDirection(1)
 
             $state.go('date', {
+                year : '20' + $scope.timeMachineInfo.Y,
                 month: $scope.timeMachineInfo.M,
                 day  : $scope.timeMachineInfo.D,
                 h    : null,
