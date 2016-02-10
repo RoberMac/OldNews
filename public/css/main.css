@@ -1,5 +1,4 @@
 @charset "UTF-8";
-/* line 5, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -21,124 +20,103 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
 
-/* line 86, sass/partials/_base.scss */
 .vertically_center {
   display: table-cell;
   vertical-align: middle;
 }
 
-/* line 91, sass/partials/_base.scss */
 .animate--slower {
   -moz-transition: all 1.7s ease-in-out;
   -o-transition: all 1.7s ease-in-out;
   -webkit-transition: all 1.7s ease-in-out;
   transition: all 1.7s ease-in-out;
 }
-/* line 94, sass/partials/_base.scss */
 .animate--general {
   -moz-transition: all 0.7s ease-in-out;
   -o-transition: all 0.7s ease-in-out;
   -webkit-transition: all 0.7s ease-in-out;
   transition: all 0.7s ease-in-out;
 }
-/* line 97, sass/partials/_base.scss */
 .animate--faster {
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-/* line 101, sass/partials/_base.scss */
 .animate--general.ng-enter, .animate--general.ng-leave.ng-leave-active, .animate--faster.ng-enter, .animate--faster.ng-leave.ng-leave-active {
   opacity: 0;
 }
-/* line 105, sass/partials/_base.scss */
 .animate--general.ng-leave, .animate--general.ng-enter.ng-enter-active, .animate--faster.ng-leave, .animate--faster.ng-enter.ng-enter-active {
   opacity: 1;
 }
 
-/* line 112, sass/partials/_base.scss */
 .box-shadow--white, body.oldNews .head__logo:hover, body.oldNews .newsBox, body.oldNews .timeMachine form, body.oldNews .timeMachine form input:focus, body.oldNews .toolBar__button--country {
   -moz-box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
   -webkit-box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
   box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.5);
 }
-/* line 114, sass/partials/_base.scss */
 .box-shadow--white--opaque, body.oldNews .toolBar__button--country:hover {
   -moz-box-shadow: 0 3px 15px 0 white;
   -webkit-box-shadow: 0 3px 15px 0 white;
   box-shadow: 0 3px 15px 0 white;
 }
-/* line 118, sass/partials/_base.scss */
 .box-shadow--black, .head__logo:hover, .newsBox, .timeMachine form, .timeMachine form input:focus, .toolBar__button--country {
   -moz-box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.5);
 }
-/* line 120, sass/partials/_base.scss */
 .box-shadow--black--opaque, .toolBar__button--country:hover {
   -moz-box-shadow: 0 3px 15px 0 black;
   -webkit-box-shadow: 0 3px 15px 0 black;
   box-shadow: 0 3px 15px 0 black;
 }
 
-/* line 126, sass/partials/_base.scss */
 .overflow--x {
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 }
-/* line 131, sass/partials/_base.scss */
 .overflow--y, .newsBox__news {
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-/* line 138, sass/partials/_base.scss */
 .display--table, .loadBox, .timeMachine {
   position: absolute;
   display: table;
@@ -149,16 +127,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   z-index: 999;
 }
 
-/* line 149, sass/partials/_base.scss */
 .float--left {
   float: left;
 }
-/* line 152, sass/partials/_base.scss */
 .float--right {
   float: right;
 }
 
-/* line 157, sass/partials/_base.scss */
 .corner--top--left {
   position: absolute;
   top: 10px;
@@ -166,7 +141,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   z-index: 2;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 157, sass/partials/_base.scss */
   .corner--top--left {
     top: .5%;
     left: .5%;
@@ -174,7 +148,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     margin-left: 10px;
   }
 }
-/* line 169, sass/partials/_base.scss */
 .corner--top--right {
   position: absolute;
   top: 10px;
@@ -182,7 +155,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   z-index: 2;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 169, sass/partials/_base.scss */
   .corner--top--right {
     top: .5%;
     right: .5%;
@@ -190,7 +162,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     margin-right: 10px;
   }
 }
-/* line 181, sass/partials/_base.scss */
 .corner--bottom--left {
   position: absolute;
   bottom: 10px;
@@ -198,7 +169,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   z-index: 2;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 181, sass/partials/_base.scss */
   .corner--bottom--left {
     bottom: .5%;
     left: .5%;
@@ -208,20 +178,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* sy-news-reset */
-/* line 2, sass/partials/_reset.scss */
 html {
   height: 100%;
   overflow: hidden;
   background-color: #FFF;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 2, sass/partials/_reset.scss */
   html {
     background-color: #000;
   }
 }
 
-/* line 10, sass/partials/_reset.scss */
 body {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -232,88 +199,72 @@ body {
   font-family: "Helvetica Neue", "Palatino", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-size: 14px;
   line-height: 1.4;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizeSpeed;
   cursor: default;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
 }
 
-/* line 20, sass/partials/_reset.scss */
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 61, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
 *:-moz-placeholder {
   text-align: center;
 }
-/* line 64, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
 *::-moz-placeholder {
   text-align: center;
 }
-/* line 67, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
 *:-ms-input-placeholder {
   text-align: center;
 }
-/* line 56, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
 *::-webkit-input-placeholder {
   text-align: center;
 }
 
-/* line 26, sass/partials/_reset.scss */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   margin: 1em 0;
   text-align: center;
 }
 
-/* line 31, sass/partials/_reset.scss */
 h1 {
   font-size: 2em;
 }
 
-/* line 34, sass/partials/_reset.scss */
 h2 {
   font-size: 1.5em;
 }
 
-/* line 37, sass/partials/_reset.scss */
 h3 {
   font-size: 1.17em;
 }
 
-/* line 40, sass/partials/_reset.scss */
 h4 {
   font-size: 1.12em;
 }
 
-/* line 43, sass/partials/_reset.scss */
 h5 {
   font-size: .83em;
 }
 
-/* line 46, sass/partials/_reset.scss */
 h6 {
   font-size: .75em;
 }
 
-/* line 49, sass/partials/_reset.scss */
 a {
   color: inherit;
   text-decoration: none;
 }
-/* line 52, sass/partials/_reset.scss */
 a:focus {
   outline: 1px solid #000;
 }
 
-/* line 56, sass/partials/_reset.scss */
 textarea:focus, input:focus, button:focus {
   outline: none;
 }
 
-/* line 59, sass/partials/_reset.scss */
 input {
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -324,19 +275,16 @@ input {
   background-color: transparent;
   -webkit-appearance: none;
 }
-/* line 66, sass/partials/_reset.scss */
 input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* line 13, sass/partials/_base.scss */
 ::-webkit-scrollbar {
   width: 1px;
   height: 1px;
 }
 
-/* line 17, sass/partials/_base.scss */
 ::-webkit-scrollbar-thumb {
   background: #FFF;
   -moz-border-radius: 1px;
@@ -344,70 +292,58 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   border-radius: 1px;
 }
 
-/* line 21, sass/partials/_base.scss */
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 
-/* line 24, sass/partials/_base.scss */
 body {
   scrollbar-face-color: #FFF;
   scrollbar-track-color: transparent;
 }
 
 /* 「舊聞。」下樣式 */
-/* line 75, sass/partials/_reset.scss */
 html.oldNews {
   background-color: #000;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 75, sass/partials/_reset.scss */
   html.oldNews {
     background-color: #CECECF;
   }
 }
 
-/* line 13, sass/partials/_base.scss */
 body.oldNews ::-webkit-scrollbar {
   width: 1px;
   height: 1px;
 }
-/* line 17, sass/partials/_base.scss */
 body.oldNews ::-webkit-scrollbar-thumb {
   background: #CECECF;
   -moz-border-radius: 1px;
   -webkit-border-radius: 1px;
   border-radius: 1px;
 }
-/* line 21, sass/partials/_base.scss */
 body.oldNews ::-webkit-scrollbar-track {
   background: transparent;
 }
-/* line 24, sass/partials/_base.scss */
 body.oldNews body {
   scrollbar-face-color: #CECECF;
   scrollbar-track-color: transparent;
 }
-/* line 83, sass/partials/_reset.scss */
 body.oldNews a:focus {
   outline-color: #CECECF;
 }
 
 /* angular-csp */
-/* line 3, sass/vendor/_angular-csp.scss */
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
 .ng-cloak, .x-ng-cloak,
 .ng-hide:not(.ng-hide-animate) {
   display: none !important;
 }
 
-/* line 8, sass/vendor/_angular-csp.scss */
 ng\:form {
   display: block;
 }
 
 /* 加載動畫 */
-/* line 4, sass/modules/_index.scss */
 .loadBox__loadAnimate {
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
@@ -420,7 +356,6 @@ ng\:form {
   margin: 0 auto;
   border: 1px solid #CECECF;
 }
-/* line 11, sass/modules/_index.scss */
 .loadBox__loadAnimate:before {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -437,21 +372,17 @@ ng\:form {
   height: 10px;
   background-color: #000;
 }
-/* line 23, sass/modules/_index.scss */
 .loadBox--errorBox {
   text-align: center;
 }
-/* line 25, sass/modules/_index.scss */
 .loadBox--errorBox__icon {
   width: 50%;
 }
-/* line 27, sass/modules/_index.scss */
 .loadBox--errorBox__icon__newsBox {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=37);
   opacity: 0.37;
 }
 @media (max-device-width: 767px) and (orientation: landscape) {
-  /* line 25, sass/modules/_index.scss */
   .loadBox--errorBox__icon {
     width: 37%;
   }
@@ -556,7 +487,6 @@ ng\:form {
   }
 }
 /* Logo */
-/* line 64, sass/modules/_index.scss */
 .head__logo {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -567,7 +497,6 @@ ng\:form {
   cursor: pointer;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 64, sass/modules/_index.scss */
   .head__logo {
     width: 2.5em;
     -moz-border-radius: 7px;
@@ -576,20 +505,17 @@ ng\:form {
   }
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
-  /* line 64, sass/modules/_index.scss */
   .head__logo {
     width: 10%;
   }
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape), (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  /* line 64, sass/modules/_index.scss */
   .head__logo {
     width: 7%;
   }
 }
 
 /* 主體 */
-/* line 86, sass/modules/_index.scss */
 .newsBox {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -603,7 +529,6 @@ ng\:form {
   background-color: #FFF;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 86, sass/modules/_index.scss */
   .newsBox {
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -616,7 +541,6 @@ ng\:form {
   }
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
-  /* line 86, sass/modules/_index.scss */
   .newsBox {
     top: 12%;
     left: 12%;
@@ -624,7 +548,6 @@ ng\:form {
     height: 76%;
   }
 }
-/* line 112, sass/modules/_index.scss */
 .newsBox__news {
   position: absolute;
   top: 7%;
@@ -634,7 +557,6 @@ ng\:form {
   height: 86%;
   height: calc(100% - 3.5em);
 }
-/* line 121, sass/modules/_index.scss */
 .newsBox__news__item {
   position: relative;
   overflow: hidden;
@@ -644,24 +566,20 @@ ng\:form {
   margin: 2em auto;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 121, sass/modules/_index.scss */
   .newsBox__news__item {
     margin: 1em auto;
   }
 }
-/* line 131, sass/modules/_index.scss */
 .newsBox__news__item__timestamp {
   margin-right: 1em;
   font-size: 12px;
   color: #CECECF;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 131, sass/modules/_index.scss */
   .newsBox__news__item__timestamp {
     margin-right: 0;
   }
 }
-/* line 139, sass/modules/_index.scss */
 .newsBox__news__item__title {
   -webkit-user-select: text;
   -moz-user-select: text;
@@ -671,12 +589,10 @@ ng\:form {
   text-decoration: underline;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 139, sass/modules/_index.scss */
   .newsBox__news__item__title {
     font-size: 14px;
   }
 }
-/* line 147, sass/modules/_index.scss */
 .newsBox__news__item__link {
   position: absolute;
   display: none;
@@ -685,38 +601,31 @@ ng\:form {
   height: 100%;
   cursor: pointer;
 }
-/* line 155, sass/modules/_index.scss */
 .newsBox__news__item__link:hover g {
   stroke: #000;
 }
-/* line 160, sass/modules/_index.scss */
 .newsBox__news__item:hover > .newsBox__news__item__link {
   display: inline;
 }
 @media (max-device-width: 1024px), (max-width: 1024px) {
-  /* line 160, sass/modules/_index.scss */
   .newsBox__news__item:hover > .newsBox__news__item__link {
     display: none;
   }
 }
-/* line 169, sass/modules/_index.scss */
 .newsBox__date {
   position: absolute;
   top: 0%;
   width: 100%;
   text-align: center;
 }
-/* line 174, sass/modules/_index.scss */
 .newsBox__date__button {
   cursor: pointer;
 }
-/* line 176, sass/modules/_index.scss */
 .newsBox__date__button--done {
   text-decoration: line-through;
 }
 
 /* 搜索 */
-/* line 184, sass/modules/_index.scss */
 .searchBar {
   position: absolute;
   top: 7px;
@@ -724,7 +633,6 @@ ng\:form {
   width: 100%;
   text-align: right;
 }
-/* line 190, sass/modules/_index.scss */
 .searchBar__input {
   width: 30px;
   height: 20px;
@@ -733,7 +641,6 @@ ng\:form {
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAoCAYAAAC8cqlMAAAFHklEQVRYw9VZW2gcVRhOuql90BjUPlVEBKnQisWCBYsgbbUtBgK9+CD6UC2++aB98jGUStuH6IuV0oAFfSnb2kKJD4IlhS4lITszZ/aS7DWpSIsgxeah6ebm+H0z509P1t222d2ZZAcOs5mZc87/ne/7L+ekoyOiy/O8Trb+/v51bPzd0S4XDR4eHu6Kx+OxOuD897yvSQBcbRpY/dx13adTqdRzuVyuu/rdmgNkrn4ymVxvWWqfbdsDaNds28miTaHlHcdJ4D5o2+5Ho6OjL5iAVh2EaQQMP+o4Kp3JZL18vuCNj0946XRmqWWz4/7ziYmcB0B3bFsdL5fLPasORiYHgE1Y7d8KhaJHEDBykYbT6Fwu7xvOxr8JBu//heS8UqnsoV9BKfWO+M8qgshsg2G3i8USDawQgAaTsSznjGVZX8DYj9E+BwOncL+Bd8JKhayBRQ/ffaLBxKJ07Jhm4mVKhCuN+wzBwNA0nh8qFosb6vXHNzsBcoj9LMteUMr1Uqk0+/ZGJjPJBQSDlUxQTjDmASUE437MZrNPmYBplNmqAH1JNihFDeQfMPNqJMw8lJQ6BkddYoLRyIxc9ZIfn5vvKTnKC/1ng3HsX4wF6wyLDd8ZmRcw8Z9cRTovVnXEYKrrSceSsA0w34vMXDflGc4fC5UNSOgIpURJUN+W5e4WJhrJP+i3kQGDYwVSdc6FFsWkbtIreJFRR0viejNSEPCQ6kmCICMYv4znPVLytLyG4h3O/AyzNGUVRCv1dSNs1MhF7wYgfOefB5i3QpGXyACJ7BVMNE0ZMF9gwg+aCZkiH/jFixj3b4JhLsK4H67E5xoB8jpXjEC4ejBgRzMrJ0BYXGLcW2Q68D/3aDNMPxYIJLAFE84RCBv+frsVQEZGRp7FuH8QCP0PheenoQCRCdPp9EuY8C5BMPSCkYPNSGu5ZO1pSotgwEhfKFleIhYzN4AoKQoRKk83M6Hh7H06J/lJFgu0tXqL0HJWmMUJgmBYHAr9jWxlBQic+7wxppJSJ5TtsTFpr55wMahenSPCViM5ZGzMDyAzYEVK+xOhsVFVMHYif1gEETi88xf3JCsBY4ZVjPU7HVzL6h5ktTlUICYrmOyAnryiy5WbiUSi2ygaY2Y1wKzP3zTOjETo90M+X/T3JnobcD6UaFXjMkuVwampW75z6j2JC2a21Sht/ncUBOaeR/84+2ExFqVuIyOo3fZHsi8Rp+eqYeLhyckpGnBfb2OhdTWAMP1GLWlwMwY2v2LOkIqXW1/uGhEBF/QYcwjH+yNhRhIgMzJW9lcNxt+PFwolqZdgt30BwM7i/hO3uTB8WopDfkMmBIhuczqQLOD790MpU+qB0St9nEbQSO20fi1GP5IDCCNP+M/4XqKfCQZg5/XzCtjbGwkzpnyYxOg3LP4eHv0sP0XRhw4z+G4I2XsP7j8HbNrz1WD0IQae23siAaPPdU12NqEdhpHf0FC0K5QY2PgWMvsMcnxtud+oS8wfNL6WzHgmgP7vRRXNfKmtZCNk5hxGsHJ50je+GoxmBoWq2hWJz5hRjZPJ2a5mzD+85opSjhKOzRBL5shMLTDaZ+4LmFCTZWuChrr0KGaYgOVwYk1ewkxQ/thX6zAzK4k3El9pxYE4Vv5yDWZmGd4BNLkmTvCfBAz9CmCGDGYq+tQGmy93e0c7XKbMAOYK6zmyg993QztdCRtM8I8j5zuyMzam3ozskDuM4rReJdFWF31F5511bQvicdd/SIm9RsdS7ugAAAAASUVORK5CYII=) left center/25px no-repeat;
   cursor: pointer;
 }
-/* line 197, sass/modules/_index.scss */
 .searchBar__input:focus, .searchBar__input--valid {
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
@@ -748,7 +655,6 @@ ng\:form {
 }
 
 /* 選擇新聞按鈕 */
-/* line 211, sass/modules/_index.scss */
 .caret {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
   opacity: 0.3;
@@ -761,84 +667,69 @@ ng\:form {
   z-index: 3;
 }
 @media (max-device-width: 1024px), (max-width: 1024px) {
-  /* line 211, sass/modules/_index.scss */
   .caret {
     filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
     opacity: 1;
   }
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 211, sass/modules/_index.scss */
   .caret {
     display: none;
   }
 }
-/* line 226, sass/modules/_index.scss */
 .caret:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-/* line 229, sass/modules/_index.scss */
 .caret--left {
   left: 20%;
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
-  /* line 229, sass/modules/_index.scss */
   .caret--left {
     left: 6%;
   }
 }
-/* line 235, sass/modules/_index.scss */
 .caret--right {
   right: 20%;
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
-  /* line 235, sass/modules/_index.scss */
   .caret--right {
     right: 6%;
   }
 }
-/* line 241, sass/modules/_index.scss */
 .caret--hide {
   display: none;
 }
 
 /* 跳躍性選擇新聞 */
-/* line 246, sass/modules/_index.scss */
 .timeMachine {
   text-align: center;
   background-color: rgba(255, 255, 255, 0.8);
 }
-/* line 250, sass/modules/_index.scss */
 .timeMachine__inner {
   position: relative;
   width: 40%;
   margin: 0 auto;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 250, sass/modules/_index.scss */
   .timeMachine__inner {
     width: 94%;
   }
 }
 @media (max-device-width: 767px) and (orientation: landscape) {
-  /* line 250, sass/modules/_index.scss */
   .timeMachine__inner {
     width: 97%;
   }
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
-  /* line 250, sass/modules/_index.scss */
   .timeMachine__inner {
     width: 76%;
   }
 }
-/* line 264, sass/modules/_index.scss */
 .timeMachine form {
   border: 1px solid #000;
   background-color: #FFF;
 }
-/* line 268, sass/modules/_index.scss */
 .timeMachine form input {
   display: inline-block;
   width: 50px;
@@ -846,43 +737,34 @@ ng\:form {
   margin: 1em;
   padding: 10px;
 }
-/* line 275, sass/modules/_index.scss */
 .timeMachine form input:focus {
   border-color: #000;
 }
-/* line 279, sass/modules/_index.scss */
 .timeMachine form input:disabled {
   border-color: #CECECF;
 }
-/* line 283, sass/modules/_index.scss */
 .timeMachine__button {
   margin: 1em;
   width: 37px;
   cursor: pointer;
 }
-/* line 289, sass/modules/_index.scss */
 .timeMachine__button--fillBG:hover > g {
   fill: #000;
 }
-/* line 291, sass/modules/_index.scss */
 .timeMachine__button--fillBG:hover > g > g {
   stroke: #FFF;
 }
-/* line 298, sass/modules/_index.scss */
 .timeMachine__button--fillTRI path:last-child {
   fill: #FFF;
 }
-/* line 302, sass/modules/_index.scss */
 .timeMachine__button--fillTRI:hover path:last-child {
   fill: #000;
 }
-/* line 307, sass/modules/_index.scss */
 .timeMachine__button--invalid {
   display: none;
 }
 
 /* 工具欄 */
-/* line 314, sass/modules/_index.scss */
 .toolBar__button--timeMachine {
   -webkit-filter: blur(0px);
   filter: blur(0px);
@@ -895,19 +777,16 @@ ng\:form {
   z-index: -1;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 314, sass/modules/_index.scss */
   .toolBar__button--timeMachine {
     display: none;
   }
 }
 @media (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1024px) {
-  /* line 314, sass/modules/_index.scss */
   .toolBar__button--timeMachine {
     top: 10%;
     top: calc(12% - 13.5px);
   }
 }
-/* line 330, sass/modules/_index.scss */
 .toolBar__button--timeMachine:hover {
   -webkit-filter: blur(1px);
   filter: blur(1px);
@@ -915,15 +794,12 @@ ng\:form {
   -webkit-animation: loadAnimate--timeMachine 0.3s infinite linear;
   animation: loadAnimate--timeMachine 0.3s infinite linear;
 }
-/* line 334, sass/modules/_index.scss */
 .toolBar__button--timeMachine:hover > g > circle {
   stroke: #000;
 }
-/* line 337, sass/modules/_index.scss */
 .toolBar__button--timeMachine:hover > g > g {
   fill: #000;
 }
-/* line 343, sass/modules/_index.scss */
 .toolBar__button--country {
   -moz-border-radius: 14px;
   -webkit-border-radius: 14px;
@@ -937,12 +813,10 @@ ng\:form {
   overflow: hidden;
   cursor: pointer;
 }
-/* line 357, sass/modules/_index.scss */
 .toolBar__button--country.CN, .toolBar__button--country.HK {
   color: #FFE200;
   background-color: #E74010;
 }
-/* line 361, sass/modules/_index.scss */
 .toolBar__button--country.TW {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNjU4NDk0IiB5MT0iMS4wOTE1MDYiIHgyPSIwLjM0MTUwNiIgeTI9Ii0wLjA5MTUwNiI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmMjYwMCIvPjxzdG9wIG9mZnNldD0iMjUlIiBzdG9wLWNvbG9yPSIjMDIxZGE2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
   background: -moz-linear-gradient(105deg, #ff2600 0%, #021da6 25%);
@@ -950,7 +824,6 @@ ng\:form {
   background: linear-gradient(-15deg, #ff2600 0%, #021da6 25%);
   color: #FFF;
 }
-/* line 365, sass/modules/_index.scss */
 .toolBar__button--country.US {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNjU4NDk0IiB5MT0iMS4wOTE1MDYiIHgyPSIwLjM0MTUwNiIgeTI9Ii0wLjA5MTUwNiI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2JmMGEzMCIvPjxzdG9wIG9mZnNldD0iMjUlIiBzdG9wLWNvbG9yPSIjMDAyODY4Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
   background: -moz-linear-gradient(105deg, #bf0a30 0%, #002868 25%);
@@ -958,12 +831,10 @@ ng\:form {
   background: linear-gradient(-15deg, #bf0a30 0%, #002868 25%);
   color: #FFF;
 }
-/* line 369, sass/modules/_index.scss */
 .toolBar__button--country.JP {
   color: #C70025;
   background-color: #FFF;
 }
-/* line 373, sass/modules/_index.scss */
 .toolBar__button--country.DE {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2JmMGEzMCIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjYmYwYTMwIi8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiMxZTFlMWUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #bf0a30), color-stop(50%, #bf0a30), color-stop(50%, #1e1e1e));
@@ -972,7 +843,6 @@ ng\:form {
   background: linear-gradient(#bf0a30, #bf0a30 50%, #1e1e1e 50%);
   color: #FED100;
 }
-/* line 377, sass/modules/_index.scss */
 .toolBar__button--country.FR {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMjA5ZiIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjMDAyMDlmIi8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNmNDJhNDEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
   background: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #00209f), color-stop(50%, #00209f), color-stop(50%, #f42a41));
@@ -981,7 +851,6 @@ ng\:form {
   background: linear-gradient(to right, #00209f, #00209f 50%, #f42a41 50%);
   color: #FFF;
 }
-/* line 381, sass/modules/_index.scss */
 .toolBar__button--country.IN {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNjU4NDk0IiB5MT0iMS4wOTE1MDYiIHgyPSIwLjM0MTUwNiIgeTI9Ii0wLjA5MTUwNiI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzEzODgwOCIvPjxzdG9wIG9mZnNldD0iMjUlIiBzdG9wLWNvbG9yPSIjZmY5OTMzIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
   background: -moz-linear-gradient(105deg, #138808 0%, #ff9933 25%);
@@ -989,7 +858,6 @@ ng\:form {
   background: linear-gradient(-15deg, #138808 0%, #ff9933 25%);
   color: #000080;
 }
-/* line 385, sass/modules/_index.scss */
 .toolBar__button--country.KR {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2M2MGMzMCIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjYzYwYzMwIi8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiMwMDM0NzgiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #c60c30), color-stop(50%, #c60c30), color-stop(50%, #003478));
@@ -998,7 +866,6 @@ ng\:form {
   background: linear-gradient(#c60c30, #c60c30 50%, #003478 50%);
   color: #FFF;
 }
-/* line 389, sass/modules/_index.scss */
 .toolBar__button--country.RU {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDBmZSIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjMDAwMGZlIi8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNmZTAwMDAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #0000fe), color-stop(50%, #0000fe), color-stop(50%, #fe0000));
@@ -1007,7 +874,6 @@ ng\:form {
   background: linear-gradient(#0000fe, #0000fe 50%, #fe0000 50%);
   color: #FFF;
 }
-/* line 393, sass/modules/_index.scss */
 .toolBar__button--country.BR {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNjU4NDk0IiB5MT0iMS4wOTE1MDYiIHgyPSIwLjM0MTUwNiIgeTI9Ii0wLjA5MTUwNiI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzMyMDBmZSIvPjxzdG9wIG9mZnNldD0iMjUlIiBzdG9wLWNvbG9yPSIjMDA3NjAwIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
   background: -moz-linear-gradient(105deg, #3200fe 0%, #007600 25%);
@@ -1051,180 +917,142 @@ ng\:form {
   }
 }
 /* 全屏模式 */
-/* line 408, sass/modules/_index.scss */
 .fullscreen {
   width: 10px;
   cursor: pointer;
 }
-/* line 411, sass/modules/_index.scss */
 .fullscreen:hover {
   width: 15px;
 }
-/* line 413, sass/modules/_index.scss */
 .fullscreen:hover path {
   stroke: #000;
   fill: #000;
 }
 @media (max-device-width: 1024px), (max-width: 1024px) {
-  /* line 408, sass/modules/_index.scss */
   .fullscreen {
     display: none;
   }
 }
 
 /* 全屏模式下樣式 */
-/* line 426, sass/modules/_index.scss */
 :-webkit-full-screen .fullscreen {
   width: 15px;
 }
-/* line 428, sass/modules/_index.scss */
 :-webkit-full-screen .fullscreen:hover {
   width: 10px;
 }
 
-/* line 434, sass/modules/_index.scss */
 :-moz-full-screen .fullscreen {
   width: 15px;
 }
-/* line 436, sass/modules/_index.scss */
 :-moz-full-screen .fullscreen:hover {
   width: 10px;
 }
 
-/* line 442, sass/modules/_index.scss */
 :full-screen .fullscreen {
   width: 15px;
 }
-/* line 444, sass/modules/_index.scss */
 :full-screen .fullscreen:hover {
   width: 10px;
 }
 
 /* 「舊聞。」下樣式 */
-/* line 450, sass/modules/_index.scss */
 body {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
 }
-/* line 452, sass/modules/_index.scss */
 body.show {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-/* line 457, sass/modules/_index.scss */
 body.oldNews .loadBox__loadAnimate {
   -moz-animation: loadAnimate--news 1.7s infinite linear;
   -webkit-animation: loadAnimate--news 1.7s infinite linear;
   animation: loadAnimate--news 1.7s infinite linear;
 }
-/* line 459, sass/modules/_index.scss */
 body.oldNews .loadBox__loadAnimate:before {
   background-color: #FFF;
 }
-/* line 465, sass/modules/_index.scss */
 body.oldNews .loadBox--errorBox__icon__stroke {
   stroke: #FFF;
 }
-/* line 468, sass/modules/_index.scss */
 body.oldNews .loadBox--errorBox__icon__fill {
   fill: #FFF;
 }
-/* line 475, sass/modules/_index.scss */
 body.oldNews .head__logo {
   border-color: #FFF;
   background-color: #000;
 }
-/* line 483, sass/modules/_index.scss */
 body.oldNews .newsBox {
   color: #FFF;
   border: 1px solid #FFF;
   background-color: #000;
 }
 @media (max-device-width: 767px), (max-width: 767px) {
-  /* line 483, sass/modules/_index.scss */
   body.oldNews .newsBox {
     border: 0;
   }
 }
-/* line 491, sass/modules/_index.scss */
 body.oldNews .newsBox__news__item__title {
   color: #CECECF;
 }
-/* line 496, sass/modules/_index.scss */
 body.oldNews .newsBox__news__item__link:hover g {
   stroke: #FFF;
 }
-/* line 504, sass/modules/_index.scss */
 body.oldNews .searchBar__input:focus, body.oldNews .searchBar__input--valid {
   background-color: #000;
 }
-/* line 510, sass/modules/_index.scss */
 body.oldNews .caret__path {
   stroke: #FFF;
 }
-/* line 514, sass/modules/_index.scss */
 body.oldNews .timeMachine {
   color: #FFF;
   background-color: rgba(0, 0, 0, 0.8);
 }
-/* line 517, sass/modules/_index.scss */
 body.oldNews .timeMachine form {
   border: 1px solid #FFF;
   background-color: #000;
 }
-/* line 521, sass/modules/_index.scss */
 body.oldNews .timeMachine form input {
   color: #FFF;
   border-color: #CECECF;
 }
-/* line 525, sass/modules/_index.scss */
 body.oldNews .timeMachine form input:focus {
   border-color: #FFF;
 }
-/* line 529, sass/modules/_index.scss */
 body.oldNews .timeMachine form input:disabled {
   border-color: #666;
 }
-/* line 534, sass/modules/_index.scss */
 body.oldNews .timeMachine__button > g {
   fill: #000;
 }
-/* line 536, sass/modules/_index.scss */
 body.oldNews .timeMachine__button > g > circle {
   stroke: #FFF;
 }
-/* line 539, sass/modules/_index.scss */
 body.oldNews .timeMachine__button > g > g {
   stroke: #FFF;
 }
-/* line 545, sass/modules/_index.scss */
 body.oldNews .timeMachine__button--fillBG:hover > g {
   fill: #FFF;
 }
-/* line 547, sass/modules/_index.scss */
 body.oldNews .timeMachine__button--fillBG:hover > g > g {
   stroke: #000;
 }
-/* line 553, sass/modules/_index.scss */
 body.oldNews .timeMachine__button--fillTRI {
   display: none;
 }
-/* line 562, sass/modules/_index.scss */
 body.oldNews .toolBar__button--timeMachine:hover > g > circle {
   stroke: #FFF;
 }
-/* line 565, sass/modules/_index.scss */
 body.oldNews .toolBar__button--timeMachine:hover > g > g {
   fill: #FFF;
 }
-/* line 580, sass/modules/_index.scss */
 body.oldNews .fullscreen:hover path {
   stroke: #FFF;
   fill: #FFF;
 }
 
 /* ui-view 動畫 */
-/* line 592, sass/modules/_index.scss */
 #view-newsBox [ui-view].ng-enter, #view-newsBox [ui-view].ng-leave {
   position: absolute;
   width: 100%;
@@ -1235,7 +1063,6 @@ body.oldNews .fullscreen:hover path {
   transition: all 0.7s ease-in-out;
 }
 @media (max-device-width: 1024px), (max-width: 1024px) {
-  /* line 592, sass/modules/_index.scss */
   #view-newsBox [ui-view].ng-enter, #view-newsBox [ui-view].ng-leave {
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
@@ -1243,7 +1070,6 @@ body.oldNews .fullscreen:hover path {
     transition: all 0.3s ease-in-out;
   }
 }
-/* line 601, sass/modules/_index.scss */
 #view-newsBox [ui-view].ng-enter {
   opacity: 0;
   -moz-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
@@ -1251,7 +1077,6 @@ body.oldNews .fullscreen:hover path {
   -webkit-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
 }
-/* line 605, sass/modules/_index.scss */
 #view-newsBox [ui-view].ng-enter-active, #view-newsBox [ui-view].ng-leave {
   opacity: 1;
   -moz-transform: translate3d(0, 0, 0);
@@ -1259,7 +1084,6 @@ body.oldNews .fullscreen:hover path {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 609, sass/modules/_index.scss */
 #view-newsBox [ui-view].ng-leave-active {
   opacity: 0;
   -moz-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
@@ -1267,28 +1091,24 @@ body.oldNews .fullscreen:hover path {
   -webkit-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
 }
-/* line 615, sass/modules/_index.scss */
 #view-newsBox.rtl [ui-view].ng-enter {
   -moz-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   -ms-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   -webkit-transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
 }
-/* line 618, sass/modules/_index.scss */
 #view-newsBox.rtl [ui-view].ng-enter-active, #view-newsBox.rtl [ui-view].ng-leave {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 621, sass/modules/_index.scss */
 #view-newsBox.rtl [ui-view].ng-leave-active {
   -moz-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   -ms-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   -webkit-transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
   transform: translate3d(50%, 0, 0) scale3d(0.7, 0.7, 0.7);
 }
-/* line 626, sass/modules/_index.scss */
 #view-newsBox.cardFlip [ui-view].ng-enter {
   opacity: 0;
   -moz-transform: rotateY(180deg);
@@ -1296,7 +1116,6 @@ body.oldNews .fullscreen:hover path {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
-/* line 630, sass/modules/_index.scss */
 #view-newsBox.cardFlip [ui-view].ng-enter-active, #view-newsBox.cardFlip [ui-view].ng-leave {
   opacity: 1;
   -moz-transform: rotateY(0deg);
@@ -1304,7 +1123,6 @@ body.oldNews .fullscreen:hover path {
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
 }
-/* line 634, sass/modules/_index.scss */
 #view-newsBox.cardFlip [ui-view].ng-leave-active {
   opacity: 0;
   -moz-transform: rotateY(180deg);
