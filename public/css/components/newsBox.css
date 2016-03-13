@@ -1,0 +1,114 @@
+.newsBox {
+    position: absolute 5% * * 30%;
+    size: 40% 90%;
+    border: 1px solid #000;
+    background-color: var(--color-white);
+    border-radius: 10px;
+
+    @media (--phone) {
+        border: 0;
+        top: 0%;
+        left: 0%;
+        size: 100%;
+        border-radius: 3px;
+    }
+    @media (--tablet) {
+        top: 12%;
+        left: 12%;
+        size: 76%;
+    }
+    &__content {
+        position: absolute calc(3.5em) * * 5%;
+        size: 90% calc(100% - 3.5em);
+    }
+}
+
+.newsItem {
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: left;
+    text-overflow: ellipsis;
+    margin: 2em auto;
+
+    @media (--phone) {
+        margin: 1em auto;
+    }
+
+    &__createdAt {
+        margin-right: 1em;
+        font-size: var(--font-size-small);
+        color: var(--color-gray-drak);
+
+        @media (--phone) {
+            margin-right: 0;
+        }
+    }
+    &__title {
+        font-size: var(--font-size-base);
+        text-decoration: underline;
+
+        @media (--phone) {
+            font-size: var(--font-size-base);
+        }
+    }
+    &__link {
+        position: absolute * 0 * *;
+        display: none;
+        size: 1em 100%;
+    }
+    &:hover > &__link {
+        display: inline;
+
+        @media (--all-mobile-devices) {
+            display: none;
+        }
+    }
+}
+
+.newsState {
+    &--fetchFail {
+        position: absolute 11.5% * * 11.5%;
+        size: 77%;
+    }
+    &--fetching {
+        position: absolute calc(50% - 20px) * * calc(50% - 20px);
+        size: 40px;
+        margin: 0 auto;
+        border: 1px solid #000;
+        border-radius: 20px;
+        animation: spin 1.7s infinite linear;
+
+        &:before {
+            content: '';
+            position: absolute 0 * * 0;
+            size: 10px;
+            background-color: var(--color-black);
+            border-radius: 5px;
+        }
+    }
+}
+
+.oldNews {
+    .newsBox {
+        color: var(--color-white);
+        border-color: var(--color-white);
+        background-color: var(--color-black);
+        @media (--phone) {
+            border: 0;
+        }
+    }
+    .newsItem {
+        &__title {
+            color: var(--color-gray-drak);
+        }
+    }
+    .newsState {
+        &--fetching {
+            border-color: var(--color-white);
+            &:before {
+                background-color: var(--color-white);
+            }
+        }
+    }
+}

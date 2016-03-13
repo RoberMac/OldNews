@@ -1,0 +1,6 @@
+<h3>
+    <span>
+        <span ng-if="!rootVM.state.isOldNews">{{newsVM.state.news.date | date:'HH:00'}}</span>
+        <span ng-if="rootVM.state.isOldNews">{{newsVM.state.news.date | date:'yyyy-MM-dd'}}</span>
+    </span>
+</h3>

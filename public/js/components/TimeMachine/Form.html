@@ -1,0 +1,63 @@
+<form
+    sy-stop-propagation
+    ng-submit="tmVM.handleSubmit()"
+    class="timeMachine__form shadow animate--faster"
+    name="tmVM.form"
+    novalidate
+>
+    <div ng-if="!rootVM.state.isOldNews">
+        <input
+            sy-auto-focus
+            type="number"
+            placeholder="H"
+            ng-model="tmVM.state.timeMachine.H"
+            ng-model-options="{ debounce: 300 }"
+            class="timeMachine__input shadow--onFocus animate--faster"
+            min="1"
+            max="24"
+            required
+        >
+        <span>:</span>
+        <input
+            class="timeMachine__input shadow--onFocus animate--faster"
+            type="number"
+            placeholder="00"
+            disabled
+        >
+    </div>
+    <div ng-if="rootVM.state.isOldNews">
+        <input
+            class="timeMachine__input shadow--onFocus animate--faster"
+            ng-model="tmVM.state.timeMachine.Y"
+            ng-model-options="{ debounce: 300 }"
+            type="number"
+            placeholder="Y"
+            min="15"
+            max="16"
+            required
+        >
+        <span>-</span>
+        <input
+            class="timeMachine__input shadow--onFocus animate--faster"
+            ng-model="tmVM.state.timeMachine.M"
+            ng-model-options="{ debounce: 300 }"
+            type="number"
+            placeholder="M"
+            min="1"
+            max="12"
+            required
+        >
+        <span>-</span>
+        <input
+            class="timeMachine__input shadow--onFocus animate--faster"
+            ng-model="tmVM.state.timeMachine.D"
+            ng-model-options="{ debounce: 300 }"
+            sy-auto-focus
+            type="number"
+            placeholder="D"
+            min="1"
+            max="31"
+            required
+        >
+    </div>
+</form>

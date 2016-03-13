@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html ng-app="ShinyaNews" ng-csp class="animate--general">
+<html ng-app="ShinyaNews" ng-controller="rootCtrl as rootVM" ng-csp>
 <head>
     <meta charset="UTF-8">
     <meta name="keywords" content="新聞，舊聞。, 深夜，破曉。, 深夜,破曉。, shenyepoxiao">
     <meta name="description" content="新聞，舊聞。">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -14,36 +14,16 @@
     <link rel="shortcut icon" href="public/img/favicon.ico">
     <link rel="apple-touch-icon" sizes="192x192" href="public/img/favicon.png">
     <title>新聞，舊聞。</title>
-    <link rel="stylesheet" href="/public/dist/sy-news.min.css">
+    <link rel="stylesheet" href="/public/dist/app.css">
 </head>
-<body ng-controller="rootController" class="animate--general" ng-class="{'oldNews': isOldNews, 'show': true}">
-    <!-- 標誌 -->
-    <div class="head">
-        <img ng-click="toggleNews()" class="head__logo corner--top--right animate--general" src="/public/img/logo.png" alt="logo">
-    </div>
+<body class="animate--general" ng-class="{'oldNews': rootVM.state.isOldNews}">
 
-    <!-- 主體 -->
-    <div ui-view id="view-newsBox"></div>
+    <div ui-view class="ui-view-newsBox"></div>
 
-    <!-- 選擇新聞按鈕 -->
-    <div class="animate--general">
-        <svg ng-click="selectNews(-1)" class="caret caret--left animate--faster" ng-class="{'caret--hide': isHideCaretLeft}" viewBox="0 0 206 206" xmlns="http://www.w3.org/2000/svg">
-            <path class="caret__path animate--faster" d="M153 3l-99 100 99 100" stroke="#000" stroke-width="7" fill="none"/>
-        </svg>
-        <svg ng-click="selectNews(1)" class="caret caret--right animate--faster" ng-class="{'caret--hide': isHideCaretRight}" viewBox="0 0 206 206" xmlns="http://www.w3.org/2000/svg">
-            <path class="caret__path animate--faster" d="M54 3l99 100-99 100" stroke="#000" stroke-width="7" fill="none"/>
-        </svg>    
-    </div>
+    <sy-time-machine></sy-time-machine>
+    <sy-nav></sy-nav>
 
-    <!-- 工具欄 -->
-    <!-- 多國家新聞 -->
-    <sy-news-i18n></sy-news-i18n>
-    <!-- 跳躍性選擇新聞 -->
-    <sy-news-time-machine></sy-news-time-machine>
-    <!-- 全屏模式 -->
-    <sy-news-fullscreen-button></sy-news-fullscreen-button>
-
-    <script src="/public/dist/libs.min.js"></script>
-    <script src="/public/dist/sy-news.min.js"></script>
+    <script src="/public/dist/vendors.js"></script>
+    <script src="/public/dist/app.js"></script>
 </body>
 </html>

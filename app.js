@@ -65,30 +65,18 @@ app.use('/api', require('./routes/api'))
 
 
 // Handing Error
-app.use(function (req, res){
-    res.status('404').sendFile(process.env.PWD + '/views/404.min.html')
-})
-app.use(function (err, req, res, next){
+app.use((err, req, res, next) => {
     console.log(err, err.stack)
 
-    var statusCode = err.code || err.status;
+    var statusCode = err.statusCode || 500;
+    var errObj = Object.prototype.toString.call(err) === '[object Object]'
+                    ? err
+                : { statusCode: statusCode };
 
-    switch (statusCode){
-        case 400:
-            res.status(statusCode).json({'status': 'error', 'msg': err.msg})
-            break;
-        case 401:
-            res.status(statusCode).json({'status': 'error','msg': err.message})
-            break;
-        case 500:
-            res.status(statusCode).json({'status': 'error', 'msg': err.msg})
-            break;
-        default:
-            res.status(500).json({'status': 'error', 'msg': 'server error'})
-
-    }
+    res.status(statusCode).json(errObj)
 })
 
-http.listen(process.env.PORT || 3000, function (){
+
+http.listen(process.env.PORT || 3001, function (){
     console.log('[App] is running')
 })

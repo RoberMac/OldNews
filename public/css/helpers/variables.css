@@ -1,0 +1,53 @@
+:root {
+    --font-family-base: "Helvetica Neue", "Helvetica", "PingFang SC", "Arial", sans-serif;
+    --line-height-base: 1.4;
+
+    --font-size-xx-small: 9px;
+    --font-size-small: 12px;
+    --font-size-base: 14px;
+    --font-size-regular: 16px;
+
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-bold: 600;
+
+    --color-black: #000;
+    --color-black-alpha: color(var(--color-black) a(70%));
+    --color-white: #FFF;
+    --color-white-alpha: color(var(--color-white) a(70%));
+    --color-gray: #F1F1F1;
+    --color-gray-drak: #CECECF;
+    --color-steel: #666;
+
+    --color-cn-yellow: #FFE200;
+    --color-cn-red: #E74010;
+    --color-tw-red: #FF2600;
+    --color-tw-blue: #021DA6;
+    --color-jp-red: #C70025;
+    --color-us-red: #BF0A30;
+    --color-us-blue: #002868;
+    --color-de-red: #BF0A30;
+    --color-de-black: #1E1E1E;
+    --color-de-yellow: #FED100;
+    --color-fr-blue: #00209F;
+    --color-fr-red: #F42A41;
+    --color-in-green: #138808;
+    --color-in-yellow: #FF9933;
+    --color-in-black: #000080;
+    --color-kr-red: #C60C30;
+    --color-kr-blue: #003478;
+    --color-ru-blue: #0000FE;
+    --color-ru-red: #FE0000;
+    --color-br-blue: #3200FE;
+    --color-br-green: #007600;
+    --color-br-yellow: #FEFE00;
+}
+
+@custom-media --all-mobile-devices (device-width <= 1024px), (width <= 1024px);
+@custom-media --phone (device-width <= 767px), (width <= 767px);
+@custom-media --phone-portrait (device-width <= 767px) and (orientation : portrait);
+@custom-media --phone-landscape (device-width <= 767px) and (orientation : landscape);
+@custom-media --tablet (768px <= device-width <= 1024px),(768px <= width <= 1024px);
+@custom-media --tablet-landscape (768px <= device-width <= 1024px) and (orientation : landscape),(768px <= width <= 1024px) and (orientation : landscape);
+
+@lost gutter 10px;

@@ -1,0 +1,20 @@
+<ul ng-repeat="sourceItem in newsVM.state.news.data | filter: newsVM.state.searchText">
+    <!-- Source: Provider -->
+    <h4>{{::sourceItem.source_name}}</h4>
+    <!-- Source: News -->
+    <li
+        ng-repeat="newsItem in sourceItem.news | orderBy: 'date' | filter: newsVM.state.searchText"
+        class="newsItem"
+    >
+
+        <!-- News: Created At -->
+        <span class="newsItem__createdAt">{{::newsItem.date | date: 'HH:mm'}}</span>
+        <!-- News: Title -->
+        <a class="newsItem__title" ng-href="{{::newsItem.url}}" target="_blank">{{::newsItem.title}}</a>
+        <!-- News: Source Link -->
+        <button ng-click="newsVM.updateQueryParam(newsItem.title)" class="newsItem__link">
+            <sy-icon name="link"></sy-icon>
+        </button>
+
+    </li>
+</ul>

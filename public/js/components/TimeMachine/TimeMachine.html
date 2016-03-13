@@ -1,0 +1,18 @@
+<div>
+    <!-- Time Machine: Start Button -->
+    <button ng-click="tmVM.toggleTimeMachine()" class="btn--timeMachine tips--deep animate--faster">
+        <sy-icon name="time_machine"></sy-icon>
+    </button>
+
+    <!-- Time Machine: Content -->
+    <div
+        ng-if="tmVM.state.isShowTimeMachine"
+        ng-click="tmVM.toggleTimeMachine()"
+        class="timeMachine vertically_center animate--faster"
+    >
+            <div class="timeMachine__content animate--general">
+                <div ng-include="'components/TimeMachine/Form.html'"></div>
+                <div ng-include="'components/TimeMachine/ToolBar.html'"></div>
+            </div>
+    </div>
+</div>

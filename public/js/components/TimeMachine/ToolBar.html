@@ -1,0 +1,15 @@
+<div sy-stop-propagation>
+    <button
+        ng-if="!tmVM.form.$invalid"
+        ng-click="tmVM.handleSubmit()"
+        class="timeMachine__btn tips animate--faster"
+    >
+        <sy-icon name="ok"></sy-icon>
+    </button>
+    <button
+        ng-click="tmVM.toggleTimeMachine()"
+        class="timeMachine__btn tips animate--faster"
+    >
+        <sy-icon name="cancel"></sy-icon>
+    </button>
+</div>

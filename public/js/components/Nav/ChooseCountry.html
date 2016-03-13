@@ -1,0 +1,12 @@
+<div class="btn--t--l animate--faster">
+    <ul>
+        <li ng-repeat="country in navVM.state.countryList" class="animate--faster">
+            <button
+                class="btn--country shadow animate--faster {{ 'btn--country--' + country }}"
+                ng-click="navVM.handleCountryClick(country)"
+            >
+                {{::country}}
+            </button>
+        </li>
+    </ul>
+</div>

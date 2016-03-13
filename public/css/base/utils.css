@@ -1,0 +1,46 @@
+.vertically_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.overflow {
+    &--x {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        transform: translate3d(0, 0, 0) scaleX(1);
+    }
+    &--y {
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        transform: translate3d(0, 0, 0) scaleX(1);
+    }
+}
+.shadow {
+    box-shadow: 0 3px 15px 0 rgba(0, 0, 0, .5);
+
+    &:hover {
+        box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 1);
+    }
+    &--onFocus {
+        &:focus {
+            box-shadow: 0 3px 15px 0 rgba(0, 0, 0, .5);
+        }
+    }
+}
+
+.oldNews {
+    .shadow {
+        box-shadow: 0 3px 15px 0 rgba(255, 255, 255, .5);
+
+        &:hover {
+            box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 1);
+        }
+        &--onFocus {
+            &:focus {
+                box-shadow: 0 3px 15px 0 rgba(255, 255, 255, .5);
+            }
+        }
+    }
+}

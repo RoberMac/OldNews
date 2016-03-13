@@ -1,102 +1,139 @@
-var gulp       = require('gulp'),
-    rename     = require('gulp-rename'),
-    plumber    = require('gulp-plumber'),
-    concat     = require('gulp-concat'),
-    uglify     = require('gulp-uglify'),
-    sourcemaps = require('gulp-sourcemaps'),
-    minifyCSS  = require('gulp-minify-css'),
-    minifyHTML = require('gulp-minify-html');
+const gulp       = require('gulp');
+const plumber    = require('gulp-plumber');
+const concat     = require('gulp-concat');
+const sourcemaps = require('gulp-sourcemaps');
+const path       = require('path');
+const rename     = require('gulp-rename');
 
-var paths = {
-    js_sy: [
-        'public/js/core.js',
-        'public/js/directives/*.js',
-        'public/js/services/*.js',
-        'public/js/controllers/*.js'
-    ],
-    js_libs: [
-        'public/js/libs/angular.min.js',
-        'public/js/libs/*.js',
-        '!public/js/libs/inobounce.min.js',
-        '!public/js/libs/*.map'
-    ],
-    css_sy: 'public/css/main.css',
-    html_index: [
-        'views/*.html',
-        '!views/*.min.html'
-    ],
-    html_sy: [
-        'public/js/templates/*.html'
-    ]
-};
-
-// Minify all AngularJS libs
-gulp.task('js_libs', function() {
-
-    return gulp.src(paths.js_libs)
+// Vendors
+const uglify = require('gulp-uglify');
+const ngAnnotate = require('gulp-ng-annotate');
+const ngTpCache = require('gulp-angular-templatecache');
+const PATH_VENDORS = [
+    'public/js/vendors/angular.min.js',
+    'public/js/vendors/*.js',
+    '!public/js/vendors/*.map',
+];
+gulp.task('vendors', () => {
+    return (
+        gulp.src(PATH_VENDORS)
         .pipe(plumber())
         .pipe(sourcemaps.init())
             .pipe(uglify())
-            .pipe(concat('libs.min.js'))
+            .pipe(concat('vendors.js'))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('public/dist'));
+        .pipe(gulp.dest('public/dist'))
+    );
 });
 
-// Minify all ShinyaApp-News Scripts
-gulp.task('js_sy', function() {
-
-    return gulp.src(paths.js_sy)
+// App:ng
+const PATH_APP_NG = [
+    'public/js/entry.js',
+    'public/js/components/**/*.js',
+    'public/js/utils/**/*.js',
+];
+gulp.task('app:ng', () => {
+    return (
+        gulp
+        .src(PATH_APP_NG)
         .pipe(plumber())
+        .pipe(ngAnnotate())
         .pipe(sourcemaps.init())
             .pipe(uglify())
-            .pipe(concat('sy-news.min.js'))
+            .pipe(concat('app.js'))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('public/dist'));
+        .pipe(gulp.dest('public/dist'))
+    );
 });
 
-// Minify all ShinyaApp-News CSS files
-gulp.task('css_sy', function () {
-
-    return gulp.src(paths.css_sy)
-        .pipe(sourcemaps.init())
-            .pipe(minifyCSS({keepSpecialComments: 1}))
-            .pipe(concat('sy-news.min.css'))
-            .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('public/dist'))
-})
-
-// Minify ShinyaApp-News index page
-gulp.task('html_index', function (){
-
-    return gulp.src(paths.html_index)
-        .pipe(minifyHTML())
-        .pipe(rename({
-            suffix: '.min'
+// App:templates
+const PATH_APP_TEMPLATES = 'public/js/components/**/*.html';
+gulp.task('app:templates', () => {
+    return (
+        gulp
+        .src(PATH_APP_TEMPLATES)
+        .pipe(ngTpCache({
+            root: 'components',
+            module: 'ShinyaNews.templates',
+            standalone: true
         }))
-        .pipe(gulp.dest('views'))
-})
-
-// Minify all ShinyaApp-News HTML template files
-gulp.task('html_sy', function (){
-
-    return gulp.src(paths.html_sy)
-        .pipe(minifyHTML())
-        .pipe(rename({
-            suffix: '.min'
-        }))
-        .pipe(gulp.dest('public/dist'))
-})
-
-// Rerun the task when a file changes 
-gulp.task('watch', function() {
-
-    gulp.watch(paths.js_sy, ['js_sy']);
-    gulp.watch(paths.js_libs, ['js_libs']);
-    gulp.watch(paths.css_sy, ['css_sy']);
-    gulp.watch(paths.css_libs, ['css_libs']);
-    gulp.watch(paths.html_index, ['html_index']);
-    gulp.watch(paths.html_sy, ['html_sy']);
+        .pipe(gulp.dest('public/js/components'))
+    );
 });
 
-// The default task (called when you run `gulp` from cli) 
-gulp.task('default', ['watch', 'js_sy', 'js_libs', 'css_sy', 'html_index', 'html_sy']);
+// App:styles
+const postcss = require('gulp-postcss');
+const PATH_APP_STYLES_WATCH = 'public/css/**/*.css';
+const PATH_APP_STYLES_ENTRY = 'public/css/app.css';
+gulp.task('app:styles', () => {
+    const processors = [
+        require('postcss-import')({
+            path: ['public/css']
+        }),
+        require('postcss-nested'),
+        require('postcss-short'),
+        require('postcss-assets')({
+            loadPaths: ['public/img/assets']
+        }),
+        require('postcss-cssnext')({
+            autoprefixer: true
+        }),
+        require('css-mqpacker'),
+        require('cssnano')
+    ];
+
+    return (
+        gulp.src(PATH_APP_STYLES_ENTRY)
+        .pipe(plumber())
+        .pipe(postcss(processors))
+        .pipe(concat('app.css'))
+        .pipe(gulp.dest('public/dist'))
+    );
+})
+
+// App:svg
+const svgmin   = require('gulp-svgmin');
+const svgstore = require('gulp-svgstore');
+const PATH_APP_SVG = 'public/img/src/*.svg';
+gulp.task('app:svg', () => {
+    return (
+        gulp.src(PATH_APP_SVG)
+        .pipe(svgmin(file => {
+            const prefix = path.basename(file.relative, path.extname(file.relative));
+            return {
+                plugins: [{
+                    cleanupIDs: {
+                        prefix: prefix + '-',
+                        minify: true
+                    }
+                }]
+            }
+        }))
+        .pipe(svgstore())
+        .pipe(rename('icon-sprites.svg'))
+        .pipe(gulp.dest('public/img'))
+    );
+})
+
+
+/**
+ * Task
+ *
+ */
+// Watch
+gulp.task('watch', () => {
+    gulp.watch(PATH_VENDORS, ['vendors']);
+    gulp.watch(PATH_APP_NG, ['app:ng']);
+    gulp.watch(PATH_APP_TEMPLATES, ['app:templates']);
+    gulp.watch(PATH_APP_STYLES_WATCH, ['app:styles']);
+    gulp.watch(PATH_APP_SVG, ['app:svg']);
+});
+// Run
+gulp.task('default', [
+    'watch',
+    'vendors',
+    'app:ng',
+    'app:templates',
+    'app:styles',
+    'app:svg',
+]);

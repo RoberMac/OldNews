@@ -1,0 +1,138 @@
+.btn {
+    &--t {
+        &--l {
+            position: absolute 10px * * 10px;
+        }
+        &--r {
+            position: absolute 10px 10px * *;
+        }
+    }
+    &--b {
+        &--l {
+            position: absolute * * 10px 10px;
+        }
+    }
+    &--logo {
+        display: block;
+        size: 5vw;
+        border: 1px solid #000;
+        border-radius: 10px;
+        background: inline('logo.png') 0 / 100% no-repeat;
+        z-index: 2;
+
+        @media (--phone) {
+            position: absolute .5% .5% * *;
+            size: 35px;
+            margin: 10px 10px * *;
+            border-radius: 7px;
+        }
+        @media (--tablet) {
+            size: 10vw;
+        }
+        @media (--tablet-landscape) {
+            size: 7vw;
+        }
+    }
+    &--caret {
+        position: absolute calc(50% - 18.5px) * *;
+        display: block;
+        size: 37px;
+        z-index: 2;
+
+        @media (--phone) {
+            display: none;
+        }
+        &--left {
+            left: 20%;
+
+            @media (--tablet) {
+                left: 6%;
+            }
+        }
+        &--right {
+            right: 20%;
+
+            @media (--tablet) {
+                right: 6%;
+            }
+        }
+    }
+    &--timeMachine {
+        position: absolute calc(5% - 13.5px) * * calc(50% - 13.5px);
+        size: 27px;
+        filter: blur(0px);
+        z-index: -1;
+
+        @media (--phone) {
+            display: none;
+        }
+        @media (--tablet) {
+            top: calc(12% - 13.5px);
+        }
+    }
+    &--country {
+        size: 27px;
+        margin-bottom: 7px;
+        font-size: var(--font-size-xx-small);
+        border-radius: 50%;
+        overflow: hidden;
+        z-index: 2;
+
+        @media (--phone) {
+            position: absolute .5% * * .5%;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        &--CN, &--HK {
+            color: var(--color-cn-yellow);
+            background-color: var(--color-cn-red);
+        }
+        &--TW {
+            color: var(--color-white);
+            background: linear-gradient(-15deg, var(--color-tw-red) 0%, var(--color-tw-blue) 25%);
+        }
+        &--US {
+            color: var(--color-white);
+            background: linear-gradient(-15deg, var(--color-us-red) 0%, var(--color-us-blue) 25%);
+        }
+        &--JP {
+            background-color: var(--color-white);
+            color: var(--color-jp-red);
+        }
+        &--DE {
+            color: var(--color-de-yellow);
+            background: linear-gradient(var(--color-de-red), var(--color-de-red) 50%, var(--color-de-black) 50%);
+        }
+        &--FR {
+            color: var(--color-white);
+            background: linear-gradient(to right, var(--color-fr-blue), var(--color-fr-blue) 50%, var(--color-fr-red) 50%);
+        }
+        &--IN {
+            color: var(--color-in-black);
+            background: linear-gradient(-15deg, var(--color-in-green) 0%, var(--color-in-yellow) 25%);
+        }
+        &--KR {
+            color: var(--color-white);
+            background: linear-gradient(var(--color-kr-red), var(--color-kr-red) 50%, var(--color-kr-blue) 50%);
+        }
+        &--RU {
+            color: var(--color-white);
+            background: linear-gradient(var(--color-ru-blue), var(--color-ru-blue) 50%, var(--color-ru-red) 50%);
+        }
+        &--BR {
+            color: var(--color-br-yellow);
+            background: linear-gradient(-15deg, var(--color-br-blue) 0%, var(--color-br-green) 25%);
+        }
+    }
+}
+
+
+.oldNews {
+    .btn {
+        &--logo {
+            border-color: var(--color-white);
+            background-color: var(--color-black);
+        }
+    }
+}

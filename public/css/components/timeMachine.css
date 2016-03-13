@@ -1,0 +1,64 @@
+.timeMachine {
+    position: absolute 0 0 * *;
+    size: 100%;
+    text-align: center;
+    background-color: var(--color-white-alpha);
+    z-index: 3;
+
+    &__content {
+        position: relative;
+        width: 40%;
+
+        @media (--phone) {
+            width: 94%;
+        }
+        @media (--phone-landscape) {
+            width: 97%;
+        }
+        @media (--tablet) {
+            width: 76%;
+        }
+    }
+    &__form {
+        border: 1px solid #000;
+        background-color: var(--color-white);
+    }
+    &__input {
+        display: inline-block;
+        size: 50px;
+        margin: 1em;
+        padding: 10px;
+        &:focus {
+            border-color: var(--color-black);
+        }
+        &:disabled {
+            border-color: var(--color-gray-drak);
+        }
+    }
+    &__btn {
+        margin: 1em;
+        width: 37px;
+    }
+}
+
+.oldNews {
+    .timeMachine {
+        color: var(--color-white);
+        background-color: var(--color-black-alpha);
+
+        &__form {
+            border-color: var(--color-white);
+            background-color: var(--color-black);
+        }
+        &__input {
+            color: var(--color-white);
+
+            &:focus {
+                border-color: var(--color-white);
+            }
+            &:disabled {
+                border-color: var(--color-steel);
+            }
+        }
+    }
+}

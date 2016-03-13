@@ -1,0 +1,19 @@
+<div>
+
+    <button
+        ng-if="navVM.state.isShowCaretLeft"
+        ng-click="navVM.selectNews(-1)"
+        class="btn--caret btn--caret--left tips--deep animate--faster"
+    >
+        <sy-icon name="caret-left"></sy-icon>
+    </button>
+
+    <button
+        ng-if="navVM.state.isShowCaretRight"
+        ng-click="navVM.selectNews(1)"
+        class="btn--caret btn--caret--right tips--deep animate--faster"
+    >
+        <sy-icon name="caret-right"></sy-icon>
+    </button>
+
+</div>

@@ -1,0 +1,34 @@
+.searchBar {
+    position: absolute 7px 0 * *;
+    width: 100%;
+    text-align: right;
+
+    &__input {
+        width: 30px;
+        height: 20px;
+        text-align: left;
+        border: 0;
+        background: inline('search.png') left center / 25px no-repeat;
+        cursor: pointer;
+
+        &:focus,  &--valid {
+            size: 100% 37px;
+            padding: 0 0 0 30px;
+            color: var(--color-gray-drak);
+            border: 1px solid #CECECF;
+            background-color: var(--color-white);
+            border-radius: 7px;
+            cursor: text;
+        }
+    }
+}
+
+body.oldNews {
+    .searchBar {
+        &__input {
+            &:focus, &--valid {
+                background-color: var(--color-black);
+            }
+        }
+    }
+}
