@@ -45,11 +45,18 @@
         }
     }
     &__title {
+        position: relative;
         font-size: var(--font-size-base);
         text-decoration: underline;
 
         @media (--phone) {
             font-size: var(--font-size-base);
+        }
+        &:focus&::before {
+            content: '';
+            position: absolute 0 * * -10px;
+            size: 7px 100%;
+            background-color: currentColor;
         }
     }
     &__link {

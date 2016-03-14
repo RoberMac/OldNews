@@ -29,6 +29,11 @@
         }
     }
 }
+.cursor {
+    &--pointer {
+        cursor: pointer;
+    }
+}
 
 .oldNews {
     .shadow {

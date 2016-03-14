@@ -11,11 +11,11 @@
     <!-- Content -->
     <div class="newsBox__content overflow--y">
 
-        <div ng-if="newsVM.state.news.data.length > 0">
+        <div ng-if="newsVM.state.newsData.length > 0">
             <div ng-include="'components/NewsBox/SearchBar.html'"></div>
         </div>
 
-        <div ng-if="newsVM.state.news.data.length > 0" ng-include="'components/NewsBox/NewsItem.html'"></div>
+        <div ng-if="newsVM.state.newsData.length > 0" ng-include="'components/NewsBox/NewsItem.html'"></div>
 
         <div ng-include="'components/NewsBox/FetchState.html'"></div>
 

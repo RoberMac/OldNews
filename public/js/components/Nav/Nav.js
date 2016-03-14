@@ -16,38 +16,22 @@ function syNav(){
 function NavCtrl(
     $scope, $window, $timeout,
     $state, $stateParams, store,
-    COUNTRIES, TIME, TimeHelper, Animate
+    COUNTRIES, TIME, TimeHelper
 ){
 
     var vm = this;
     this.state = {
         isShowCaretLeft: true,
         isShowCaretRight: true,
-        countryList: [store.get('syNewsCountry') || 'HK']
+        countryList: [store.get('sy-country') || 'HK']
     };
     vm.selectNews = selectNews;
     vm.togglehNewsType = togglehNewsType;
     vm.handleCountryClick = handleCountryClick;
 
     // Events
-    angular.element($window).on('keydown', function(e) {
-        if (e.target.tagName.toLowerCase() === 'input') return;
-
-        switch (e.keyCode) {
-            case 37: // ←
-                vm.selectNews(-1)
-                break;
-            case 39: // →
-                vm.selectNews(1)
-                break;
-        }
-    })
-    $scope.$on('selectNews', function (event, payload){
-        vm.selectNews(payload.step)
-    })
-    $scope.$on('checkCaret', function (event, payload){
-        checkCaret()
-    })
+    $scope.$on('keyDown:leftOrRightArrow', handleKeyDownLeftOrRightArrow)
+    $scope.$on('fetchNews:start', checkCaret)
 
 
     function selectNews(step) {
@@ -56,8 +40,6 @@ function NavCtrl(
 
         // 屏蔽（移動端／鍵盤操作）無效的獲取新聞（滑動）
         if (step === 1 && !vm.state.isShowCaretRight || step === -1 && !vm.state.isShowCaretLeft) return;
-
-        Animate.toggleDirection(step)
 
         switch (isOldNews) {
             case true:
@@ -79,6 +61,9 @@ function NavCtrl(
                 break;
         }
     }
+    function handleKeyDownLeftOrRightArrow(event, payload) {
+        vm.selectNews(payload.step)
+    }
     function checkCaret() {
         var isOldNews = $scope.rootVM.state.isOldNews;
         var newsDate = TimeHelper.newsDateMs(isOldNews);
@@ -99,8 +84,6 @@ function NavCtrl(
         }
     }
     function togglehNewsType() {
-        Animate.cardFlip()
-
         var isOldNews = $scope.rootVM.state.isOldNews;
         var now;
         switch (isOldNews){

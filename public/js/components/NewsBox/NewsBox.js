@@ -1,43 +1,39 @@
 angular
 .module('ShinyaNews.components.NewsBox', [])
-.controller('NewsBoxCtrl', NewsBoxCtrl)
+.controller('NewsBoxCtrl', NewsBoxCtrl);
 
 
 function NewsBoxCtrl(
-    $rootScope, $scope, $window, $location,
-    $state, $stateParams, store,
-    TimeHelper, FetchNews
+    $rootScope, $scope, $location,
+    $state, $stateParams,
+    store, TimeHelper, FetchNews
 ){
 
     var vm = this;
     vm.state = {
         isFetching: true,
         isFetchFail: false,
-        news: {
-            data: [],
-            country: '',
-            date: 0
-        },
-        searchText: $stateParams.q
+        newsData: [],
+        newsDate: 0,
+        selectedNewsIndex: -1,
+        searchText: $stateParams.q,
     };
     vm.updateState = updateState;
     vm.updateQueryParam = updateQueryParam;
     vm.handleSwipe = handleSwipe;
+    vm.handleHeadingClick = handleHeadingClick;
 
-    initState()
     // Events
-    angular.element($window).on('keydown', function(e) {
-        switch (e.keyCode) {
-            case 27: // Esc
-                vm.updateQueryParam('')
-                break;
-        }
-    })
+    $scope.$on('keyDown:esc', handleKeyDownEsc)
+    $scope.$on('keyDown:upOrDownArrow', handleKeyDownUpOrDownArrow)
     $scope.$watch('newsVM.state.searchText', function(newVal, oldVal) {
         if (newVal !== oldVal){
             vm.updateQueryParam(newVal)
         }
     })
+
+    // Fetch News
+    fetchNews()
 
 
     function updateState(newState) {
@@ -52,33 +48,55 @@ function NewsBoxCtrl(
     function handleSwipe(step){
         $rootScope.$broadcast('selectNews', { step: step })
     }
-    function initState() {
+    function handleHeadingClick() {
+        $rootScope.$broadcast('toggleTimeMachine')
+    }
+    function handleKeyDownEsc() {
+        vm.updateQueryParam('')
+        document.querySelector('.searchBar__input').blur()
+    }
+    function handleKeyDownUpOrDownArrow(event, payload) {
+        // Foucs News Item
+        var newsItemList = document.querySelectorAll('.newsItem__title');
+        var len = newsItemList.length;
+
+        if (len <= 0) return;
+
+        var step = payload.step;
+        var index = vm.state.selectedNewsIndex;
+
+        if (step === -1 && index > 0 && index < len) {
+            index--;
+        }
+        else if (step === 1 && index >= -1 && index < len - 1) {
+            index++;
+        }
+
+        newsItemList[index].focus()
+        vm.updateState({ selectedNewsIndex: index })
+    }
+    function fetchNews() {
         var country = $stateParams.country;
         var isOldNews = !TimeHelper.isToday();
         var date = TimeHelper.newsDateMs(isOldNews);
 
-        // Reset State
-        store.set('syNewsCountry', country)
+        // Store Country
+        store.set('sy-country', country)
+
+        // Update Date
         vm.updateState({
-            isFetching: true,
-            isFetchFail: false,
-            news: {
-                data: [],
-                country: country,
-                date: date
-            }
-        })
-        $scope.rootVM.updateState({
-            isOldNews: isOldNews
+            newsDate: date
         })
 
         // Start Fetch News
+        $rootScope.$broadcast('fetchNews:start')
+
         FetchNews(date, country, isOldNews)
         .then(function(newsData) {
             vm.updateState({
                 isFetching: false,
                 isFetchFail: false,
-                news: { data: newsData }
+                newsData: newsData
             })
         })
         .catch(function() {
@@ -87,8 +105,10 @@ function NewsBoxCtrl(
                 isFetchFail: true
             })
         })
-
-        // Check Caret
-        $rootScope.$broadcast('checkCaret')
+        .finally(function() {
+            $scope.rootVM.updateState({
+                isOldNews: isOldNews
+            })
+        })
     }
 }

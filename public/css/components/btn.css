@@ -21,9 +21,7 @@
         z-index: 2;
 
         @media (--phone) {
-            position: absolute .5% .5% * *;
             size: 35px;
-            margin: 10px 10px * *;
             border-radius: 7px;
         }
         @media (--tablet) {
@@ -77,12 +75,6 @@
         border-radius: 50%;
         overflow: hidden;
         z-index: 2;
-
-        @media (--phone) {
-            position: absolute .5% * * .5%;
-            margin-top: 10px;
-            margin-left: 10px;
-        }
 
         &--CN, &--HK {
             color: var(--color-cn-yellow);

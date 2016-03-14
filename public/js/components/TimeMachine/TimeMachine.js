@@ -12,7 +12,7 @@ function syTimeMachine() {
         templateUrl: 'components/TimeMachine/TimeMachine.html'
     }
 }
-function TimeMachineCtrl($scope, $state, $stateParams, TimeHelper, Animate) {
+function TimeMachineCtrl($scope, $state, $stateParams, TimeHelper) {
     var vm = this;
     vm.state = {
         isShowTimeMachine: false,
@@ -27,6 +27,8 @@ function TimeMachineCtrl($scope, $state, $stateParams, TimeHelper, Animate) {
     vm.toggleTimeMachine = toggleTimeMachine;
     vm.handleSubmit = handleSubmit;
 
+    $scope.$on('keyDown:esc', handleKeyDownEsc)
+    $scope.$on('toggleTimeMachine', toggleTimeMachine)
     $scope.$watchCollection('tmVM.state.timeMachine', formValidation)
 
 
@@ -43,14 +45,13 @@ function TimeMachineCtrl($scope, $state, $stateParams, TimeHelper, Animate) {
         // Show / Hide Time Machine
         vm.state.isShowTimeMachine = !vm.state.isShowTimeMachine
     }
+    function handleKeyDownEsc() {
+        vm.state.isShowTimeMachine && vm.toggleTimeMachine()
+    }
     function handleSubmit() {
         switch ($scope.rootVM.state.isOldNews) {
             // Only Change `Year`, `Month` and `Day`
             case true:
-                vm.state.timeMachine.M <= $stateParams.month && vm.state.timeMachine.D <= $stateParams.day
-                    ? Animate.toggleDirection(-1)
-                : Animate.toggleDirection(1)
-
                 $state.go('news', {
                     year : '20' + vm.state.timeMachine.Y,
                     month: vm.state.timeMachine.M,
@@ -62,8 +63,6 @@ function TimeMachineCtrl($scope, $state, $stateParams, TimeHelper, Animate) {
             // Only Change `Hour`
             case false:
                 var h = vm.state.timeMachine.H;
-
-                h <= $stateParams.h ? Animate.toggleDirection(-1) : Animate.toggleDirection(1)
 
                 $state.go('news', { h: h, q: null })
                 break;

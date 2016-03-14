@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html ng-app="ShinyaNews" ng-controller="rootCtrl as rootVM" ng-csp>
+<html
+    ng-app="ShinyaNews"
+    ng-controller="rootCtrl as rootVM"
+    ng-class="{'oldNews': rootVM.state.isOldNews}"
+    class="animate--newsBox animate--general"
+    ng-csp
+>
 <head>
     <meta charset="UTF-8">
     <meta name="keywords" content="新聞，舊聞。, 深夜，破曉。, 深夜,破曉。, shenyepoxiao">
@@ -16,9 +22,9 @@
     <title>新聞，舊聞。</title>
     <link rel="stylesheet" href="/public/dist/app.css">
 </head>
-<body class="animate--general" ng-class="{'oldNews': rootVM.state.isOldNews}">
+<body>
 
-    <div ui-view class="ui-view-newsBox"></div>
+    <div ui-view></div>
 
     <sy-time-machine></sy-time-machine>
     <sy-nav></sy-nav>

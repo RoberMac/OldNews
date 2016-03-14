@@ -4,7 +4,6 @@ angular
     'ngTouch',
     'ngAnimate',
     'ui.router',
-    'angular-storage',
     // App
     'ShinyaNews.utils.controllers',
     'ShinyaNews.utils.services',
@@ -16,6 +15,7 @@ angular
 ])
 .config(config);
 
+
 function config($locationProvider, $stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise(function() {
@@ -24,7 +24,8 @@ function config($locationProvider, $stateProvider, $urlRouterProvider) {
         var month   = now.getMonth() + 1;
         var day     = now.getDate();
         var h       = now.getHours();
-        var country = JSON.parse(localStorage.getItem('syNewsCountry')) || "HK";
+        var country = JSON.parse(window.localStorage.getItem('sy-country')) || "HK";
+
         return country + '/' + year + '/' + month + '/' + day + '?h=' + h;
     });
 

@@ -1,9 +1,13 @@
 html {
     height: 100%;
     overflow: hidden;
+    background-color: var(--color-white);
+
+    @media (--phone) {
+        background-color: var(--color-black);
+    }
 }
 body {
-    background-color: var(--color-white);
     font-family: var(--font-family-base);
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-regular);
@@ -11,10 +15,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeSpeed;
-
-    @media (--phone) {
-        background-color: var(--color-black);
-    }
 }
 * {
     box-sizing: border-box;
@@ -100,7 +100,7 @@ input {
         margin: 0;
     }
 }
-button, .btn {
+button {
     background-color: transparent;
     cursor: pointer;
     text-align: center;
@@ -111,7 +111,7 @@ img, video {
 }
 
 
-body.oldNews {
+.oldNews {
     background-color: var(--color-black);
 
     @media (--phone) {

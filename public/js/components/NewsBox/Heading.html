@@ -1,6 +1,6 @@
 <h3>
-    <span>
-        <span ng-if="!rootVM.state.isOldNews">{{newsVM.state.news.date | date:'HH:00'}}</span>
-        <span ng-if="rootVM.state.isOldNews">{{newsVM.state.news.date | date:'yyyy-MM-dd'}}</span>
+    <span ng-click="newsVM.handleHeadingClick()" class="cursor--pointer" role="button">
+        <span ng-if="!rootVM.state.isOldNews">{{newsVM.state.newsDate | date:'HH:00'}}</span>
+        <span ng-if="rootVM.state.isOldNews">{{newsVM.state.newsDate | date:'yyyy-MM-dd'}}</span>
     </span>
 </h3>

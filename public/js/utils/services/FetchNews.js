@@ -1,17 +1,16 @@
 angular
 .module('ShinyaNews.utils.services')
+.constant('STORE_PREFIX', 'sy-news-')
 .factory('NewsStore', NewsStore)
 .factory('OldNewsStore', OldNewsStore)
 .factory('FetchNews', FetchNews)
-.run(function (store, NewsStore){
-    // 刪除緩存於本地的過期信息
-    store.get('oneDayNewsExpires') < Date.now() && NewsStore.removeAll()
+.run(function (store, STORE_PREFIX, NewsStore){
+    // Clear Expired News
+    store.get(STORE_PREFIX + 'expiration-date') < Date.now() && NewsStore.removeAll()
 });
 
 
-function NewsStore($window, store, TimeHelper, TIME){
-    var newsStore = store.getNamespacedStore('one-day-news', '-');
-
+function NewsStore($window, store, STORE_PREFIX, TimeHelper, TIME){
     return {
         get: get,
         set: set,
@@ -19,24 +18,24 @@ function NewsStore($window, store, TimeHelper, TIME){
     };
 
 
+    // Get News
     function get(newsID) {
-        return newsStore.get(newsID)
+        return store.get(STORE_PREFIX + newsID)
     }
-    // 存储新闻与本地並設置過期時間
+    // Store News and Expiration Date
     function set(newsID, news) {
-        newsStore.set(newsID, news)
-        store.set('oneDayNewsExpires', TimeHelper.todayMs() + TIME.ONE_DAY)
+        store.set(STORE_PREFIX + newsID, news)
+        store.set(STORE_PREFIX + 'expiration-date', TimeHelper.todayMs() + TIME.ONE_DAY)
     }
-    // 清除過期的新聞
+    // Remove all News
     function removeAll() {
-        var ls = $window.localStorage,
-            len = localStorage.length,
-            reg = /^one-day-news-/,
-            j = 0;
-        for (var i = 0; i < len; i++){
+        var ls = $window.localStorage;
+        var reg = new RegExp('^' + STORE_PREFIX);
+
+        for (var i = 0, j = 0, len = localStorage.length; i < len; i++){
             reg.test(ls.key(j))
                 ? store.remove(ls.key(j))
-                : j ++
+            : j ++
         }
     }
 }

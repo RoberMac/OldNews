@@ -1,7 +1,7 @@
 <form class="searchBar" novalidate name="searchForm">
 
     <input
-        class="searchBar__input animate--faster"
+        class="searchBar__input cursor--pointer animate--faster"
         ng-class="{'searchBar__input--valid': searchForm.$valid}"
         ng-model="newsVM.state.searchText"
         ng-model-options="{ debounce: 300 }"

@@ -6,6 +6,7 @@ angular
 function autoFocus() {
     return {
         restrict: 'A',
+        scope: {},
         link: function($scope, $elem, $attr) {
             $elem[0].focus()
         }

@@ -9,7 +9,6 @@
         text-align: left;
         border: 0;
         background: inline('search.png') left center / 25px no-repeat;
-        cursor: pointer;
 
         &:focus,  &--valid {
             size: 100% 37px;

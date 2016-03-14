@@ -17,60 +17,6 @@
     }
 }
 
-.ui-view-newsBox {
-    &.ng-enter, &.ng-leave {
-        position: absolute;
-        size: 100%;
-        transition: all .7s ease-in-out;
-
-        @media (--all-mobile-devices) {
-            transition: all .3s ease-in-out;
-        }
-    }
-    &.ng-enter {
-        opacity: 0;
-        transform: translate3d(50%, 0, 0) scale3d(.7, .7, .7);
-    }
-    &.ng-enter-active, &.ng-leave {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
-    &.ng-leave-active {
-        opacity: 0;
-        transform: translate3d(-50%, 0, 0) scale3d(.7, .7, .7);
-    }
-
-    &.rtl {
-        &.ng-enter {
-            transform: translate3d(-50%, 0, 0) scale3d(.7, .7, .7);
-        }
-        &.ng-enter-active, &.ng-leave {
-            transform: translate3d(0, 0, 0);
-        }
-        &.ng-leave-active {
-            transform: translate3d(50%, 0, 0) scale3d(.7, .7, .7);
-        }
-    }
-    &.cardFlip {
-        &.ng-enter-active, &.ng-leave {
-            opacity: 1;
-            transform: rotateY(0deg);
-        }
-        &.ng-enter, &.ng-leave-active {
-            opacity: 0;
-            transform: rotateY(180deg);
-        }
-    }
-}
-
-@keyframes timeMachine {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
 @keyframes spin {
     0% {
         transform: rotate(0deg);
