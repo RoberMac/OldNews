@@ -32,6 +32,7 @@ function NavCtrl(
     // Events
     $scope.$on('keyDown:esc', handleKeyDownEsc)
     $scope.$on('keyDown:leftOrRightArrow', handleKeyDownLeftOrRightArrow)
+    $scope.$on('swipe:leftOrRight', handleSwipeLeftOrRight)
     $scope.$on('fetchNews:start', checkCaret)
 
 
@@ -66,6 +67,9 @@ function NavCtrl(
         vm.state.countryList = getInitCountry();
     }
     function handleKeyDownLeftOrRightArrow(event, payload) {
+        vm.selectNews(payload.step)
+    }
+    function handleSwipeLeftOrRight(event, payload) {
         vm.selectNews(payload.step)
     }
     function checkCaret() {

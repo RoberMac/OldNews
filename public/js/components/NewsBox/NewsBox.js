@@ -46,7 +46,7 @@ function NewsBoxCtrl(
         }, { notify: false, reload: true })
     }
     function handleSwipe(step){
-        $rootScope.$broadcast('selectNews', { step: step })
+        $rootScope.$broadcast('swipe:leftOrRight', { step: step })
     }
     function handleHeadingClick() {
         $rootScope.$broadcast('toggleTimeMachine')
