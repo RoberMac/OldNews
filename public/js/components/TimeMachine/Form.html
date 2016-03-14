@@ -7,7 +7,7 @@
 >
     <div ng-if="!rootVM.state.isOldNews">
         <input
-            sy-auto-focus
+            sy-auto-focus="700"
             type="number"
             placeholder="H"
             ng-model="tmVM.state.timeMachine.H"
@@ -52,7 +52,7 @@
             class="timeMachine__input shadow--onFocus animate--faster"
             ng-model="tmVM.state.timeMachine.D"
             ng-model-options="{ debounce: 300 }"
-            sy-auto-focus
+            sy-auto-focus="700"
             type="number"
             placeholder="D"
             min="1"

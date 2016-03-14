@@ -32,6 +32,7 @@ function rootCtrl($rootScope, $window){
                 break;
             case 38: // ↑
             case 40: // ↓
+                if (target === 'input') return;
                 $rootScope.$broadcast('keyDown:upOrDownArrow', { step: keyCode === 38 ? -1 : 1 })
                 break;
         }

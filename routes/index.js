@@ -4,7 +4,7 @@ var platform  = require('platform'),
 router.get(['/*'], function (req, res, next){
 
     platform.parse(req.get('user-agent')).name === 'IE'
-    ? res.redirect(process.env.PWD + '/views/404.html')
+    ? res.send('FUCK IE')
     : res.sendFile(process.env.PWD + '/views/index.html')
 })
 

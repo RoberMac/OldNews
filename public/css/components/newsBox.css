@@ -20,6 +20,11 @@
     &__content {
         position: absolute calc(3.5em) * * 5%;
         size: 90% calc(100% - 3.5em);
+
+        @media (--phone) {
+            left: 2%;
+            width: 96%;
+        }
     }
 }
 
@@ -54,9 +59,11 @@
         }
         &:focus&::before {
             content: '';
-            position: absolute 0 * * -10px;
-            size: 7px 100%;
-            background-color: currentColor;
+            position: absolute 1px * * -10px;
+            size: 0;
+            border-style: solid;
+            border-width: .5em 0 .5em 7px;
+            border-color: transparent transparent transparent currentColor;
         }
     }
     &__link {

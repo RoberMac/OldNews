@@ -21,8 +21,7 @@ function TimeMachineCtrl($scope, $state, $stateParams, TimeHelper) {
             M: 0,
             D: 0,
             H: 0
-        },
-
+        }
     };
     vm.toggleTimeMachine = toggleTimeMachine;
     vm.handleSubmit = handleSubmit;
@@ -71,34 +70,31 @@ function TimeMachineCtrl($scope, $state, $stateParams, TimeHelper) {
         vm.state.isShowTimeMachine = false
     }
     function formValidation(newVal, oldVal) {
+        var maxDate = Date.now()
         var expectDate;
 
         switch ($scope.rootVM.state.isOldNews) {
             case true:
                 expectDate = (
-                    Date.parse(
-                        new Date(
-                            '20' + vm.state.timeMachine.Y,
-                            vm.state.timeMachine.M - 1,
-                            vm.state.timeMachine.D
-                        )
-                    )
+                    Date.parse(new Date(
+                        '20' + vm.state.timeMachine.Y,
+                        vm.state.timeMachine.M - 1,
+                        vm.state.timeMachine.D
+                    ))
                 );
                 break;
             case false:
                 expectDate = (
-                    Date.parse(
-                        new Date(
-                            new Date().getFullYear(),
-                            new Date().getMonth(),
-                            new Date().getDate(),
-                            vm.state.timeMachine.H
-                        )
-                    )
+                    Date.parse(new Date(
+                        new Date().getFullYear(),
+                        new Date().getMonth(),
+                        new Date().getDate(),
+                        vm.state.timeMachine.H
+                    ))
                 );
                 break;
         }
 
-        vm.form && vm.form.$setValidity('maxDate', expectDate <= Date.now())
+        vm.form && vm.form.$setValidity('maxDate', expectDate <= maxDate)
     }
 }
