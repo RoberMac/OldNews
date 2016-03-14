@@ -22,7 +22,7 @@
     }
 }
 
-body.oldNews {
+.oldNews {
     .searchBar {
         &__input {
             &:focus, &--valid {

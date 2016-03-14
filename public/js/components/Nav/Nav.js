@@ -23,13 +23,14 @@ function NavCtrl(
     this.state = {
         isShowCaretLeft: true,
         isShowCaretRight: true,
-        countryList: [store.get('sy-country') || 'HK']
+        countryList: getInitCountry()
     };
     vm.selectNews = selectNews;
     vm.togglehNewsType = togglehNewsType;
     vm.handleCountryClick = handleCountryClick;
 
     // Events
+    $scope.$on('keyDown:esc', handleKeyDownEsc)
     $scope.$on('keyDown:leftOrRightArrow', handleKeyDownLeftOrRightArrow)
     $scope.$on('fetchNews:start', checkCaret)
 
@@ -60,6 +61,9 @@ function NavCtrl(
                 })
                 break;
         }
+    }
+    function handleKeyDownEsc() {
+        vm.state.countryList = getInitCountry();
     }
     function handleKeyDownLeftOrRightArrow(event, payload) {
         vm.selectNews(payload.step)
@@ -155,5 +159,8 @@ function NavCtrl(
                 }
             })
         }
+    }
+    function getInitCountry() {
+        return [store.get('sy-country') || 'HK'];
     }
 }
