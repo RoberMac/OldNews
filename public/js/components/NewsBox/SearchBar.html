@@ -5,6 +5,7 @@
         ng-class="{'searchBar__input--valid': searchForm.$valid}"
         ng-model="newsVM.state.searchText"
         ng-model-options="{ debounce: 300 }"
+        ng-change="newsVM.updateQueryParam(newsVM.state.searchText)"
         type="text"
         required
     >

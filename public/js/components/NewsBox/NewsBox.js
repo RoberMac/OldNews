@@ -26,11 +26,6 @@ function NewsBoxCtrl(
     // Events
     $scope.$on('keyDown:esc', handleKeyDownEsc)
     $scope.$on('keyDown:upOrDownArrow', handleKeyDownUpOrDownArrow)
-    $scope.$watch('newsVM.state.searchText', function(newVal, oldVal) {
-        if (newVal !== oldVal){
-            vm.updateQueryParam(newVal)
-        }
-    })
 
     // Fetch News
     fetchNews()

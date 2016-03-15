@@ -25,11 +25,10 @@ function TimeMachineCtrl($scope, $state, $stateParams, TimeHelper) {
     };
     vm.toggleTimeMachine = toggleTimeMachine;
     vm.handleSubmit = handleSubmit;
+    vm.dateValidation = dateValidation;
 
     $scope.$on('keyDown:esc', handleKeyDownEsc)
     $scope.$on('toggleTimeMachine', toggleTimeMachine)
-    $scope.$watchCollection('tmVM.state.timeMachine', formValidation)
-
 
     function toggleTimeMachine() {
         // Init Time Machine Date info
@@ -69,7 +68,7 @@ function TimeMachineCtrl($scope, $state, $stateParams, TimeHelper) {
         // Hide Time Machine
         vm.state.isShowTimeMachine = false
     }
-    function formValidation(newVal, oldVal) {
+    function dateValidation(newVal, oldVal) {
         var maxDate = Date.now()
         var expectDate;
 
