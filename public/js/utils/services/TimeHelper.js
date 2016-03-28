@@ -20,23 +20,19 @@ function TimeHelper($stateParams){
 
     function nowHourMs() {
         var date = new Date();
-        return Date.parse(
-            new Date(
-                date.getFullYear(),
-                date.getMonth(),
-                date.getDate(),
-                date.getHours()
-            )
+        return +new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            date.getHours()
         );
     }
     function todayMs() {
         var date = new Date();
-        return  Date.parse(
-            new Date(
-                date.getFullYear(),
-                date.getMonth(),
-                date.getDate()
-            )
+        return  +new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate()
         );
     }
     function newsDateMs(isOldNews){
@@ -45,7 +41,7 @@ function TimeHelper($stateParams){
         var day     = $stateParams.day;
         var hour    = $stateParams.h;
 
-        return Date.parse(new Date(year, month - 1, day, isOldNews ? null : hour));
+        return +new Date(year, month - 1, day, isOldNews ? null : hour);
     }
     function isToday() {
         var year    = $stateParams.year;

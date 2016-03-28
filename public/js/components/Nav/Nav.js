@@ -55,7 +55,7 @@ function NavCtrl(
                 });
                 break;
             case false:
-                var nextHour = parseInt($stateParams.h || new Date().getHours()) + step;
+                var nextHour = parseInt($stateParams.h || new Date().getHours(), 10) + step;
                 $state.go('news', {
                     h: nextHour,
                     q: null

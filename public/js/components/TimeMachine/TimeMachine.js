@@ -75,21 +75,21 @@ function TimeMachineCtrl($scope, $state, $stateParams, TimeHelper) {
         switch ($scope.rootVM.state.isOldNews) {
             case true:
                 expectDate = (
-                    Date.parse(new Date(
+                    +new Date(
                         '20' + vm.state.timeMachine.Y,
                         vm.state.timeMachine.M - 1,
                         vm.state.timeMachine.D
-                    ))
+                    )
                 );
                 break;
             case false:
                 expectDate = (
-                    Date.parse(new Date(
+                    +new Date(
                         new Date().getFullYear(),
                         new Date().getMonth(),
                         new Date().getDate(),
                         vm.state.timeMachine.H
-                    ))
+                    )
                 );
                 break;
         }
