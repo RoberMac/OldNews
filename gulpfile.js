@@ -53,9 +53,9 @@ gulp.task('app:templates', () => {
         gulp
         .src(PATH_APP_TEMPLATES)
         .pipe(ngTpCache({
-            root: 'components',
-            module: 'ShinyaNews.templates',
-            standalone: true
+            root      : 'components',
+            module    : 'ShinyaNews.templates',
+            standalone: true,
         }))
         .pipe(gulp.dest('public/js/components'))
     );
@@ -68,18 +68,18 @@ const PATH_APP_STYLES_ENTRY = 'public/css/app.css';
 gulp.task('app:styles', () => {
     const processors = [
         require('postcss-import')({
-            path: ['public/css']
+            path: ['public/css'],
         }),
         require('postcss-nested'),
         require('postcss-short'),
         require('postcss-assets')({
-            loadPaths: ['public/img/assets']
+            loadPaths: ['public/img/assets'],
         }),
         require('postcss-cssnext')({
-            autoprefixer: true
+            autoprefixer: true,
         }),
         require('css-mqpacker'),
-        require('cssnano')
+        require('cssnano'),
     ];
 
     return (
@@ -89,7 +89,7 @@ gulp.task('app:styles', () => {
         .pipe(concat('app.css'))
         .pipe(gulp.dest('public/dist'))
     );
-})
+});
 
 // App:svg
 const svgmin   = require('gulp-svgmin');
@@ -103,17 +103,17 @@ gulp.task('app:svg', () => {
             return {
                 plugins: [{
                     cleanupIDs: {
-                        prefix: prefix + '-',
-                        minify: true
-                    }
-                }]
-            }
+                        prefix: `${prefix}-`,
+                        minify: true,
+                    },
+                }],
+            };
         }))
         .pipe(svgstore())
         .pipe(rename('icon-sprites.svg'))
         .pipe(gulp.dest('public/img'))
     );
-})
+});
 
 
 /**

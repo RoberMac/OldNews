@@ -1,3 +1,4 @@
+/* eslint no-param-reassign: 0 */
 angular
 .module('ShinyaNews.utils.services')
 .factory('store', store);
@@ -10,27 +11,28 @@ angular
  */
 function store($window) {
     return {
-        get: get,
-        set: set,
+        get   : get,
+        set   : set,
         remove: remove
     };
 
 
     function get(key) {
-        return _parseJSON($window.localStorage.getItem(key))
+        return _parseJSON($window.localStorage.getItem(key));
     }
     function set(key, value) {
-        return $window.localStorage.setItem(key, JSON.stringify(value))
+        return $window.localStorage.setItem(key, angular.toJson(value));
     }
     function remove(key) {
-        $window.localStorage.removeItem(key)
+        $window.localStorage.removeItem(key);
     }
     function _parseJSON(data) {
         try {
-            data = JSON.parse(data)
+            data = angular.fromJson(data);
         } catch (e) {
+            // Empty
         } finally {
-            return data
+            return data;
         }
     }
 }

@@ -1,82 +1,88 @@
-//local variables
-var express    = require('express'),
-    fs         = require('fs'),
-    app        = express(),
-    res_time   = require('response-time'),
-    favicon    = require('serve-favicon'),
-    bodyParser = require('body-parser'),
-    http       = require('http').Server(app),
-    mongoose   = require('mongoose'),
-    morgan     = require('morgan'),
-    helmet     = require('helmet'),
-    compress   = require('compression');
-
+'use strict';
+const Q          = require('q');
+const express    = require('express');
+const app        = express();
+const res_time   = require('response-time');
+const favicon    = require('serve-favicon');
+const bodyParser = require('body-parser');
+const mongoose   = require('mongoose');
+const morgan     = require('morgan');
+const helmet     = require('helmet');
+const compress   = require('compression');
 
 // load dotenv
-require('dotenv').load()
+require('dotenv').load();
 
 // global variables
-global.Q    = require('q')
-global.News = require('./models/db').News
-
-// read database config form VCAP_SERVICES env
-var db_uri = process.env.MONGODB
-    ? JSON.parse(process.env.MONGODB).uri
-    : 'mongodb://test:test@localhost:27017/test'
+global.News = require('./models').News;
+global.promiseNewsAggregate = Q.nbind(News.aggregate, News);
 
 // Connect to DB
-mongoose.connect(db_uri);
+const DB_URI = (
+    process.env.MONGODB
+        ? JSON.parse(process.env.MONGODB).uri
+    : 'mongodb://test:test@localhost:27017/test'
+);
+mongoose.connect(DB_URI);
+mongoose.connection
+.on('err', (err) => console.error(err))
+.once('open', () => console.log('Connected to MongoDB'));
 
-var db = mongoose.connection
-.on('err', function (err){
-    console.log(err)
-})
-.once('open', function (){
-    console.log('[DB]', 'Connected to MongoDB')
-})
 
 // App Settings
-app.set('trust proxy', true)
+app.set('trust proxy', true);
 
-// Middleware
-app.use(compress())
-app.use(bodyParser.json())
-app.use(res_time())
-app.use(favicon(__dirname + '/public/img/favicon.ico'))
-app.use(morgan(':remote-addr [:date[clf]] :method :url'))
-app.use(helmet())
-app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }))
-app.use(helmet.contentSecurityPolicy({
-    defaultSrc: ["'self'"],
-    scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
-    styleSrc: ["'self'", "'unsafe-inline'"],
-    imgSrc: ["*", "data:"],
-    connectSrc: ['*'],
-    reportOnly: false, // set to true if you only want to report errors
-    setAllHeaders: false, // set to true if you want to set all headers
-    disableAndroid: false, // set to true if you want to disable Android (browsers can vary and be buggy)
-    safari5: false // set to true if you want to force buggy CSP in Safari 5
+// Middlewares
+app
+.use(compress())
+.use(bodyParser.json())
+.use(res_time())
+.use(favicon(`${__dirname}/public/img/favicon.ico`))
+.use(morgan(':remote-addr [:date[clf]] :method :url'))
+.use(helmet())
+.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }))
+.use(helmet.csp({
+    directives: {
+        defaultSrc: ["'self'"],
+        styleSrc  : ["'self'", "'unsafe-inline'"],
+        scriptSrc : ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+        imgSrc    : ['*', 'data:', 'blob:'],
+        mediaSrc  : ['*'],
+    },
+    setAllHeaders : false,
+    disableAndroid: false,
+}))
+.use(helmet.xssFilter())
+.use(helmet.frameguard('deny'))
+.use(helmet.hsts({
+    maxAge           : 10886400000,
+    includeSubdomains: true,
+    preload          : true,
 }));
 
 // Routing
-app.use('/', require('./routes/index'))
-app.use('/public', express.static('public'))
-app.use('/api', require('./routes/api'))
+app
+.use('/news', require('./routes/news'))
+.use('/public', express.static('public'))
+.use('/*', (req, res, next) => {
+    const UA = req.headers['user-agent'];
+    const isIE = /MSIE/i.test(UA);
 
+    if (isIE) {
+        res.send('FUCK IE');
+    } else {
+        res.sendFile(`${__dirname}/index.html`);
+    }
+});
 
 // Handing Error
 app.use((err, req, res, next) => {
-    console.log(err, err.stack)
+    console.log(err, err.stack);
 
-    var statusCode = err.statusCode || 500;
-    var errObj = Object.prototype.toString.call(err) === '[object Object]'
-                    ? err
-                : { statusCode: statusCode };
+    const statusCode = err.statusCode || 500;
+    const errObj = Object.prototype.toString.call(err) === '[object Object]' ? err : { statusCode };
 
-    res.status(statusCode).json(errObj)
-})
+    res.status(statusCode).json(errObj);
+});
 
-
-http.listen(process.env.PORT || 3001, function (){
-    console.log('[App] is running')
-})
+app.listen(process.env.PORT || 3001);

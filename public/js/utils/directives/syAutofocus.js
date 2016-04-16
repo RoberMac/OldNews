@@ -6,13 +6,13 @@ angular
 function autoFocus($timeout) {
     return {
         restrict: 'A',
-        scope: {},
-        link: function($scope, $elem, $attr) {
-            var timeout = ~~$attr.syAutoFocus || 0;
+        scope   : {},
+        link    : function ($scope, $elem, $attr) {
+            var timeout = parseInt($attr.syAutoFocus, 10) || 0;
 
-            $timeout(function (){
-                $elem[0].focus()
-            }, timeout)
+            $timeout(function () {
+                $elem[0].focus();
+            }, timeout);
         }
-    }
+    };
 }

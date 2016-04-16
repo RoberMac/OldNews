@@ -1,3 +1,5 @@
+/* eslint angular/window-service: 0 */
+
 angular
 .module('ShinyaNews', [
     // Vendors
@@ -11,20 +13,19 @@ angular
     'ShinyaNews.components.NewsBox',
     'ShinyaNews.components.TimeMachine',
     'ShinyaNews.components.Nav',
-    'ShinyaNews.templates',
+    'ShinyaNews.templates'
 ])
 .config(config);
 
 
 function config($locationProvider, $stateProvider, $urlRouterProvider) {
-
-    $urlRouterProvider.otherwise(function() {
-        var now     = new Date();
-        var year    = now.getFullYear();
-        var month   = now.getMonth() + 1;
-        var day     = now.getDate();
-        var h       = now.getHours();
-        var country = JSON.parse(window.localStorage.getItem('sy-country')) || "HK";
+    $urlRouterProvider.otherwise(function () {
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var day = now.getDate();
+        var h = now.getHours();
+        var country = angular.fromJson(window.localStorage.getItem('sy-country')) || 'HK';
 
         return country + '/' + year + '/' + month + '/' + day + '?h=' + h;
     });
@@ -39,10 +40,10 @@ function config($locationProvider, $stateProvider, $urlRouterProvider) {
             '/{month:0?[1-9]|1[0-2]}', // Month
             '/{day:0?[0-9]|[12][0-9]|3[0-1]}', // Day
             '?h', // Hour
-            '&q', // Search
+            '&q' // Search
         ].join(''),
-        templateUrl: 'components/NewsBox/NewsBox.html',
-        controller: 'NewsBoxCtrl',
+        templateUrl : 'components/NewsBox/NewsBox.html',
+        controller  : 'NewsBoxCtrl',
         controllerAs: 'newsVM'
-    })
+    });
 }

@@ -6,13 +6,13 @@ angular
 function stopPropagation() {
     return {
         restrict: 'A',
-        link: function($scope, $elem, $attr) {
-            $elem.on('click', stopPropagation)
-            $elem.on('touchstart', stopPropagation)
+        link    : function ($scope, $elem, $attr) {
+            $elem.on('click', stopPropagation);
+            $elem.on('touchstart', stopPropagation);
 
             function stopPropagation(e) {
-                e.stopPropagation()
+                e.stopPropagation();
             }
         }
-    }
+    };
 }
