@@ -1,6 +1,6 @@
 angular
-.module('ShinyaNews.utils.services')
-.constant('STORE_PREFIX', 'sy-news-')
+.module('OldNews.utils.services')
+.constant('STORE_PREFIX', 'n-news-')
 .factory('NewsStore', NewsStore)
 .factory('OldNewsStore', OldNewsStore)
 .factory('FetchNews', FetchNews)

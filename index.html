@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html
-    ng-app="ShinyaNews"
+    ng-app="OldNews"
     ng-controller="rootCtrl as rootVM"
     ng-class="{'oldNews': rootVM.state.isOldNews}"
     class="animate--newsBox animate--general"
@@ -26,8 +26,8 @@
 
     <div ui-view></div>
 
-    <sy-time-machine></sy-time-machine>
-    <sy-nav></sy-nav>
+    <n-time-machine></n-time-machine>
+    <n-nav></n-nav>
 
     <script src="/public/dist/vendors.js"></script>
     <script src="/public/dist/app.js"></script>

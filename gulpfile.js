@@ -54,7 +54,7 @@ gulp.task('app:templates', () => {
         .src(PATH_APP_TEMPLATES)
         .pipe(ngTpCache({
             root      : 'components',
-            module    : 'ShinyaNews.templates',
+            module    : 'OldNews.templates',
             standalone: true,
         }))
         .pipe(gulp.dest('public/js/components'))

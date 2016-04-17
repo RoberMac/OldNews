@@ -1,9 +1,9 @@
 angular
-.module('ShinyaNews.components.TimeMachine', [])
-.directive('syTimeMachine', syTimeMachine);
+.module('OldNews.components.TimeMachine', [])
+.directive('nTimeMachine', nTimeMachine);
 
 
-function syTimeMachine() {
+function nTimeMachine() {
     return {
         restrict    : 'E',
         replace     : true,

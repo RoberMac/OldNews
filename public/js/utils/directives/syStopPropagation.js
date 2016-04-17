@@ -1,6 +1,6 @@
 angular
-.module('ShinyaNews.utils.directives')
-.directive('syStopPropagation', stopPropagation);
+.module('OldNews.utils.directives')
+.directive('nStopPropagation', stopPropagation);
 
 
 function stopPropagation() {

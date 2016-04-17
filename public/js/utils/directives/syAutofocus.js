@@ -1,6 +1,6 @@
 angular
-.module('ShinyaNews.utils.directives')
-.directive('syAutoFocus', autoFocus);
+.module('OldNews.utils.directives')
+.directive('nAutoFocus', autoFocus);
 
 
 function autoFocus($timeout) {
@@ -8,7 +8,7 @@ function autoFocus($timeout) {
         restrict: 'A',
         scope   : {},
         link    : function ($scope, $elem, $attr) {
-            var timeout = parseInt($attr.syAutoFocus, 10) || 0;
+            var timeout = parseInt($attr.nAutoFocus, 10) || 0;
 
             $timeout(function () {
                 $elem[0].focus();

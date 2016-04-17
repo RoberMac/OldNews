@@ -1,6 +1,6 @@
 /* eslint no-param-reassign: 0 */
 angular
-.module('ShinyaNews.utils.services')
+.module('OldNews.utils.services')
 .factory('store', store);
 
 

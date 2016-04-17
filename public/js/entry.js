@@ -1,19 +1,19 @@
 /* eslint angular/window-service: 0 */
 
 angular
-.module('ShinyaNews', [
+.module('OldNews', [
     // Vendors
     'ngTouch',
     'ngAnimate',
     'ui.router',
     // App
-    'ShinyaNews.utils.controllers',
-    'ShinyaNews.utils.services',
-    'ShinyaNews.utils.directives',
-    'ShinyaNews.components.NewsBox',
-    'ShinyaNews.components.TimeMachine',
-    'ShinyaNews.components.Nav',
-    'ShinyaNews.templates'
+    'OldNews.utils.controllers',
+    'OldNews.utils.services',
+    'OldNews.utils.directives',
+    'OldNews.components.NewsBox',
+    'OldNews.components.TimeMachine',
+    'OldNews.components.Nav',
+    'OldNews.templates'
 ])
 .config(config);
 
@@ -25,7 +25,7 @@ function config($locationProvider, $stateProvider, $urlRouterProvider) {
         var month = now.getMonth() + 1;
         var day = now.getDate();
         var h = now.getHours();
-        var country = angular.fromJson(window.localStorage.getItem('sy-country')) || 'HK';
+        var country = angular.fromJson(window.localStorage.getItem('n-country')) || 'HK';
 
         return country + '/' + year + '/' + month + '/' + day + '?h=' + h;
     });

@@ -1,6 +1,6 @@
 /* eslint angular/document-service: 0 */
 angular
-.module('ShinyaNews.components.NewsBox', [])
+.module('OldNews.components.NewsBox', [])
 .controller('NewsBoxCtrl', NewsBoxCtrl);
 
 
@@ -77,7 +77,7 @@ function NewsBoxCtrl(
         var date = TimeHelper.newsDateMs(isOldNews);
 
         // Store Country
-        store.set('sy-country', country);
+        store.set('n-country', country);
 
         // Update Date
         vm.updateState({

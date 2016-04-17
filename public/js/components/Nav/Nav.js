@@ -1,10 +1,10 @@
 angular
-.module('ShinyaNews.components.Nav', [])
+.module('OldNews.components.Nav', [])
 .constant('COUNTRIES', ['BR', 'CN', 'DE', 'FR', 'HK', 'IN', 'JP', 'KR', 'RU', 'TW', 'US'])
-.directive('syNav', syNav);
+.directive('nNav', nNav);
 
 
-function syNav() {
+function nNav() {
     return {
         restrict    : 'E',
         replace     : true,
@@ -162,6 +162,6 @@ function NavCtrl(
         }
     }
     function getCountryList() {
-        return [$stateParams.country || store.get('sy-country') || 'HK'];
+        return [$stateParams.country || store.get('n-country') || 'HK'];
     }
 }

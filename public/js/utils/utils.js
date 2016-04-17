@@ -1,3 +1,3 @@
-angular.module('ShinyaNews.utils.controllers', []);
-angular.module('ShinyaNews.utils.services', []);
-angular.module('ShinyaNews.utils.directives', []);
+angular.module('OldNews.utils.controllers', []);
+angular.module('OldNews.utils.services', []);
+angular.module('OldNews.utils.directives', []);

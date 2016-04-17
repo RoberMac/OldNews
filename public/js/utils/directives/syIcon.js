@@ -1,9 +1,9 @@
 angular
-.module('ShinyaNews.utils.directives')
-.directive('syIcon', syIcon);
+.module('OldNews.utils.directives')
+.directive('nIcon', nIcon);
 
 
-function syIcon() {
+function nIcon() {
     return {
         restrict: 'E',
         replace : true,

@@ -1,5 +1,5 @@
 angular
-.module('ShinyaNews.utils.controllers')
+.module('OldNews.utils.controllers')
 .controller('rootCtrl', rootCtrl);
 
 
