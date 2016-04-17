@@ -41,7 +41,7 @@ router.get('/:country/:date/:range', (req, res, next) => {
             return;
         }
 
-        res.send({ status: 'ok', msg: found });
+        res.send({ msg: found });
     })
     .catch(err => next(err));
 });

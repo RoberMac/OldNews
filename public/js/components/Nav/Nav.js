@@ -22,7 +22,7 @@ function NavCtrl(
     this.state = {
         isShowCaretLeft : true,
         isShowCaretRight: true,
-        countryList     : getInitCountry()
+        countryList     : getCountryList()
     };
     vm.selectNews = selectNews;
     vm.togglehNewsType = togglehNewsType;
@@ -32,7 +32,7 @@ function NavCtrl(
     $scope.$on('keyDown:esc', handleKeyDownEsc);
     $scope.$on('keyDown:leftOrRightArrow', handleKeyDownLeftOrRightArrow);
     $scope.$on('swipe:leftOrRight', handleSwipeLeftOrRight);
-    $scope.$on('fetchNews:start', checkCaret);
+    $scope.$on('fetchNews:start', handleStartFetchNews);
 
 
     function selectNews(step) {
@@ -65,7 +65,7 @@ function NavCtrl(
         }
     }
     function handleKeyDownEsc() {
-        vm.state.countryList = getInitCountry();
+        vm.state.countryList = getCountryList();
     }
     function handleKeyDownLeftOrRightArrow(event, payload) {
         vm.selectNews(payload.step);
@@ -73,10 +73,11 @@ function NavCtrl(
     function handleSwipeLeftOrRight(event, payload) {
         vm.selectNews(payload.step);
     }
-    function checkCaret() {
+    function handleStartFetchNews() {
         var isOldNews = $scope.rootVM.state.isOldNews;
         var newsDate = TimeHelper.newsDateMs(isOldNews);
 
+        // check caret
         if (isOldNews) {
             // Always Show Left
             vm.state.isShowCaretLeft = true;
@@ -87,6 +88,11 @@ function NavCtrl(
             vm.state.isShowCaretLeft = newsDate - TIME.ONE_HOUR !== TimeHelper.todayMs();
             // Before Now Hour
             vm.state.isShowCaretRight = newsDate + TIME.ONE_HOUR <= Date.now();
+        }
+
+        // update country
+        if (vm.state.countryList[0] !== $stateParams.country) {
+            vm.state.countryList = getCountryList();
         }
     }
     function togglehNewsType() {
@@ -155,7 +161,7 @@ function NavCtrl(
             });
         }
     }
-    function getInitCountry() {
-        return [store.get('sy-country') || 'HK'];
+    function getCountryList() {
+        return [$stateParams.country || store.get('sy-country') || 'HK'];
     }
 }
