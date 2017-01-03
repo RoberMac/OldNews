@@ -36,7 +36,7 @@ function config($locationProvider, $stateProvider, $urlRouterProvider) {
     .state('news', {
         url: [
             '/{country:BR|CN|DE|FR|HK|IN|JP|KR|RU|TW|US}', // Country
-            '/{year:201[5-6]}', // Year
+            '/{year:201[5-7]}', // Year
             '/{month:0?[1-9]|1[0-2]}', // Month
             '/{day:0?[0-9]|[12][0-9]|3[0-1]}', // Day
             '?h', // Hour
